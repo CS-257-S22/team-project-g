@@ -13,3 +13,8 @@ Terms of use:
 The data comes from a variety public sources and was collated in the first instance via Johns Hopkins University on GitHub. We have used that data and processed it further. Given the public sources and factual nature we believe that there the data is public domain and are therefore releasing the results under the Public Domain Dedication and License. We are also, of course, explicitly licensing any contribution of ours under that license."
 
 Suggested citation: TrevorWinstral, us_simplified.csv, committed Apr 10. 2022 on Github, https://github.com/datasets/covid-19/blob/main/data/us_simplified.csv
+
+Ways that the user could interact with the data:
+  1. Visualize aspects of COVID-19(deaths, cases, etc) in a specified region.
+  2. Get specific numbers about COVID-19(deaths, cases, recoveries, rate of new cases/deaths, etc) of a specific time and region. 
+
