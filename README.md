@@ -1,2 +1,2 @@
-# team-project-team-g
-Team G members: Bryan, Dake, Sam, Will
+# Team G - CoViz: Visualizations of United States COVID-19 Data
+Team members: Bryan, Dake, Sam, Will
