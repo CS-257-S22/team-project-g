@@ -6,7 +6,7 @@ Date downloaded: 4/10/2022
 
 Authorship: TrevorWinstral on Github 
 
-Exact name and version: us_simplified.csv, committed Apr 10, 2022
+Exact name and version: COVID19 Dataset on Github, us_simplified.csv, committed Apr 10, 2022
 
 Terms of use:
 "This dataset is licensed under the Open Data Commons Public Domain and Dedication License.
