@@ -6,15 +6,18 @@ dataSet = []
 
 def retrieveData(filePath):
     with open(filePath) as file:
-        lines = file.readlines()[1:]
-    lines = lines
-    for i in lines:
-        line = []
-        for j in i.split(","):
-            line.append(j)
-        line.pop()
-        dataSet.append(line)
+        stringLines  = file.readlines()[1:]
+    for i in stringLines:
+        arrayLine = convertStringLinetoArray(i)
+        dataSet.append(arrayLine)
+        arrayLine.pop()
     file.close()
+
+def convertStringLinetoArray(stringLine):
+    arrayLine = []
+    for i in stringLine.split(","):
+        arrayLine.append(i)
+    return arrayLine
 
 def convertRealtivePathtoAbsolutePath(relativePath):
     currentPath = os.path.dirname(__file__)
@@ -27,5 +30,5 @@ def callRetrieveData():
 
 if __name__ == "__main__":
     callRetrieveData()
-    print(dataSet[0][0])
+    print(dataSet)
     
