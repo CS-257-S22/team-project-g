@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path.append("C:\CS 257 Code\G")
 import ProductionCode
 
 class CommandLineTest(unittest.TestCase):
