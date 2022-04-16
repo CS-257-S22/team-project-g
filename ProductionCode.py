@@ -3,7 +3,7 @@ import csv
 import os
 
 relativeDataPath = "Data/dummy_data.csv" #data path of the dataset .csv file relative to this folder
-dataSet = [] #2-d array data set in the format [Date (as a tuple of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]
+dataSet = [] #2-d array data set in the format [Date (as a list of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]
 
 def retrieveData():
     absoluteDataPath = convertRealtivePathToAbsolutePath()
@@ -33,10 +33,10 @@ def convertStringLinetoArray(stringLine):
         arrayLine.append(i)
     return arrayLine
 
-#Split date in to a tuple (Year, Month, Day)
+#Split date in to a list [Year, Month, Day]
 def splitDate(dateString):
     return dateString.split("-")
 
 if __name__ == "__main__":
     retrieveData()
-    print(dataSet)
+    print(dataSet[0])
