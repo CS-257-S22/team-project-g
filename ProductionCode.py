@@ -24,6 +24,7 @@ def storeData(stringLines):
     for i in stringLines:
         arrayLine = convertStringLinetoArray(i)
         arrayLine.pop() # remove last column
+        arrayLine[0] = splitDate(arrayLine[0]) #process date String and make it a duplet
         dataSet.append(arrayLine)
 
 def convertStringLinetoArray(stringLine):
@@ -31,6 +32,11 @@ def convertStringLinetoArray(stringLine):
     for i in stringLine.split(","):
         arrayLine.append(i)
     return arrayLine
-  
+
+#Split date in to a tuplet (Year, Month, Day)
+def splitDate(dateString):
+    return dateString.split("-")
+
 if __name__ == "__main__":
-   retrieveData()
+    retrieveData()
+    print(dataSet)
