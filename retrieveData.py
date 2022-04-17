@@ -1,8 +1,8 @@
 import sys
 import csv
 import os
-
-relativeDataPath = "Data/dummy_data.csv" #data path of the dataset .csv file relative to this folder
+from ProductionCode import relativeDataPath
+ #data path of the dataset .csv file relative to this folder
 dataSet = [] #2-d array data set in the format [Date (as a tuple of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]
 
 def retrieveData():
