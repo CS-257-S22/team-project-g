@@ -25,6 +25,8 @@ def storeData(stringLines):
         arrayLine = convertStringLinetoArray(i)
         arrayLine.pop() # remove last column
         arrayLine[0] = splitDate(arrayLine[0]) #process date String and make it a list
+        arrayLine[3] = int (arrayLine[3])
+        arrayLine[4] = int (arrayLine[4])
         dataSet.append(arrayLine)
 
 def convertStringLinetoArray(stringLine):
