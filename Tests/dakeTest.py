@@ -6,8 +6,12 @@ motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 import ProductionCode
 
+dummyDataSetRelativePath = "Data/dummy_data.csv"
+
 class retrieveDataTest(unittest.TestCase):
-    
+    def testDataFormat:
+        self
+        pass
 
 if __name__ == '__main__':
     unittest.main()
