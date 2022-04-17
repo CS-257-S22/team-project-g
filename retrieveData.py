@@ -1,17 +1,16 @@
 import sys
 import csv
 import os
-
-relativeDataPath = "Data/dummy_data.csv" #data path of the dataset .csv file relative to this folder
+ #data path of the dataset .csv file relative to this folder
 dataSet = [] #2-d array data set in the format [Date (as a tuple of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]
 
-def retrieveData():
-    absoluteDataPath = convertRealtivePathToAbsolutePath()
+def retrieveData(relativeDataPath):
+    absoluteDataPath = convertRealtivePathToAbsolutePath(relativeDataPath)
     stringLines = getStringLinesFromFile(absoluteDataPath)
     storeData(stringLines)
     return dataSet
 
-def convertRealtivePathToAbsolutePath():
+def convertRealtivePathToAbsolutePath(relativeDataPath):
     currentPath = os.path.dirname(__file__)
     return os.path.join(currentPath, relativeDataPath)
 
