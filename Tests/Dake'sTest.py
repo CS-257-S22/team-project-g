@@ -1,9 +1,12 @@
 import unittest
 import sys
-sys.path.append("C:\CS 257 Code\G")
+import os
+currentPath = os.path.dirname(__file__)
+motherdir = os.path.join(currentPath,"..")
+sys.path.append(motherdir)
 import ProductionCode
 
-class CommandLineTest(unittest.TestCase):
+class retrieveDataTest(unittest.TestCase):
     #Test spitting out the arguments
     def test_in_out(self):
         Output = ProductionCode.main("-a -b Minnesota")
