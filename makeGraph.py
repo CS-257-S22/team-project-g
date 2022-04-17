@@ -1,4 +1,5 @@
 # makes a graph out of a dates[] list and a cases[] list;
+# This code is not a part of the Command Line project.
 # points to improve: 
 #   1. low effciency overall; maybe we have to use a smpling method
 #   2. the death number is not cumulative, but the confirmed cases seem to be cumulative
