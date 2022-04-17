@@ -1,4 +1,4 @@
-# makes a graph out of a dates[] list and a confirmedCases[] list;
+# makes a graph out of a dates[] list and a Cases[] list;
 # points to improve: the pd.to_datetime() takes a string rather than a list, 
 # so the convertDateListtoDateString(dateList) could be saved 
 # low effciency overall; maybe we have to use a smpling method
@@ -12,7 +12,6 @@ import numpy as np
 #dates[] list contains lists of date in the format [Year, Month, Day]
 #confirmedCases[] list contains number of cases
 def makeConfirmedCasesGraph(dates,confirmedCases):
-    
     dates = [pd.to_datetime(convertDateListtoDateString(i)) for i in dates]
     xpoints = dates
     ypoints = confirmedCases
