@@ -9,8 +9,8 @@ import ProductionCode
 dummyDataSetRelativePath = "Data/dummy_data.csv"
 
 class retrieveDataTest(unittest.TestCase):
-    def testDataFormat:
-        self
+    def testDataFormat():
+        self.assertEqual()
         pass
 
 if __name__ == '__main__':
