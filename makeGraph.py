@@ -133,6 +133,6 @@ if __name__ == "__main__":
     plotTestDataRelativePath = "Data/plot_test_data.csv"
     plotTestDataSet = rD.retrieveData(plotTestDataRelativePath)
     dates = [i[0] for i in plotTestDataSet]
-    cases = [i[4] for i in plotTestDataSet]
+    cases = [int(i[3]) for i in plotTestDataSet]
     Location = plotTestDataSet[0][1:3]
-    makeConfirmedDeathsGraph(dates,cases,Location)
+    makeConfirmedCasesGraph(dates,cases,Location)
