@@ -1,4 +1,4 @@
-# makes a graph out of a dates[] list and a Cases[] list;
+# makes a graph out of a dates[] list and a cases[] list;
 # points to improve: 
 #   1. low effciency overall; maybe we have to use a smpling method
 #   2. the death number is not cumulative, but the confirmed cases seem to be cumulative
@@ -42,6 +42,7 @@ def makeConfirmedDeathsGraph(dates, caseList,Location):
     setYaxisTicks(yticksize)
     
     plt.show()
+    
 '''functions related to setting x axis ticks'''
 def labelConfirmedCasesToDate():
     plt.xlabel("Date")
