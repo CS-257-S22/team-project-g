@@ -1,6 +1,9 @@
 import unittest
 import sys
-sys.path.append("C:\CS 257 Code\G")
+import os
+currentPath = os.path.dirname(__file__)
+motherdir = os.path.join(currentPath,"..")
+sys.path.append(motherdir)
 import getDayWithMostCases
 
 class CommandLineTest(unittest.TestCase):
