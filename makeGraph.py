@@ -29,7 +29,7 @@ def makeConfirmedCasesGraph(dates, caseList, Location):
     setYaxisTicks(yticksize)
     
     plt.show()
-    
+    plt.close() 
 def makeConfirmedDeathsGraph(dates, caseList, Location):
     '''
     makes a confirmed deaths graph
@@ -37,7 +37,6 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
     cases[] list contains number of cases as string
     Location is a list of 2, [county, state]
     '''
-    
     drawGraph(dates,caseList)
     labelConfirmedDeathsToDate()
     makeTitleConfirmedDeaths(Location[0], Location[1])
@@ -49,7 +48,7 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
     setYaxisTicks(yticksize)
     
     plt.show()
-    
+    plt.close() 
 
 #functions related to setting x axis ticks
 def setXaxisTicks(timeRangeDays):
@@ -150,6 +149,6 @@ if __name__ == "__main__":
     plotTestDataRelativePath = "Data/plot_test_data.csv"
     plotTestDataSet = rD.retrieveData(plotTestDataRelativePath)
     dates = [i[0] for i in plotTestDataSet]
-    cases = [int(i[3]) for i in plotTestDataSet]
+    cases = [int(i[4]) for i in plotTestDataSet]
     Location = plotTestDataSet[0][1:3]
     makeConfirmedCasesGraph(dates,cases,Location)
