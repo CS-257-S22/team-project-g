@@ -1,8 +1,6 @@
 import sys
 import csv
 import os
-
-from pyparsing import line
 #data path of the dataset .csv file relative to this folder
 dataSet = [] 
 #2-d array data set in the format [Date (as a list of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]

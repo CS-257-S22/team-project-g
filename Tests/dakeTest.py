@@ -15,21 +15,23 @@ wrongFormatDataSetRelativePath = "Data/dakeTestIncorrectFormatData.csv"
 
 class retrieveDataTest(unittest.TestCase):
     
-    #Test if line 200 is correct in the resulting string list
+    
     def testGetStringLinesFromFile(self):
+        '''Test if line 200 is correct in the resulting string list'''
         lines = rD.getStringLinesFromFile(dummyDataSetRelativePath)
         self.assertEqual(lines[199],"2021-06-21,Delaware,Pennsylvania,52541,1401,US\n")
         pass
     
-    #Test if the dates are split properly
+    
     def testSplitDate(self):
+        '''Test if the dates are split properly'''
         dateString = "2020-1-1"
         dateList = rD.splitDate(dateString)
         self.assertEqual(dateList,['2020','1','1'],"splitDate() is not fucntioning properly")
     pass
  
-    #Test if retrieveData identifies incorrectly formatted Data with a wrongly formatted dataset
     def testWrongFormatData(self):
+        '''Test if retrieveData identifies incorrectly formatted Data with a wrongly formatted dataset'''
         with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_stdout:
             rD.retrieveData(wrongFormatDataSetRelativePath) 
         self.assertEqual(fake_stdout.getvalue(), "Case format incorrect at line 1\nDate format incorrect at line 2\n")
