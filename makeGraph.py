@@ -144,11 +144,3 @@ def getTimeRangeDays(dates):
     endDate = datetime(int(endDate[0]),int(endDate[1]),int(endDate[2]))
     deltatime = endDate - startDate
     return deltatime.days
-
-if __name__ == "__main__":
-    plotTestDataRelativePath = "Data/plot_test_data.csv"
-    plotTestDataSet = rD.retrieveData(plotTestDataRelativePath)
-    dates = [i[0] for i in plotTestDataSet]
-    cases = [int(i[4]) for i in plotTestDataSet]
-    Location = plotTestDataSet[0][1:3]
-    makeConfirmedCasesGraph(dates,cases,Location)
