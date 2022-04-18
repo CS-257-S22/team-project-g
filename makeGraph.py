@@ -3,15 +3,12 @@
 # points to improve: 
 #   1. low effciency overall; maybe we have to use a smpling method
 #   2. the death number is not cumulative, but the confirmed cases seem to be cumulative
-import pandas as pd
 import retrieveData as rD
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import matplotlib.dates as mdates
 import math
-import numpy as np
 from datetime import datetime
-
 
 #dates[] list contains lists of date in the format [Year, Month, Day]
 #confirmedCases[] list contains number of cases
@@ -30,7 +27,7 @@ def makeConfirmedCasesGraph(dates, caseList, Location):
     
     plt.show()
     
-def makeConfirmedDeathsGraph(dates, caseList,Location):
+def makeConfirmedDeathsGraph(dates, caseList, Location):
     
     drawGraph(dates,caseList)
     labelConfirmedDeathsToDate()

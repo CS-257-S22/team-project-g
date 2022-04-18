@@ -8,6 +8,7 @@ import io
 currentPath = os.path.dirname(__file__)
 motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
+
 import retrieveData as rD
 
 dummyDataSetRelativePath = "Data/dummy_data.csv"
