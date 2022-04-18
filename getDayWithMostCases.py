@@ -17,6 +17,7 @@ def getDayWithMostCases(stateName):
                     highestDay = element[0]
                     highestDayCaseCount = element[3]
         print("On " + dayListToStr(highestDay) +" in " + stateName + " there were " + highestDayCaseCount + " cases." )
+        return "On " + dayListToStr(highestDay) +" in " + stateName + " there were " + highestDayCaseCount + " cases."
 
 
 # Takes list containing date ['year','month','day'] and returns string in form 'Month Day, Year'
