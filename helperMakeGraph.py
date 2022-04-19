@@ -42,9 +42,9 @@ def getDates(list):
     return dates
 
 def getConfirmedCases(list):
-    deaths = [i[3] for i in list]
+    deaths = [int(i[3]) for i in list]
     return deaths
 
 def getConfirmedDeaths(list):
-    deaths = [i[4] for i in list]
+    deaths = [int(i[4]) for i in list]
     return deaths
