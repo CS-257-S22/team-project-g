@@ -6,7 +6,7 @@ currentPath = os.path.dirname(__file__)
 motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 
-import productionCode as SamProductionCode
+import ProductionCode as SamProductionCode
 
 
 class CommandLineTest(unittest.TestCase):
@@ -24,7 +24,12 @@ class CommandLineTest(unittest.TestCase):
        self.assertFalse(SamProductionCode.compareArgument(""))
     def testTrueCompareArgument(self):
         #checks that help argument
-       self.assertEqual(SamProductionCode.compareArgument("-help"),"–state or -s “StateName” –daterange or -d “YYYY-MM-DD”’")
+       self.assertEqual(SamProductionCode.compareArgument("--help"),"""Welcome to Coviz, a program that provides informtion and visualization for COVID-19 cases\n
+–-state or -s “StateName” returns the highest number of confirmed cases in a given state
+--date or -d "YYYY-MM-DD" returns the information of confirmed cases and deaths on a given day
+--daterange or -d “YYYY-MM-DD” “YYYY-MM-DD” returns information of confirmed cases and deaths between 2 given dates"""
+        )
+       
     def testCheckValidDates(self):
          #checks that valid dates are accepted 
         outPut = SamProductionCode.checkValidDate("2020-1-1")
