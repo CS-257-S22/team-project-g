@@ -12,6 +12,11 @@ import math
 from datetime import datetime
 
 def makeGraph(location,dateRange):
+    '''
+    make the death case to time graph and confimed case graph 
+    location[] is a list that contains [county,state]
+    dateRange[] is a list that contains the starting date and the ending date [[Year,Month,Day], [Year,Month,Day]]
+    ''' 
     list = hMG.getDataWithLocationAndDateRange(location, dateRange)
     dates = hMG.getDates(list)
     confirmedCases = hMG.getConfirmedCases(list)

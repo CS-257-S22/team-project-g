@@ -21,8 +21,7 @@ def getDayData(dateRange):
     print(dateRange)
 
 def makeGraphOfData(location, startDate, endDate):
-    county = location[0]
-    state = location[1]
+    mG.makeGraph(location,[startDate,endDate])
     
 
 def CheckComadLine(arguments):
@@ -42,6 +41,8 @@ def setUpValidArguments():
     validArguments = {
         "-s" : state,
         "-–state" : state,
+        #"-c": county,
+        #"--county": county,
         "-d" : date,
         "-–daterange" : date,
         "--help" : help
