@@ -1,7 +1,7 @@
 import retrieveData
 from datetime import datetime
 
-dataSet = retrieveData.retrieveData("Data\plot_test_data.csv")
+dataSet = retrieveData.retrieveData("Data/plot_test_data.csv")
 global dates
 global deaths
 global confirmedCases
