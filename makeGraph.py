@@ -119,7 +119,7 @@ def makeTitleConfirmedCases(county, state):
     
 def makeTitleConfirmedDeaths(county, state): 
     '''make title for confirmed deaths graph''' 
-    plt.title("Non-cumulative Number of Confirmed Deaths in " + county + "," + state)
+    plt.title("Cumulative Number of Confirmed Deaths in " + county + "," + state)
 
 def labelConfirmedCasesToDate():
     '''make label for confirmed cases graph''' 
