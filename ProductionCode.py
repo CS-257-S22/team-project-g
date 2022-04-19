@@ -20,8 +20,10 @@ def getStateData(stateName):
 def getDayData(dateRange):
     print(dateRange)
 
-def makeGraphOfData(dates, caseList, Location):
-    mG.makeConfirmedCasesGraph(dates, caseList, Location)
+def makeGraphOfData(location, startDate, endDate):
+    county = location[0]
+    state = location[1]
+    
 
 def CheckComadLine(arguments):
     if (len(arguments) <= 0): return ("No arguments, Try -s or -d")

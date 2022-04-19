@@ -3,6 +3,7 @@
 # points to improve: 
 #   1. low effciency overall; maybe we have to use a smpling method
 #   2. the death number is not cumulative, but the confirmed cases seem to be cumulative
+import helperMakeGraph as hMG
 import retrieveData as rD
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
@@ -10,7 +11,15 @@ import matplotlib.dates as mdates
 import math
 from datetime import datetime
 
-def makeConfirmedCasesGraph(dates, caseList, Location):
+def makeGraph(location,dateRange):
+    list = hMG.getDataWithLocationAndDateRange(location, dateRange)
+    dates = hMG.getDates(list)
+    confirmedCases = hMG.getConfirmedCases(list)
+    confirmedDeaths = hMG.getConfirmedDeaths(list)
+    makeConfirmedCasesGraph(dates,confirmedCases,location)
+    makeConfirmedDeathsGraph(dates,confirmedDeaths,location)
+    
+def makeConfirmedCasesGraph(dates, caseList, location):
     '''
     makes a confirmed case graph
     dates[] list contains lists of date in the format [Year, Month, Day]
@@ -20,7 +29,7 @@ def makeConfirmedCasesGraph(dates, caseList, Location):
     
     drawGraph(dates,caseList)
     labelConfirmedCasesToDate()
-    makeTitleConfirmedCases(Location[0], Location[1])
+    makeTitleConfirmedCases(location[0], location[1])
     
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
@@ -144,3 +153,8 @@ def getTimeRangeDays(dates):
     endDate = datetime(int(endDate[0]),int(endDate[1]),int(endDate[2]))
     deltatime = endDate - startDate
     return deltatime.days
+
+if __name__ == '__main__':
+    location = ["Autauga", "Alabama"]
+    dateRange = [['2020', '1', '1'] , ['2020', '12', '1']]
+    makeGraph(location,dateRange)
