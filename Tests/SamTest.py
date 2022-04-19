@@ -25,7 +25,7 @@ class CommandLineTest(unittest.TestCase):
     def testTrueCompareArgument(self):
         #checks that help argument
        self.assertEqual(SamProductionCode.compareArgument("--help"),"""Welcome to Coviz, a program that provides informtion and visualization for COVID-19 cases\n
-–-state or -s “StateName” --county or -c "CountyName" returns the latest number of confirmed cases in a given county
+–-state or -s “StateName” returns the latest number of confirmed cases in a given state
 –-state or -s “StateName” --county or -c "CountyName" –-daterange or -d “YYYY-MM-DD” “YYYY-MM-DD” returns graphs of the number of cases and deaths in the given county over a time span
 """        )
        
