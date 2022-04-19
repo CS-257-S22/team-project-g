@@ -6,14 +6,14 @@ import makeGraph as mG
 import getDayWithMostCases as gDMC
 
 state = 0
-date = 1
-graph = 2
-help = """Welcome to Coviz, a program that provides informtion and visualization for COVID-19 cases\n
-–-state or -s “StateName” returns the highest number of confirmed cases in a given state
---date or -d "YYYY-MM-DD" returns the information of confirmed cases and deaths on a given day
---daterange or -d “YYYY-MM-DD” “YYYY-MM-DD” returns information of confirmed cases and deaths between 2 given dates"""
-#–-state or -s “StateName” –-daterange or -d “YYYY-MM-DD” “YYYY-MM-DD” returns graphs of the number of cases and deaths in the given State over a time span
+county = 1
+date = 2
+graph = 3
 
+help = """Welcome to Coviz, a program that provides informtion and visualization for COVID-19 cases\n
+–-state or -s “StateName” --county or -c "CountyName" returns the latest number of confirmed cases in a given county
+–-state or -s “StateName” --county or -c "CountyName" –-daterange or -d “YYYY-MM-DD” “YYYY-MM-DD” returns graphs of the number of cases and deaths in the given county over a time span
+"""
 def getStateData(stateName):
     gDMC.getDayWithMostCases(stateName)
 
@@ -24,7 +24,6 @@ def makeGraphOfData(location, startDate, endDate):
     county = location[0]
     state = location[1]
     
-
 def CheckComadLine(arguments):
     if (len(arguments) <= 0): return ("No arguments, Try -s or -d")
     elif (len(arguments) == 1):
@@ -35,6 +34,8 @@ def CheckComadLine(arguments):
         return CheckComadLineArg3(arguments)
     elif (len(arguments) == 5):
         return CheckComadLineArg5(arguments)
+    elif (len(arguments) == 7):
+        return CheckComanLineArg7(arguments)
     else: return ("Not valid argument, Try: --help")
 
 def setUpValidArguments():
@@ -42,6 +43,8 @@ def setUpValidArguments():
     validArguments = {
         "-s" : state,
         "-–state" : state,
+        "-c" : county,
+        "--county": county,
         "-d" : date,
         "-–daterange" : date,
         "--help" : help
@@ -98,7 +101,15 @@ def CheckComadLineArg5(arguments):
         if checkValidDate(str(arguments[4])) == False: return ("Please input valid date, Try: -d 2020-1-1 2020-1-2")
         return getDayData([arguments[2],checkValidDate(str(arguments[3])),checkValidDate(str(arguments[4]))])
     else: return ("Not valid argument, Try: --help")
-    
+
+def CheckComadLineArg7(arguments):
+    if (not compareArgument(str(arguments[0])) == state): 
+        return ("Invalid input! Try -s Alabama -c Antagua -d 2020-1-1 2020-12-1")
+    if (not compareArgument(str(arguments[2])) == county): 
+        return ("Invalid input! Try -s Alabama -c Antagua -d 2020-1-1 2020-12-1")
+    if (not compareArgument(str(arguments[4])) == date): 
+        return ("Invalid input! Try -s Alabama -c Antagua -d 2020-1-1 2020-12-1")
+       
 if __name__ == '__main__':
     arguments = getComadLine()
     outPut = CheckComadLine(arguments)
