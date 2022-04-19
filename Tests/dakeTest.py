@@ -56,20 +56,17 @@ class makeGraphTest(unittest.TestCase):
 #Manually test plotting
 plotTestDataRelativePath = "Data/plot_test_data.csv"
 plotTestDataSet = rD.retrieveData(plotTestDataRelativePath) 
-
+dates = [i[0] for i in plotTestDataSet] #make dates list for test
+confirmedCases = [int(i[3]) for i in plotTestDataSet] #make confirmed cases list for test
+confirmedDeaths = [int(i[4]) for i in plotTestDataSet] #make confirmed deaths list for test
+location = plotTestDataSet[0][1:3] #make Location list for test
 def manualTestConfirmedCasesGraph():
     '''test making a confirmed cases graph out of a dummy data'''
-    dates = [i[0] for i in plotTestDataSet] #make dates list for test
-    cases = [int(i[3]) for i in plotTestDataSet] #make cases list for test
-    Location = plotTestDataSet[0][1:3] #make Location list for test
-    mG.makeConfirmedCasesGraph(dates,cases,Location)
+    mG.makeConfirmedCasesGraph(dates,confirmedCases,location)
     
 def manualTestConfirmedDeathsGraph():
     '''test making a deaths graph out of a dummy data'''
-    dates = [i[0] for i in plotTestDataSet] #make dates list for test
-    cases = [int(i[4]) for i in plotTestDataSet] #make cases list for test
-    Location = plotTestDataSet[0][1:3] #make Location list for test
-    mG.makeConfirmedDeathsGraph(dates,cases,Location)
+    mG.makeConfirmedDeathsGraph(dates,confirmedDeaths,location)
     
 if __name__ == '__main__':
     manualTestConfirmedCasesGraph()
