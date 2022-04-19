@@ -117,8 +117,8 @@ def CheckComadLineArg7(arguments):
     makeGraphOfData(location, startDate, endDate)
     
 if __name__ == '__main__':
-    print("""Notice: due to the fact that we are operating on a dummy dataset the information may be inaccurate
-Also, only graph data for Autauga, Alabama is supported right now""")
+    print("""\nNotice: due to the fact that we are operating on a dummy dataset the information may be inaccurate
+Also, only graph data for Autauga, Alabama is supported right now\n""")
     arguments = getComadLine()
     outPut = CheckComadLine(arguments)
     if isstring(outPut):

@@ -54,8 +54,8 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
     
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
-    
     yticksize = calculateYTickSize(caseList)
+
     setYaxisTicks(yticksize)
     
     plt.show()
@@ -104,14 +104,13 @@ def calculateYTickSize(caseList):
     
     #If the max number of cases is 1----, then make the tick size 1/10 its original
     if int (maxCases/yticksize) == 1: 
-        yticksize/=10
-           
-    return yticksize
+        yticksize/=10       
+    return int(yticksize)
 
 def setYaxisTicks(yticksize):
     '''set tick size on y axis to yticksize'''
     plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(base = yticksize))
-
+    
 #fucntions related to labeling and titling
 def makeTitleConfirmedCases(county, state): 
     '''make title for confirmed cases graph''' 
@@ -156,7 +155,9 @@ def getTimeRangeDays(dates):
     deltatime = endDate - startDate
     return deltatime.days
 
+'''
 if __name__ == '__main__':
     location = ["Autauga", "Alabama"]
-    dateRange = [['2020', '1', '1'] , ['2020', '12', '1']]
+    dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
     makeGraph(location,dateRange)
+'''
