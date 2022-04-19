@@ -4,14 +4,14 @@ import sys
 import retrieveData as rD
 import makeGraph as mG
 import getDayWithMostCases as gDMC
-
+import helperMakeGraph as hMG
 state = 0
 county = 1
 date = 2
 graph = 3
 
 help = """Welcome to Coviz, a program that provides informtion and visualization for COVID-19 cases\n
-–-state or -s “StateName” --county or -c "CountyName" returns the latest number of confirmed cases in a given county
+–-state or -s “StateName” returns the latest number of confirmed cases in a given state
 –-state or -s “StateName” --county or -c "CountyName" –-daterange or -d “YYYY-MM-DD” “YYYY-MM-DD” returns graphs of the number of cases and deaths in the given county over a time span
 """
 def getStateData(stateName):
@@ -21,8 +21,8 @@ def getDayData(dateRange):
     print(dateRange)
 
 def makeGraphOfData(location, startDate, endDate):
-    county = location[0]
-    state = location[1]
+    dateRange = [startDate, endDate]
+    mG.makeGraph(location, dateRange)
     
 def CheckComadLine(arguments):
     if (len(arguments) <= 0): return ("No arguments, Try -s or -d")
@@ -35,7 +35,7 @@ def CheckComadLine(arguments):
     elif (len(arguments) == 5):
         return CheckComadLineArg5(arguments)
     elif (len(arguments) == 7):
-        return CheckComanLineArg7(arguments)
+        return CheckComadLineArg7(arguments)
     else: return ("Not valid argument, Try: --help")
 
 def setUpValidArguments():
@@ -104,12 +104,18 @@ def CheckComadLineArg5(arguments):
 
 def CheckComadLineArg7(arguments):
     if (not compareArgument(str(arguments[0])) == state): 
-        return ("Invalid input! Try -s Alabama -c Antagua -d 2020-1-1 2020-12-1")
+        return ("Invalid input! Try -s Alabama -c Autauga -d 2020-2-1 2020-12-1")
     if (not compareArgument(str(arguments[2])) == county): 
-        return ("Invalid input! Try -s Alabama -c Antagua -d 2020-1-1 2020-12-1")
+        return ("Invalid input! Try -s Alabama -c Autauga -d 2020-2-1 2020-12-1")
     if (not compareArgument(str(arguments[4])) == date): 
-        return ("Invalid input! Try -s Alabama -c Antagua -d 2020-1-1 2020-12-1")
-       
+        return ("Invalid input! Try -s Alabama -c Autauga -d 2020-2-1 2020-12-1")
+    startDate = checkValidDate(arguments[5])
+    endDate = checkValidDate(arguments[6])
+    if (startDate == False or endDate == False):
+        return ("Please input valid date, Try -s Alabama -c Autauga -d 2020-2-1 2020-12-1")
+    location = [arguments[3],arguments[1]]
+    makeGraphOfData(location, startDate, endDate)
+    
 if __name__ == '__main__':
     arguments = getComadLine()
     outPut = CheckComadLine(arguments)

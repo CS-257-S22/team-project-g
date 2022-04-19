@@ -14,6 +14,9 @@ from datetime import datetime
 def makeGraph(location,dateRange):
     list = hMG.getDataWithLocationAndDateRange(location, dateRange)
     dates = hMG.getDates(list)
+    if(dates == []):
+        print("Data not found!")
+        return
     confirmedCases = hMG.getConfirmedCases(list)
     confirmedDeaths = hMG.getConfirmedDeaths(list)
     makeConfirmedCasesGraph(dates,confirmedCases,location)
@@ -30,7 +33,6 @@ def makeConfirmedCasesGraph(dates, caseList, location):
     drawGraph(dates,caseList)
     labelConfirmedCasesToDate()
     makeTitleConfirmedCases(location[0], location[1])
-    
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
     
@@ -66,7 +68,7 @@ def setXaxisTicks(timeRangeDays):
     setXAxisFormat()
     
 def setXaxisLocator(timeRangeDays):
-    '''depemding on the range of time that is displayed on the graph, set the tick size on x axis'''
+    '''depending on the range of time that is displayed on the graph, set the tick size on x axis'''
     if(timeRangeDays < 90): 
         #range is within 3 months: set ticks by day, make total number of ticks close to 10 (1 - 20)
         setDayLocator(max(1, int(timeRangeDays/10)))
