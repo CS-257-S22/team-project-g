@@ -156,8 +156,9 @@ def getTimeRangeDays(dates):
     deltatime = endDate - startDate
     return deltatime.days
 
-
+'''
 if __name__ == '__main__':
-    location = ['Autauga', 'Alabama']
-    dateRange = [['2020', '2', '1'], ['2020', '12', '1']]
+    location = ["Autauga", "Alabama"]
+    dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
     makeGraph(location,dateRange)
+'''
