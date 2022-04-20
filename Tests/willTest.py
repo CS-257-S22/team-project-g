@@ -4,9 +4,11 @@ import os
 currentPath = os.path.dirname(__file__)
 motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
+import retrieveData
 import getDayWithMostCases
 
 class CommandLineTest(unittest.TestCase):
+    getDayWithMostCases.dataSet = retrieveData.retrieveData("Data/dummy_data.csv")
     # Test if state specified is in the dataSet
     def test_is_state_in_data(self):
         result = getDayWithMostCases.stateInData("Minnesota")
