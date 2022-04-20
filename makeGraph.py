@@ -3,6 +3,7 @@
 # points to improve: 
 #   1. low effciency overall; maybe we have to use a smpling method
 #   2. the death number is not cumulative, but the confirmed cases seem to be cumulative
+import getDayWithMostCases
 import helperMakeGraph as hMG
 import retrieveData as rD
 import matplotlib.pyplot as plt
@@ -12,13 +13,11 @@ import math
 from datetime import datetime
 
 def makeGraph(location,dateRange):
-    '''
-    make the death case to time graph and confimed case graph 
-    location[] is a list that contains [county,state]
-    dateRange[] is a list that contains the starting date and the ending date [[Year,Month,Day], [Year,Month,Day]]
-    ''' 
     list = hMG.getDataWithLocationAndDateRange(location, dateRange)
     dates = hMG.getDates(list)
+    if(dates == []):
+        print("Data not found!")
+        return
     confirmedCases = hMG.getConfirmedCases(list)
     confirmedDeaths = hMG.getConfirmedDeaths(list)
     makeConfirmedCasesGraph(dates,confirmedCases,location)
@@ -35,15 +34,14 @@ def makeConfirmedCasesGraph(dates, caseList, location):
     drawGraph(dates,caseList)
     labelConfirmedCasesToDate()
     makeTitleConfirmedCases(location[0], location[1])
-    
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
     
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
-    
     plt.show()
     plt.close() 
+    
 def makeConfirmedDeathsGraph(dates, caseList, Location):
     '''
     makes a confirmed deaths graph
@@ -57,8 +55,8 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
     
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
-    
     yticksize = calculateYTickSize(caseList)
+
     setYaxisTicks(yticksize)
     
     plt.show()
@@ -71,7 +69,7 @@ def setXaxisTicks(timeRangeDays):
     setXAxisFormat()
     
 def setXaxisLocator(timeRangeDays):
-    '''depemding on the range of time that is displayed on the graph, set the tick size on x axis'''
+    '''depending on the range of time that is displayed on the graph, set the tick size on x axis'''
     if(timeRangeDays < 90): 
         #range is within 3 months: set ticks by day, make total number of ticks close to 10 (1 - 20)
         setDayLocator(max(1, int(timeRangeDays/10)))
@@ -107,14 +105,13 @@ def calculateYTickSize(caseList):
     
     #If the max number of cases is 1----, then make the tick size 1/10 its original
     if int (maxCases/yticksize) == 1: 
-        yticksize/=10
-           
-    return yticksize
+        yticksize/=10       
+    return int(yticksize)
 
 def setYaxisTicks(yticksize):
     '''set tick size on y axis to yticksize'''
     plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(base = yticksize))
-
+    
 #fucntions related to labeling and titling
 def makeTitleConfirmedCases(county, state): 
     '''make title for confirmed cases graph''' 
@@ -122,7 +119,7 @@ def makeTitleConfirmedCases(county, state):
     
 def makeTitleConfirmedDeaths(county, state): 
     '''make title for confirmed deaths graph''' 
-    plt.title("Non-cumulative Number of Confirmed Deaths in " + county + "," + state)
+    plt.title("Cumulative Number of Confirmed Deaths in " + county + "," + state)
 
 def labelConfirmedCasesToDate():
     '''make label for confirmed cases graph''' 
@@ -159,7 +156,8 @@ def getTimeRangeDays(dates):
     deltatime = endDate - startDate
     return deltatime.days
 
+
 if __name__ == '__main__':
-    location = ["Autauga", "Alabama"]
-    dateRange = [['2020', '1', '1'] , ['2020', '12', '1']]
+    location = ['Autauga', 'Alabama']
+    dateRange = [['2020', '2', '1'], ['2020', '12', '1']]
     makeGraph(location,dateRange)
