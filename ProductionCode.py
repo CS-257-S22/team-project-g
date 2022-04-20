@@ -5,6 +5,8 @@ import retrieveData as rD
 import makeGraph as mG
 import getDayWithMostCases as gDMC
 import helperMakeGraph as hMG
+import getTimeData as gTD
+
 state = 0
 county = 1
 date = 2
@@ -18,7 +20,8 @@ def getStateData(stateName):
     gDMC.getDayWithMostCases(stateName)
 
 def getDayData(dateRange):
-    print(dateRange)
+    print("Sorry Get Date not implemented yet")
+    #return gTD.getTimeRange((dateRange[0]), dateRange[-1])
 
 def makeGraphOfData(location, startDate, endDate):
     dateRange = [startDate, endDate]
@@ -123,4 +126,5 @@ Also, only graph data for Autauga, Alabama is supported right now\n""")
     outPut = CheckComadLine(arguments)
     if isstring(outPut):
         print(outPut)
+
   
