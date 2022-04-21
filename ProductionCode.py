@@ -88,7 +88,7 @@ def CheckComadLineArg2(arguments):
     if compareArgument(str(arguments[0])) == date:
         if checkValidDate(str(arguments[1])) == False: return ("Please input valid date, Try: -d 2020-1-1")
     else: 
-        return getDayData(checkValidDate(str(arguments[1])))
+        return getDayData(checkValidDate(str(arguments[1])), checkValidDate(str(arguments[1])))
 
 def CheckComadLineArg3(arguments):
     #return correct error 
