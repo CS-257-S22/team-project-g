@@ -18,7 +18,7 @@ help = """Welcome to Coviz, a program that provides informtion and visualization
 """
 def getStateData(stateName):
     gDMC.getDayWithMostCases(stateName)
-
+ 
 def getDayData(dateRange):
     print("Sorry Get Date not implemented yet")
     #return gTD.getTimeRange((dateRange[0]), dateRange[-1])
