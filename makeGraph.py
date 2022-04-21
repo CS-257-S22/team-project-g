@@ -9,9 +9,12 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import matplotlib.dates as mdates
 import math
+from matplotlib.figure import Figure
 from datetime import datetime
 
+
 def makeGraph(location,dateRange):
+    
     list = hMG.getDataWithLocationAndDateRange(location, dateRange)
     dates = hMG.getDates(list)
     if(dates == []):
@@ -20,8 +23,29 @@ def makeGraph(location,dateRange):
     confirmedCases = hMG.getConfirmedCases(list)
     confirmedDeaths = hMG.getConfirmedDeaths(list)
     makeConfirmedCasesGraph(dates,confirmedCases,location)
+    plt.show()
+    plt.close()
     makeConfirmedDeathsGraph(dates,confirmedDeaths,location)
-    
+    plt.show()
+    plt.close()
+
+def make2GraphToOutPut(location,dateRange,output):
+    plt.close()
+    plt.rcParams["figure.figsize"] = (15,4)
+    list = hMG.getDataWithLocationAndDateRange(location, dateRange)
+    dates = hMG.getDates(list)
+    if(dates == []):
+        return False
+    confirmedCases = hMG.getConfirmedCases(list)
+    confirmedDeaths = hMG.getConfirmedDeaths(list)
+    plt.subplot(121)
+    makeConfirmedCasesGraph(dates,confirmedCases,location)
+    plt.subplot(122)
+    makeConfirmedDeathsGraph(dates,confirmedDeaths,location)
+    plt.tight_layout()
+    plt.savefig(output,format="png")
+    return True
+       
 def makeConfirmedCasesGraph(dates, caseList, location):
     '''
     makes a confirmed case graph
@@ -38,9 +62,7 @@ def makeConfirmedCasesGraph(dates, caseList, location):
     
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
-    
-    plt.show()
-    plt.close() 
+
 def makeConfirmedDeathsGraph(dates, caseList, Location):
     '''
     makes a confirmed deaths graph
@@ -54,12 +76,10 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
     
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
-    yticksize = calculateYTickSize(caseList)
-
-    setYaxisTicks(yticksize)
     
-    plt.show()
-    plt.close() 
+    yticksize = calculateYTickSize(caseList)
+    setYaxisTicks(yticksize)
+
 
 #functions related to setting x axis ticks
 def setXaxisTicks(timeRangeDays):
@@ -155,9 +175,8 @@ def getTimeRangeDays(dates):
     deltatime = endDate - startDate
     return deltatime.days
 
-'''
 if __name__ == '__main__':
     location = ["Autauga", "Alabama"]
     dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
     makeGraph(location,dateRange)
-'''
+    
