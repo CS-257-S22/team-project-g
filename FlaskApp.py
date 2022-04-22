@@ -6,11 +6,6 @@ import os
 import sys
 import base64
 import flaskHelper as fH
-
-currentPath = os.path.dirname(__file__)
-motherdir = os.path.join(currentPath,"G/")
-sys.path.append(motherdir)
-
 import ProductionCode as pC
 
 app = Flask(__name__)
