@@ -14,34 +14,30 @@ from datetime import datetime
 
 
 def makeGraph(location,dateRange):
-    
-    list = hMG.getDataWithLocationAndDateRange(location, dateRange)
-    dates = hMG.getDates(list)
-    if(dates == []):
-        print("Data not found!")
-        return
-    confirmedCases = hMG.getConfirmedCases(list)
-    confirmedDeaths = hMG.getConfirmedDeaths(list)
-    makeConfirmedCasesGraph(dates,confirmedCases,location)
+    info = hMG.getDataForGraph(location,dateRange)
+    if(info == False): 
+        print("Data not Found!")
+        return "Data not Found!"
+    makeConfirmedCasesGraph(info[0],info[1],location)
     plt.show()
     plt.close()
-    makeConfirmedDeathsGraph(dates,confirmedDeaths,location)
+    makeConfirmedDeathsGraph(info[0],info[2],location)
     plt.show()
     plt.close()
 
 def make2GraphToOutPut(location,dateRange,output):
     plt.close()
     plt.rcParams["figure.figsize"] = (15,4)
-    list = hMG.getDataWithLocationAndDateRange(location, dateRange)
-    dates = hMG.getDates(list)
-    if(dates == []):
-        return False
-    confirmedCases = hMG.getConfirmedCases(list)
-    confirmedDeaths = hMG.getConfirmedDeaths(list)
+    
+    info = hMG.getDataForGraph(location,dateRange)
+    if(info == False): 
+        print("Data not Found!")
+        return "Data not Found!"
+    
     plt.subplot(121)
-    makeConfirmedCasesGraph(dates,confirmedCases,location)
+    makeConfirmedCasesGraph(info[0],info[1],location)
     plt.subplot(122)
-    makeConfirmedDeathsGraph(dates,confirmedDeaths,location)
+    makeConfirmedDeathsGraph(info[0],info[2],location)
     plt.tight_layout()
     plt.savefig(output,format="png")
     plt.close()
@@ -177,7 +173,7 @@ def getTimeRangeDays(dates):
     return deltatime.days
 
 if __name__ == '__main__':
-    location = ["Autauga", "Alabama"]
+    location = ["Rice", "Minnesota"]
     dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
     makeGraph(location,dateRange)
     
