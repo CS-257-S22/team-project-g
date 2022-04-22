@@ -2,9 +2,6 @@ import csv
 from flask import Flask
 import io
 import makeGraph as mG
-import os
-import sys
-import base64
 import flaskHelper as fH
 import ProductionCode as pC
 

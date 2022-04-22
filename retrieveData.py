@@ -72,7 +72,24 @@ def getDateRangeData(list, dateRange):
         if(thisdate > endDate): break
         newList.append(line)
     return newList
-        
+
+def getDates(list):
+    '''return the column of dates from a list '''
+    
+    dates = [i[0] for i in list]
+    return dates
+
+def getConfirmedCases(list):
+    '''return the column of death numbers from a list '''
+    
+    deaths = [int(i[3]) for i in list]
+    return deaths
+
+def getConfirmedDeaths(list):
+    '''return the column of confirmed cases from a list '''
+    deaths = [int(i[4]) for i in list]
+    return deaths
+
 def toDateTime(date):
     '''convert date [Year, Month, Day] to a datetime object'''
     return datetime(int(date[0]),int(date[1]),int(date[2]))
