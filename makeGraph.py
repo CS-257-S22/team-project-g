@@ -44,6 +44,7 @@ def make2GraphToOutPut(location,dateRange,output):
     makeConfirmedDeathsGraph(dates,confirmedDeaths,location)
     plt.tight_layout()
     plt.savefig(output,format="png")
+    plt.close()
     return True
        
 def makeConfirmedCasesGraph(dates, caseList, location):
