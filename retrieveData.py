@@ -75,7 +75,6 @@ def getDateRangeData(list, dateRange):
         
 def toDateTime(date):
     '''convert date [Year, Month, Day] to a datetime object'''
-    
     return datetime(int(date[0]),int(date[1]),int(date[2]))
 
 def checkDataFormat(listLine,lineNum):
