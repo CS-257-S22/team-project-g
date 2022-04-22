@@ -2,12 +2,6 @@ import csv
 from flask import Flask
 import os
 import sys
-
-
-currentPath = os.path.dirname(__file__)
-motherdir = os.path.join(currentPath,"G/")
-sys.path.append(motherdir)
-
 import ProductionCode as pC
 
 app = Flask(__name__)
