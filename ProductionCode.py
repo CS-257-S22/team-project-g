@@ -1,4 +1,3 @@
-from sre_compile import isstring
 import sys
 
 import retrieveData as rD
@@ -20,8 +19,12 @@ def getStateData(stateName):
     gDMC.getDayWithMostCases(stateName)
  
 def getDayData(dateRange):
-    print("Sorry Get Date not implemented yet")
-    #return gTD.getTimeRange((dateRange[0]), dateRange[-1])
+    print(dateRange[0])
+    print(dateRange[-1])
+    outPut = (gTD.getTimeRange((dateRange[0]), dateRange[-1]))
+    if outPut == []:
+        return "No Data Found"
+    else: return outPut 
 
 def makeGraphOfData(location, startDate, endDate):
     dateRange = [startDate, endDate]
@@ -95,7 +98,7 @@ def CheckComadLineArg3(arguments):
     if compareArgument(str(arguments[0])) == date: 
         if checkValidDate(str(arguments[1])) == False: return ("Please input valid date, Try: -d 2020-1-1 2020-1-2")
         if checkValidDate(str(arguments[2])) == False: return ("Please input valid date, Try: -d 2020-1-1 2020-1-2")
-        return getDayData([checkValidDate(str(arguments[1])),checkValidDate(str(arguments[2]))])
+        return getDayData([str(arguments[1]),str(arguments[2])])
     else: return ("Not valid argument, Try: --help")
 
 def CheckComadLineArg5(arguments):
@@ -123,7 +126,10 @@ if __name__ == '__main__':
     print("""\nNotice: due to the fact that we are operating on a dummy dataset the information may be inaccurate\n""")
     arguments = getComadLine()
     outPut = CheckComadLine(arguments)
-    if isstring(outPut):
+    if isinstance(outPut,str):
         print(outPut)
+    elif isinstance(outPut,list):
+        for row in outPut:
+            print(row)
 
   
