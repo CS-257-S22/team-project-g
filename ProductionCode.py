@@ -20,8 +20,7 @@ def getStateData(stateName):
     gDMC.getDayWithMostCases(stateName)
  
 def getDayData(dateRange):
-    print("Sorry Get Date not implemented yet")
-    #return gTD.getTimeRange((dateRange[0]), dateRange[-1])
+    print (gTD.getTimeRange((dateRange[0]), dateRange[-1]))
 
 def makeGraphOfData(location, startDate, endDate):
     dateRange = [startDate, endDate]
@@ -95,7 +94,7 @@ def CheckComadLineArg3(arguments):
     if compareArgument(str(arguments[0])) == date: 
         if checkValidDate(str(arguments[1])) == False: return ("Please input valid date, Try: -d 2020-1-1 2020-1-2")
         if checkValidDate(str(arguments[2])) == False: return ("Please input valid date, Try: -d 2020-1-1 2020-1-2")
-        return getDayData([checkValidDate(str(arguments[1])),checkValidDate(str(arguments[2]))])
+        return getDayData([str(arguments[1]),str(arguments[2])])
     else: return ("Not valid argument, Try: --help")
 
 def CheckComadLineArg5(arguments):
