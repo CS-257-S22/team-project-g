@@ -21,7 +21,7 @@ def getDayWithMostCases(stateName):
 
 
 # Takes list containing date ['year','month','day'] and returns string in form 'Month Day, Year'
-def dayListToStr(date):
+def dayListToStr(date): 
     datetime_object = datetime.datetime.strptime(date[1], "%m")
     return datetime_object.strftime("%B") + " " + date[2] + ", " + date[0]
 
