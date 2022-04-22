@@ -26,17 +26,6 @@ def getCountyStateData(county, state):
     path = "Data/sub-Data/" + county + "," + state + ".csv" 
     return rD.retrieveData(path)
 
-"""
-def getCountyStateData(county, state):
-    '''returns a list of data that fits the county and state from dataSet'''
-    list = []
-    for line in dataSet:
-        if (not line[2] == state): continue
-        if (not line[1] == county): continue
-        list.append(line)
-    return list
-"""
-
 def getDateRangeData(list, dateRange):
     '''
     trim a list with a dateRange [[Year, Month, Day],[Year, Month, Day]] 
