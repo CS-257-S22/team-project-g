@@ -1,34 +1,72 @@
-# makes a graph out of a dates[] list and a cases[] list;
+# 
 # This code is not a part of the Command Line project.
 # points to improve: 
 #   1. low effciency overall; maybe we have to use a smpling method
 #   2. the death number is not cumulative, but the confirmed cases seem to be cumulative
+import helperMakeGraph as hMG
 import retrieveData as rD
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import matplotlib.dates as mdates
 import math
+from matplotlib.figure import Figure
 from datetime import datetime
 
-#dates[] list contains lists of date in the format [Year, Month, Day]
-#confirmedCases[] list contains number of cases
 
-def makeConfirmedCasesGraph(dates, caseList, Location):
+def makeGraph(location,dateRange):
+    info = hMG.getDataForGraph(location,dateRange)
+    if(info == False): 
+        print("Data not Found!")
+        return "Data not Found!"
+    makeConfirmedCasesGraph(info[0],info[1],location)
+    plt.show()
+    plt.close()
+    makeConfirmedDeathsGraph(info[0],info[2],location)
+    plt.show()
+    plt.close()
+
+def make2GraphToOutPut(location,dateRange,output):
+    plt.close()
+    plt.rcParams["figure.figsize"] = (15,4)
+    
+    info = hMG.getDataForGraph(location,dateRange)
+    if(info == False): 
+        print("Data not Found!")
+        return "Data not Found!"
+    
+    plt.subplot(121)
+    makeConfirmedCasesGraph(info[0],info[1],location)
+    plt.subplot(122)
+    makeConfirmedDeathsGraph(info[0],info[2],location)
+    plt.tight_layout()
+    plt.savefig(output,format="png")
+    plt.close()
+    return True
+       
+def makeConfirmedCasesGraph(dates, caseList, location):
+    '''
+    makes a confirmed case graph
+    dates[] list contains lists of date in the format [Year, Month, Day]
+    cases[] list contains number of cases as string
+    Location is a list of 2, [county, state]
+    '''
     
     drawGraph(dates,caseList)
     labelConfirmedCasesToDate()
-    makeTitleConfirmedCases(Location[0], Location[1])
-    
+    makeTitleConfirmedCases(location[0], location[1])
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
     
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
-    
-    plt.show()
-    
+
 def makeConfirmedDeathsGraph(dates, caseList, Location):
-    
+    '''
+    makes a confirmed deaths graph
+    dates[] list contains lists of date in the format [Year, Month, Day]
+    cases[] list contains number of cases as string
+    Location is a list of 2, [county, state]
+    '''
     drawGraph(dates,caseList)
     labelConfirmedDeathsToDate()
     makeTitleConfirmedDeaths(Location[0], Location[1])
@@ -38,19 +76,16 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
     
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
-    
-    plt.show()
-    
-'''functions related to setting x axis ticks'''
-def labelConfirmedCasesToDate():
-    plt.xlabel("Date")
-    plt.ylabel("Confirmed Cases")
 
+
+#functions related to setting x axis ticks
 def setXaxisTicks(timeRangeDays):
+    '''set tick size and format on x axis'''
     setXaxisLocator(timeRangeDays)
     setXAxisFormat()
     
 def setXaxisLocator(timeRangeDays):
+    '''depending on the range of time that is displayed on the graph, set the tick size on x axis'''
     if(timeRangeDays < 90): 
         #range is within 3 months: set ticks by day, make total number of ticks close to 10 (1 - 20)
         setDayLocator(max(1, int(timeRangeDays/10)))
@@ -60,23 +95,25 @@ def setXaxisLocator(timeRangeDays):
         setMonthLocator(max(1, int(timeRangeMonth/10)))
         
 def setDayLocator(intv):
+    '''set x axis locator, each tick per intv days'''
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval = intv))
     
 def setMonthLocator(intv):
+    '''set x axis locator, each tick per intv months'''
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval = intv))
 
 def setXAxisFormat():
+    '''set the format of display on x axis'''
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%Y'))
     plt.gcf().autofmt_xdate()
     
-'''functions related to setting Y axis ticks'''
+#functions related to setting Y axis ticks
 def calculateYTickSize(caseList):
+    '''takes in a list of case number and return the appropriate tick size for it'''
     maxCases = int(caseList[-1])
-    
     #Avoid futher math if there are no cases in the interval
     if (maxCases == 0):
         return 10
-    
     yticksize = int(math.log10(maxCases)) 
     
     #Find the least power of 10 that is less than max cases and make it the tick size
@@ -84,41 +121,50 @@ def calculateYTickSize(caseList):
     
     #If the max number of cases is 1----, then make the tick size 1/10 its original
     if int (maxCases/yticksize) == 1: 
-        yticksize/=10
-           
-    return yticksize
+        yticksize/=10       
+    return int(yticksize)
 
 def setYaxisTicks(yticksize):
+    '''set tick size on y axis to yticksize'''
     plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(base = yticksize))
-
-'''fucntions related to labeling and titling'''
+    
+#fucntions related to labeling and titling
 def makeTitleConfirmedCases(county, state): 
+    '''make title for confirmed cases graph''' 
     plt.title("Cumulative Number of Confirmed Cases in " + county + "," + state)
     
 def makeTitleConfirmedDeaths(county, state): 
-    plt.title("Non-cumulative Number of Confirmed Deaths in " + county + "," + state)
+    '''make title for confirmed deaths graph''' 
+    plt.title("Cumulative Number of Confirmed Deaths in " + county + "," + state)
+
+def labelConfirmedCasesToDate():
+    '''make label for confirmed cases graph''' 
+    plt.xlabel("Date")
+    plt.ylabel("Confirmed Cases")
     
 def labelConfirmedDeathsToDate():
+    '''make label for confirmed deaths graph''' 
     plt.xlabel("Date")
     plt.ylabel("Confirmed Deaths")
 
-'''functiosn related to graphing'''
+#functiosn related to graphing
 def drawGraph(dates,caseList): 
+    '''draw an unformatted graph of caseList to dates'''
     xpoints = toDatetimeList(dates)
     ypoints = caseList
     plt.plot(xpoints, ypoints)
 
-'''datetime conversion'''    
-#converts the dates list to datetime objects
+#datetime conversion    
 def toDatetimeList(dates):
+    '''converts the dates list to datetime object list'''
     datetimes = []
     for i in dates:
         tmpdatetime = datetime(int(i[0]),int(i[1]),int(i[2]))
         datetimes.append(tmpdatetime)
     return datetimes
 
-#return the time range covered by data
 def getTimeRangeDays(dates):
+    '''return the time range covered by data'''
     startDate = dates[0]
     startDate = datetime(int(startDate[0]),int(startDate[1]),int(startDate[2]))
     endDate = dates[-1]
@@ -126,10 +172,8 @@ def getTimeRangeDays(dates):
     deltatime = endDate - startDate
     return deltatime.days
 
-if __name__ == "__main__":
-    plotTestDataRelativePath = "Data/plot_test_data.csv"
-    plotTestDataSet = rD.retrieveData(plotTestDataRelativePath)
-    dates = [i[0] for i in plotTestDataSet]
-    cases = [int(i[3]) for i in plotTestDataSet]
-    Location = plotTestDataSet[0][1:3]
-    makeConfirmedCasesGraph(dates,cases,Location)
+if __name__ == '__main__':
+    location = ["Rice", "Minnesota"]
+    dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
+    makeGraph(location,dateRange)
+    
