@@ -1,4 +1,3 @@
-from sre_compile import isstring
 import sys
 
 import retrieveData as rD
@@ -20,7 +19,12 @@ def getStateData(stateName):
     gDMC.getDayWithMostCases(stateName)
  
 def getDayData(dateRange):
-    print (gTD.getTimeRange((dateRange[0]), dateRange[-1]))
+    print(dateRange[0])
+    print(dateRange[-1])
+    outPut = (gTD.getTimeRange((dateRange[0]), dateRange[-1]))
+    if outPut == []:
+        return "No Data Found"
+    else: return outPut 
 
 def makeGraphOfData(location, startDate, endDate):
     dateRange = [startDate, endDate]
@@ -122,7 +126,10 @@ if __name__ == '__main__':
     print("""\nNotice: due to the fact that we are operating on a dummy dataset the information may be inaccurate\n""")
     arguments = getComadLine()
     outPut = CheckComadLine(arguments)
-    if isstring(outPut):
+    if isinstance(outPut,str):
         print(outPut)
+    elif isinstance(outPut,list):
+        for row in outPut:
+            print(row)
 
   
