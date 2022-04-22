@@ -1,7 +1,11 @@
 import csv
 from flask import Flask
+import io
+import makeGraph as mG
 import os
 import sys
+import base64
+import flaskHelper as fH
 import ProductionCode as pC
 
 app = Flask(__name__)
@@ -21,6 +25,22 @@ def CommandLineDate(Date):
     arguments = ["-d",Date]
     outPut = pC.CheckComadLine(arguments)
     return "Sorry Get Date not implemented yet"
+
+@app.route('/graph/<startDateString>/<endDateString>', strict_slashes=False)
+def graphImagePage(startDateString, endDateString):
+    ''' 
+    Makes a graph with the input strings for start date and end date. 
+    Prompt the user if the inputs are wrongly formatted. 
+    '''
+    
+    if(not fH.checkErrorInput(startDateString, endDateString) == True):
+        return fH.checkErrorInput(startDateString, endDateString)
+    
+    startDateList =  fH.checkValidDate(startDateString)
+    endDateList = fH.checkValidDate (endDateString)
+    
+    return fH.getData(startDateList, endDateList)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
