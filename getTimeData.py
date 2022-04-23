@@ -1,9 +1,10 @@
 import retrieveData
 
-dataSet = retrieveData.retrieveData("Data/dummy_data.csv")
+dataSet = []
   
 # crops dataSet to only consist of data within 2 dates. Both params are inclusive.
 def getTimeRange(date1, date2):
+    dataSet = retrieveData.retrieveData("Data/dummy_data.csv")
     startDate = dateToList(date1)
     endDate = dateToList(date2)
     returnList = []
