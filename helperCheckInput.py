@@ -1,3 +1,11 @@
+from retrieveData import toDateTime
+
+dataStartTime = toDateTime(2020, 1, 22)
+dataEndTime = toDateTime(2022, 4, 9)
+
+InvalidDateErrorMsg = "Invalid dates! Try the other order!"
+DateOutofRangeErrorMsg = "Date range outside of data!"
+
 def checkValidDate(dateString):
     '''
     input: date in String form
@@ -15,6 +23,7 @@ def checkValidDate(dateString):
         day = int(dates[2])
     except:
         return False
+    
     if(year < 2018):
         return False
     if(year > 2022):
@@ -28,3 +37,26 @@ def checkValidDate(dateString):
     if(day < 1):
         return False
     return dates
+
+def checkDate(startDate, endDate):
+    
+    if (checkValidDate(startDate) == False or checkValidDate(endDate) == False):
+        print(InvalidDateErrorMsg)
+        return InvalidDateErrorMsg
+    
+    try:
+        startDate = toDateTime(startDate)
+        endDate = toDateTime(endDate)
+    except:
+        print(InvalidDateErrorMsg)
+        return InvalidDateErrorMsg
+    
+    if (startDate > endDate):
+        print(InvalidDateErrorMsg)
+        return InvalidDateErrorMsg
+    
+    if (endDate < dataStartTime or startDate > dataEndTime):
+        print(DateOutofRangeErrorMsg)
+        return(DateOutofRangeErrorMsg)
+    
+    return True

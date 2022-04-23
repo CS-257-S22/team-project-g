@@ -1,6 +1,7 @@
 import sys
 import csv
 from datetime import datetime
+from helperCheckInput import *
 import os
 
 #data path of the dataset .csv file relative to this folder
@@ -96,7 +97,7 @@ def toDateTime(date):
 
 def checkDataFormat(listLine,lineNum):
     '''Check if data on listLine is formatted correctly, print an error message if not; return a boolean value'''
-    if(not checkDateFormat(listLine[0])):
+    if(checkValidDate(listLine[0]) == False):
         print("Date format incorrect at line " + str(lineNum))
         return False
     if(not checkNumberFormat(listLine[3])):
@@ -119,28 +120,6 @@ def splitDate(dateString):
     dates = dateString.split("-")
     return dates
 
-def checkDateFormat(dates):
-    '''Check if a dates string list is formatted correctly, returns a boolean value'''
-    try:
-        year = int(dates[0])
-        month = int(dates[1])
-        day = int(dates[2])
-    except:
-        return False
-    if(year < 2018):
-        return False
-    if(year > 2022):
-        return False
-    if(month > 12):
-        return False
-    if(month < 1):
-        return False
-    if(day > 31):
-        return False
-    if(day < 1):
-        return False
-    return True
-    
 def checkNumberFormat(num):
     '''Check if a case number is formatted correctly, return a boolean value'''
     try:
