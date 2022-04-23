@@ -5,6 +5,7 @@ import makeGraph as mG
 import getDayWithMostCases as gDMC
 import helperMakeGraph as hMG
 import getTimeData as gTD
+import helperCheckInput as hCI
 
 state = 0
 county = 1
@@ -72,10 +73,7 @@ def compareArgument(argument):
     
 def checkValidDate(date):
     #check data in put for valid year month and day 
-    DateList = date.split("-")
-    if len(DateList) == 3:
-        if (int(DateList[0]) > 2019) and (int(DateList[1]) <= 12) and (int(DateList[2]) <32): return DateList
-    return False
+    return hCI.checkValidDate(date )
 
 def CheckComadLineArg1(arguments):
     #return correct error 
