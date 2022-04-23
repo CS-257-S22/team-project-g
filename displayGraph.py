@@ -5,8 +5,11 @@ import makeGraph as mG
 import os
 import sys
 import base64
+from helperCheckInput import *
 
-location = ["Autauga", "Alabama"]
+def displayGraph(location, dateRange):
+    return getData(location, dateRange)
+
 def checkErrorInput(startDateString, endDateString):
     '''
     Check whether the inputted strings are correctly formatted. 
@@ -20,7 +23,7 @@ def checkErrorInput(startDateString, endDateString):
         return msg
     return True
 
-def getData(startDateList, endDateList):
+def getData(location, dateRange):
     '''
     get image data from makeGraph
     
@@ -29,7 +32,6 @@ def getData(startDateList, endDateList):
     output: "Data Not Found!" if no information is found
             image data if the input is correctly formatted and the information is in database
     '''
-    dateRange = [startDateList, endDateList]
     output = io.BytesIO()
     
     isData = mG.make2GraphToOutPut(location,dateRange,output)
@@ -39,35 +41,3 @@ def getData(startDateList, endDateList):
     data = base64.b64encode(output.getbuffer()).decode("ascii")
     return f"<img src='data:image/png;base64,{data}'/>"
 
-def checkValidDate(dateString):
-    '''
-    A copy of checkValidDate() from retrieveData due to error caused by imports
-    
-    input: date in String form
-    output: a list of 3 Strings, [Year, Month, Date] if the date is formatted correctly
-            False if the date is formatted incorrectly
-    '''
-    try:
-        dates = dateString.split("-")
-    except: 
-        return False
-    
-    try:
-        year = int(dates[0])
-        month = int(dates[1])
-        day = int(dates[2])
-    except:
-        return False
-    if(year < 2018):
-        return False
-    if(year > 2022):
-        return False
-    if(month > 12):
-        return False
-    if(month < 1):
-        return False
-    if(day > 31):
-        return False
-    if(day < 1):
-        return False
-    return dates
