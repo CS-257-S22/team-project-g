@@ -8,7 +8,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return "Welcome To CoViz \n Due to the problems with printing a graph \n only the get state function is usable \n url /-s/StateName is the format to Acess get state Data \n try -s/Alabama/ "
+    return """
+            Welcome To CoViz <br/> 
+            We currently offer 2 ways to interact with the COVID data across the US <br/> 
+                
+                1. .../<county>/<state>/<date1>/<date2> <br/> 
+                
+                Displays the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
+                Try:<br/> 
+                .../Rice/Minnesota/2020-2-1/2020-3-1<br/> 
+                
+                2. .../<county>/<state>/<date1>/<date2>/graph<br/> 
+                
+                Graphs the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
+                
+                Try:<br\> 
+                .../Rice/Minnesota/2020-2-1/2020-3-1/graph<br/> 
+                """
 
 @app.route('/-s/<StateName>', strict_slashes=False)
 def CommandLineState(StateName):
