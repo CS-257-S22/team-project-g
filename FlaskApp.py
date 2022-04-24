@@ -3,6 +3,7 @@ import displayGraph as fH
 import helperCheckInput as hCI
 import ProductionCode as pC
 import displayGraph as dG
+import displayRawData as dR
 
 app = Flask(__name__)
 
@@ -37,6 +38,20 @@ def CommandLineDate(Date):
     arguments = ["-d",Date]
     outPut = pC.CheckComadLine(arguments)
     return "Sorry Get Date not implemented yet"
+
+@app.route('/<county>/<state>/<startDateString>/<endDateString>', strict_slashes=False)
+def displayRawData(county,state,startDateString,endDateString):
+    '''
+    Displays raw data, in text form, of cases and deaths during date range 
+                                                in the location specified
+    '''
+
+    startDateList = hCI.checkValidDate(startDateString)
+    endDateList = hCI.checkValidDate (endDateString)
+    dateRange = [startDateList, endDateList]
+    location = [county, state]
+
+    return dR.displayRawData(location, dateRange)
 
 @app.route('/<county>/<state>/<startDateString>/<endDateString>/graph', strict_slashes=False)
 def graphImagePage(county,state,startDateString, endDateString):
