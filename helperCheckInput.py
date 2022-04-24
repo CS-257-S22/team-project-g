@@ -1,30 +1,21 @@
+from conversionFunctions import *
 from datetime import datetime
-
 dataStartTime = datetime(2020, 1, 22)
 dataEndTime = datetime(2022, 4, 9)
 
 InvalidDateErrorMsg = "Invalid dates! Try the other order!"
 DateOutofRangeErrorMsg = "Date range outside of data!"
 
-def toDateTime(date):
-    '''convert date [Year, Month, Day] to a datetime object'''
-    return datetime(int(date[0]),int(date[1]),int(date[2]))
-
-def checkValidDate(dateString):
+def checkValidDate(dateList):
     '''
-    input: date in String form
+    input: date in List form
     output: a list of 3 Strings, [Year, Month, Date] if the date is formatted correctly
             False if the date is formatted incorrectly
     '''
     try:
-        dates = dateString.split("-")
-    except: 
-        return False
-    
-    try:
-        year = int(dates[0])
-        month = int(dates[1])
-        day = int(dates[2])
+        year = int(dateList[0])
+        month = int(dateList[1])
+        day = int(dateList[2])
     except:
         return False
     
@@ -40,9 +31,11 @@ def checkValidDate(dateString):
         return False
     if(day < 1):
         return False
-    return dates
+    
+    return True
 
-def checkDate(startDate, endDate):
+
+def checkDates(startDate, endDate):
     
     if (checkValidDate(startDate) == False or checkValidDate(endDate) == False):
         print(InvalidDateErrorMsg)
@@ -64,3 +57,7 @@ def checkDate(startDate, endDate):
         return(DateOutofRangeErrorMsg)
     
     return True
+
+if __name__ == "__main__":
+    date = ['2022', '04', '09']
+    print(checkValidDate(date))

@@ -1,5 +1,6 @@
 import sys
 import csv
+from conversionFunctions import *
 from datetime import datetime
 from helperCheckInput import *
 import os
@@ -91,17 +92,12 @@ def getConfirmedDeaths(list):
     deaths = [int(i[4]) for i in list]
     return deaths
 
-def toDateTime(date):
-    '''convert date [Year, Month, Day] to a datetime object'''
-    return datetime(int(date[0]),int(date[1]),int(date[2]))
-
 def checkDataFormat(listLine,lineNum):
     '''Check if data on listLine is formatted correctly, print an error message if not; return a boolean value'''
-    '''
+    
     if(checkValidDate(listLine[0]) == False):
         print("Date format incorrect at line " + str(lineNum))
         return False
-    '''
     if(not checkNumberFormat(listLine[3])):
         print("Case format incorrect at line " + str(lineNum))
         return False
@@ -116,11 +112,6 @@ def convertStringLinetoList(stringLine):
     for i in stringLine.split(","):
         listLine.append(i)
     return listLine
-
-def splitDate(dateString):
-    '''Split date in to a list [Year, Month, Day]'''
-    dates = dateString.split("-")
-    return dates
 
 def checkNumberFormat(num):
     '''Check if a case number is formatted correctly, return a boolean value'''

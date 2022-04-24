@@ -1,11 +1,9 @@
 import sys
-
-import retrieveData as rD
 import makeGraph as mG
 import getDayWithMostCases as gDMC
-import helperMakeGraph as hMG
 import getTimeData as gTD
 import helperCheckInput as hCI
+from conversionFunctions import *
 
 state = 0
 county = 1
@@ -73,8 +71,10 @@ def compareArgument(argument):
     
 def checkValidDate(date):
     #check data in put for valid year month and day 
-    return hCI.checkValidDate(date )
-
+    date = splitDate(date)
+    if (hCI.checkValidDate(date) == False):
+        return False
+    return date 
 def CheckComadLineArg1(arguments):
     #return correct error 
     if compareArgument(str(arguments[0])) == state: return ("Please input state name, Try: -s texas")
