@@ -16,8 +16,8 @@ def displayRawData(location, dateRange):
 
     returnString = location[0] + ", " + location[1] + ": confirmed cases and deaths from " + gD.dayListToStr(dateRange[0]) + " to " + gD.dayListToStr(dateRange[1]) + "\n"
     
-    for i in cases:
-        returnString += "Cases: " + cases[i] + "     Deaths: " + deaths[i] + "\n"
+    for i in range(len(cases)):
+        returnString += "<br/>Cases: " + str(cases[i]) + "     Deaths: " + str(deaths[i]) + "\n"
 
     return returnString
     
