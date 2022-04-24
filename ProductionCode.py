@@ -25,8 +25,7 @@ def getDayData(dateRange):
         return "No Data Found"
     else: return outPut 
 
-def makeGraphOfData(location, startDate, endDate):
-    dateRange = [startDate, endDate]
+def makeGraphOfData(location, dateRange):
     mG.makeGraph(location, dateRange)
     
 def CheckComadLine(arguments):
@@ -74,7 +73,8 @@ def checkValidDate(date):
     date = splitDate(date)
     if (hCI.checkValidDate(date) == False):
         return False
-    return date 
+    return date
+
 def CheckComadLineArg1(arguments):
     #return correct error 
     if compareArgument(str(arguments[0])) == state: return ("Please input state name, Try: -s texas")
@@ -117,8 +117,9 @@ def CheckComadLineArg7(arguments):
     endDate = checkValidDate(arguments[6])
     if (startDate == False or endDate == False):
         return ("Please input valid date, Try -s Alabama -c Autauga -d 2020-2-1 2020-12-1")
-    location = [arguments[3],arguments[1]]
-    makeGraphOfData(location, startDate, endDate)
+    location = makeLocation(arguments[3],arguments[1])
+    dateRange = makedateRange(arguments[5],arguments[6])
+    makeGraphOfData(location, dateRange)
     
 if __name__ == '__main__':
     print("""\nNotice: due to the fact that we are operating on a dummy dataset the information may be inaccurate\n""")
