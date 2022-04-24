@@ -45,10 +45,8 @@ def displayRawData(county,state,startDateString,endDateString):
     Displays raw data, in text form, of cases and deaths during date range 
                                                 in the location specified
     '''
-    startDate = splitDate(startDateString)
-    endDate = splitDate(endDateString)
-    dateRange = [startDate, endDate]
-    location = [county, state]
+    dateRange = makedateRange(startDateString,endDateString)
+    location = makeLocation(county,state)
 
     return dR.displayRawData(location, dateRange)
 
@@ -59,11 +57,9 @@ def graphImagePage(county,state,startDateString, endDateString):
     Prompt the user if the inputs are wrongly formatted. 
     '''
 
-    startDate = splitDate(startDateString)
-    endDate = splitDate(endDateString)
-    dateRange = [startDate, endDate]
-    location = [county, state]
-    
+    dateRange = makedateRange(startDateString,endDateString)
+    location = makeLocation(county,state)
+
     return dG.displayGraph(location, dateRange)
 
 
