@@ -1,10 +1,14 @@
-from retrieveData import toDateTime
+from datetime import datetime
 
-dataStartTime = toDateTime(2020, 1, 22)
-dataEndTime = toDateTime(2022, 4, 9)
+dataStartTime = datetime(2020, 1, 22)
+dataEndTime = datetime(2022, 4, 9)
 
 InvalidDateErrorMsg = "Invalid dates! Try the other order!"
 DateOutofRangeErrorMsg = "Date range outside of data!"
+
+def toDateTime(date):
+    '''convert date [Year, Month, Day] to a datetime object'''
+    return datetime(int(date[0]),int(date[1]),int(date[2]))
 
 def checkValidDate(dateString):
     '''
