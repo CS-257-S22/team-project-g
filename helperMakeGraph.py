@@ -68,7 +68,10 @@ def calculateYTickSize(caseList):
     
     #If the max number of cases is 1----, then make the tick size 1/10 its original
     if int (maxCases/yticksize) == 1: 
-        yticksize/=10       
+        yticksize/=10
+        
+    #If the tick size is less than 1, make it 1
+    yticksize = max(yticksize, 1)       
     return int(yticksize)
 
 def setYaxisTicks(yticksize):

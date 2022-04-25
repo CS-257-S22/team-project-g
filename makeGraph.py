@@ -73,6 +73,6 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
 
 if __name__ == '__main__':
     location = ["Rice", "Minnesota"]
-    dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
+    dateRange = [['2020', '2', '1'] , ['2020', '5', '1']]
     makeGraph(location,dateRange)
     
