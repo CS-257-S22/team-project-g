@@ -17,12 +17,12 @@ class TestSum(unittest.TestCase):
     
     def testGetTimeRange(self):
         testCorrect = []
-        for groupIndex in testData:
+        for groupIndex in range(len(testData)):
             if groupIndex == 11 or groupIndex == 20 or groupIndex == 74:
                 testCorrect.append(testData[groupIndex])
         testSet = testData 
         newSet = getTimeData.getTimeRange("2021-02-17", "2021-02-20") 
-        self.assertEqual(newSet, testCorrect) 
+        self.assertEqual(newSet, testCorrect)
 
     
 
