@@ -5,6 +5,7 @@ import makeGraph as mG
 import os
 import sys
 import base64
+from flask import render_template
 from helperCheckInput import *
 
 def displayGraph(location, dateRange):
@@ -27,7 +28,7 @@ def getData(location, dateRange):
     '''
     get image data from makeGraph
     
-    input: startDateList and endDateList in the format [Year, Month, Date]
+    input: a location and a dateRange that 
     
     output: "Data Not Found!" if no information is found
             image data if the input is correctly formatted and the information is in database
@@ -38,6 +39,12 @@ def getData(location, dateRange):
     if(not(isData)):
         return "Data Not Found!"
     
-    data = base64.b64encode(output.getbuffer()).decode("ascii")
-    return f"<img src='data:image/png;base64,{data}'/>"
+    data = base64.b64encode(output.getvalue()).decode('utf-8 ')
+    return data
 
+def getHTML(location, dateRange):
+    ''' 
+    returns a rendered HTML page according to a location and a dateRange    
+    '''
+    data = getData(location, dateRange)
+    return render_template('graph.html', location = location, dateRange = dateRange,data = data)

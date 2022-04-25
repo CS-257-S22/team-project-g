@@ -60,7 +60,7 @@ def graphImagePage(county,state,startDateString, endDateString):
     dateRange = makedateRange(startDateString,endDateString)
     location = makeLocation(county,state)
 
-    return dG.displayGraph(location, dateRange)
+    return dG.getHTML(location, dateRange)
 
 
 @app.errorhandler(404)
