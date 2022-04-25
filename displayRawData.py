@@ -13,11 +13,12 @@ def displayRawData(location, dateRange):
 
     cases = retrieveData.getConfirmedCases(dataSet)
     deaths = retrieveData.getConfirmedDeaths(dataSet)
+    dates = retrieveData.getDates(dataSet)
 
-    returnString = location[0] + ", " + location[1] + ": confirmed cases and deaths from " + gD.dayListToStr(dateRange[0]) + " to " + gD.dayListToStr(dateRange[1]) + "<br/>"
+    returnString = location[0] + ", " + location[1] + ": confirmed cases and deaths from " + gD.dayListToStr(dateRange[0]) + " to " + gD.dayListToStr(dateRange[1]) + "<br/> <br/>"
     
     for i in range(len(cases)):
-        returnString += "Cases: " + str(cases[i]) + "     Deaths: " + str(deaths[i]) + "<br/>"
+        returnString += gD.dayListToStr(dates[i]) + "--- Cases: " + str(cases[i]) + "     Deaths: " + str(deaths[i]) + "<br/>"
 
     return returnString
     
