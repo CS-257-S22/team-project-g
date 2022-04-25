@@ -1,11 +1,9 @@
-from sre_compile import isstring
 import sys
-
-import retrieveData as rD
 import makeGraph as mG
 import getDayWithMostCases as gDMC
-import helperMakeGraph as hMG
 import getTimeData as gTD
+import helperCheckInput as hCI
+from conversionFunctions import *
 
 state = 0
 county = 1
@@ -20,11 +18,14 @@ def getStateData(stateName):
     gDMC.getDayWithMostCases(stateName)
  
 def getDayData(dateRange):
-    print("Sorry Get Date not implemented yet")
-    #return gTD.getTimeRange((dateRange[0]), dateRange[-1])
+    print(dateRange[0])
+    print(dateRange[-1])
+    outPut = (gTD.getTimeRange((dateRange[0]), dateRange[-1]))
+    if outPut == []:
+        return "No Data Found"
+    else: return outPut 
 
-def makeGraphOfData(location, startDate, endDate):
-    dateRange = [startDate, endDate]
+def makeGraphOfData(location, dateRange):
     mG.makeGraph(location, dateRange)
     
 def CheckComadLine(arguments):
@@ -69,10 +70,10 @@ def compareArgument(argument):
     
 def checkValidDate(date):
     #check data in put for valid year month and day 
-    DateList = date.split("-")
-    if len(DateList) == 3:
-        if (int(DateList[0]) > 2019) and (int(DateList[1]) <= 12) and (int(DateList[2]) <32): return DateList
-    return False
+    date = splitDate(date)
+    if (hCI.checkValidDate(date) == False):
+        return False
+    return date
 
 def CheckComadLineArg1(arguments):
     #return correct error 
@@ -95,7 +96,7 @@ def CheckComadLineArg3(arguments):
     if compareArgument(str(arguments[0])) == date: 
         if checkValidDate(str(arguments[1])) == False: return ("Please input valid date, Try: -d 2020-1-1 2020-1-2")
         if checkValidDate(str(arguments[2])) == False: return ("Please input valid date, Try: -d 2020-1-1 2020-1-2")
-        return getDayData([checkValidDate(str(arguments[1])),checkValidDate(str(arguments[2]))])
+        return getDayData([str(arguments[1]),str(arguments[2])])
     else: return ("Not valid argument, Try: --help")
 
 def CheckComadLineArg5(arguments):
@@ -116,14 +117,18 @@ def CheckComadLineArg7(arguments):
     endDate = checkValidDate(arguments[6])
     if (startDate == False or endDate == False):
         return ("Please input valid date, Try -s Alabama -c Autauga -d 2020-2-1 2020-12-1")
-    location = [arguments[3],arguments[1]]
-    makeGraphOfData(location, startDate, endDate)
+    location = makeLocation(arguments[3],arguments[1])
+    dateRange = makedateRange(arguments[5],arguments[6])
+    makeGraphOfData(location, dateRange)
     
 if __name__ == '__main__':
     print("""\nNotice: due to the fact that we are operating on a dummy dataset the information may be inaccurate\n""")
     arguments = getComadLine()
     outPut = CheckComadLine(arguments)
-    if isstring(outPut):
+    if isinstance(outPut,str):
         print(outPut)
+    elif isinstance(outPut,list):
+        for row in outPut:
+            print(row)
 
   

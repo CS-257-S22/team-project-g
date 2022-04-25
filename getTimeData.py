@@ -1,13 +1,12 @@
 import retrieveData
 
-dataSet = retrieveData.retrieveData("Data/dummy_data.csv")
+dataSet = []
   
 # crops dataSet to only consist of data within 2 dates. Both params are inclusive.
 def getTimeRange(date1, date2):
-    startDate = strToIntList(dateToList(date1))
-    print("startDate = ", startDate)
-    endDate = strToIntList(dateToList(date2))
-    print("endDate = ", endDate)
+    dataSet = retrieveData.retrieveData("Data/dummy_data.csv")
+    startDate = dateToList(date1)
+    endDate = dateToList(date2)
     returnList = []
     for dataPoint in range(len(dataSet)): 
         currDate = strToIntList(dataSet[dataPoint][0])

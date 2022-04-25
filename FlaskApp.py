@@ -1,20 +1,31 @@
-import csv
 from flask import Flask
-import os
-import sys
-
-
-currentPath = os.path.dirname(__file__)
-motherdir = os.path.join(currentPath,"G/")
-sys.path.append(motherdir)
-
+import displayGraph as fH
+import helperCheckInput as hCI
 import ProductionCode as pC
-
+import displayGraph as dG
+import displayRawData as dR
+from conversionFunctions import *
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return "Welcome To CoViz \n Due to the problems with printing a graph \n only the get state function is usable \n url /-s/StateName is the format to Acess get state Data \n try -s/Alabama/ "
+    return """
+            Welcome To CoViz <br/> 
+            We currently offer 2 ways to interact with the COVID data across the US <br/> 
+                
+                1. .../<county>/<state>/<date1>/<date2> <br/> 
+                
+                Displays the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
+                Try:<br/> 
+                .../Rice/Minnesota/2020-2-1/2020-3-1<br/> 
+                
+                2. .../<county>/<state>/<date1>/<date2>/graph<br/> 
+                
+                Graphs the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
+                
+                Try:<br\> 
+                .../Rice/Minnesota/2020-2-1/2020-3-1/graph<br/> 
+                """
 
 @app.route('/-s/<StateName>', strict_slashes=False)
 def CommandLineState(StateName):
@@ -27,6 +38,30 @@ def CommandLineDate(Date):
     arguments = ["-d",Date]
     outPut = pC.CheckComadLine(arguments)
     return "Sorry Get Date not implemented yet"
+
+@app.route('/<county>/<state>/<startDateString>/<endDateString>', strict_slashes=False)
+def displayRawData(county,state,startDateString,endDateString):
+    '''
+    Displays raw data, in text form, of cases and deaths during date range 
+                                                in the location specified
+    '''
+    dateRange = makedateRange(startDateString,endDateString)
+    location = makeLocation(county,state)
+
+    return dR.displayRawData(location, dateRange)
+
+@app.route('/<county>/<state>/<startDateString>/<endDateString>/graph', strict_slashes=False)
+def graphImagePage(county,state,startDateString, endDateString):
+    ''' 
+    Makes a graph with the input strings for start date and end date. 
+    Prompt the user if the inputs are wrongly formatted. 
+    '''
+
+    dateRange = makedateRange(startDateString,endDateString)
+    location = makeLocation(county,state)
+
+    return dG.getHTML(location, dateRange)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
