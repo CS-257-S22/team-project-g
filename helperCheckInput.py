@@ -8,8 +8,8 @@ DateOutofRangeErrorMsg = "Date range outside of data!"
 
 def checkValidDate(dateList):
     '''
-    input: date in List form
-    output: a list of 3 Strings, [Year, Month, Date] if the date is formatted correctly
+    input: date in List form [Year, Month, Date]
+    output: True if the date is formatted correctly
             False if the date is formatted incorrectly
     '''
     try:
@@ -36,7 +36,11 @@ def checkValidDate(dateList):
 
 
 def checkDates(startDate, endDate):
-    
+    """
+    input: startDate and endDate in list form [Year, Month, Date]
+    output: True if the dates are in range and valid
+            An error message if not
+    """
     if (checkValidDate(startDate) == False or checkValidDate(endDate) == False):
         print(InvalidDateErrorMsg)
         return InvalidDateErrorMsg
@@ -57,7 +61,3 @@ def checkDates(startDate, endDate):
         return(DateOutofRangeErrorMsg)
     
     return True
-
-if __name__ == "__main__":
-    date = ['2022', '04', '09']
-    print(checkValidDate(date))
