@@ -94,7 +94,6 @@ def getConfirmedDeaths(list):
 
 def checkDataFormat(listLine,lineNum):
     '''Check if data on listLine is formatted correctly, print an error message if not; return a boolean value'''
-    
     if(checkValidDate(listLine[0]) == False):
         print("Date format incorrect at line " + str(lineNum))
         return False

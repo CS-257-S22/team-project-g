@@ -15,9 +15,6 @@ def makeGraph(location,dateRange):
     dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
     """
     info = hMG.getDataForGraph(location,dateRange)
-    if(info == False): 
-        print("Data not Found!")
-        return "Data not Found!"
     makeConfirmedCasesGraph(info[0],info[1],location)
     plt.show()
     plt.close()

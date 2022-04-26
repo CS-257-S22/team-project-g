@@ -23,9 +23,7 @@ def getData(location, dateRange):
     '''
     output = io.BytesIO()
     
-    isData = mG.make2GraphToOutPut(location,dateRange,output)
-    if(not(isData)):
-        return "Data Not Found!"
+    mG.make2GraphToOutPut(location,dateRange,output)
     
     data = base64.b64encode(output.getvalue()).decode('utf-8 ')
     return data
