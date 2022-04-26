@@ -3,8 +3,9 @@ from datetime import datetime
 dataStartTime = datetime(2020, 1, 22)
 dataEndTime = datetime(2022, 4, 9)
 
-InvalidDateErrorMsg = "Invalid dates! Try the other order!"
-DateOutofRangeErrorMsg = "Date range outside of data!"
+invalidDateErrorMsg = "Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!"
+wrongOrderMsg = "Wrong order of dates!" 
+dateOutofRangeErrorMsg = "Date range outside of data!"
 
 def checkValidDate(dateList):
     '''
@@ -42,22 +43,22 @@ def checkDates(startDate, endDate):
             An error message if not
     """
     if (checkValidDate(startDate) == False or checkValidDate(endDate) == False):
-        print(InvalidDateErrorMsg)
-        return InvalidDateErrorMsg
+        print(invalidDateErrorMsg)
+        return invalidDateErrorMsg
     
     try:
         startDate = toDateTime(startDate)
         endDate = toDateTime(endDate)
     except:
-        print(InvalidDateErrorMsg)
-        return InvalidDateErrorMsg
+        print(invalidDateErrorMsg)
+        return invalidDateErrorMsg
     
     if (startDate > endDate):
-        print(InvalidDateErrorMsg)
-        return InvalidDateErrorMsg
+        print(wrongOrderMsg)
+        return wrongOrderMsg
     
     if (endDate < dataStartTime or startDate > dataEndTime):
-        print(DateOutofRangeErrorMsg)
-        return(DateOutofRangeErrorMsg)
+        print(dateOutofRangeErrorMsg)
+        return(dateOutofRangeErrorMsg)
     
     return True
