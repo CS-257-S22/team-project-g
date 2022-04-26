@@ -25,7 +25,7 @@ def homepage():
                 
                 Try:<br\> 
                 .../Rice/Minnesota/2020-2-1/2020-3-1/graph<br/> 
-                """
+            """
 
 @app.route('/-s/<StateName>', strict_slashes=False)
 def CommandLineState(StateName):
@@ -53,14 +53,11 @@ def displayRawData(county,state,startDateString,endDateString):
 @app.route('/<county>/<state>/<startDateString>/<endDateString>/graph', strict_slashes=False)
 def graphImagePage(county,state,startDateString, endDateString):
     ''' 
-    Makes a graph with the input strings for start date and end date. 
-    Prompt the user if the inputs are wrongly formatted. 
+    Makes a graph with the input strings for county, state, start date, and end date. 
     '''
-
     dateRange = makedateRange(startDateString,endDateString)
     location = makeLocation(county,state)
-
-    return dG.getHTML(location, dateRange)
+    return dG.displayGraph(location, dateRange)
 
 
 @app.errorhandler(404)

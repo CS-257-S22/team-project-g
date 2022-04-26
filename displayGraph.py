@@ -9,26 +9,14 @@ from flask import render_template
 from helperCheckInput import *
 
 def displayGraph(location, dateRange):
-    return getData(location, dateRange)
-
-def checkErrorInput(startDateString, endDateString):
-    '''
-    Check whether the inputted strings are correctly formatted. 
-    Return: True if correctly formatted
-            An error message if not
-    '''
-    startDateList =  checkValidDate(startDateString)
-    endDateList = checkValidDate (endDateString)
-    if (startDateList == False or endDateList == False):
-        msg = "Please enter corret dates! Try .../graph/2020-1-1/2020-12-1"
-        return msg
-    return True
+    return getHTML(location, dateRange)
 
 def getData(location, dateRange):
     '''
     get image data from makeGraph
     
-    input: a location and a dateRange that 
+    input:  location [county, state]
+            dateRange [[Year, Month, Date],[Year, Month, Date]]
     
     output: "Data Not Found!" if no information is found
             image data if the input is correctly formatted and the information is in database
@@ -44,7 +32,10 @@ def getData(location, dateRange):
 
 def getHTML(location, dateRange):
     ''' 
-    returns a rendered HTML page according to a location and a dateRange    
+    returns a rendered HTML page according to a location and a dateRange  
+    
+    input:  location [county, state]
+            dateRange [[Year, Month, Date],[Year, Month, Date]]  
     '''
     data = getData(location, dateRange)
     return render_template('graph.html', location = location, dateRange = dateRange,data = data)

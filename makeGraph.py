@@ -8,6 +8,12 @@ import matplotlib.pyplot as plt
 from helperMakeGraph import *
 
 def makeGraph(location,dateRange):
+    """
+    Displays 2 graphs according to a location and a date Range
+
+    location (list): [county, state], all elements in String
+    dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
+    """
     info = hMG.getDataForGraph(location,dateRange)
     if(info == False): 
         print("Data not Found!")
@@ -20,13 +26,17 @@ def makeGraph(location,dateRange):
     plt.close()
 
 def make2GraphToOutPut(location,dateRange,output):
+    """
+    Stores 2 graphs according to a location and a date Range to an output
+    
+    location (list): [county, state], all elements in String
+    dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
+    output (): a placeholder to save the graph information
+    """
     plt.close()
     plt.rcParams["figure.figsize"] = (15,4)
     
     info = hMG.getDataForGraph(location,dateRange)
-    if(info == False): 
-        print("Data not Found!")
-        return "Data not Found!"
     
     plt.subplot(121)
     makeConfirmedCasesGraph(info[0],info[1],location)
@@ -35,7 +45,6 @@ def make2GraphToOutPut(location,dateRange,output):
     plt.tight_layout()
     plt.savefig(output,format="png")
     plt.close()
-    return True
        
 def makeConfirmedCasesGraph(dates, caseList, location):
     '''
