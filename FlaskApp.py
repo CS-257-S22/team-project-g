@@ -1,25 +1,26 @@
-from flask import Flask
+from flask import Flask, render_template
 import displayGraph as fH
 import helperCheckInput as hCI
 import ProductionCode as pC
 import displayGraph as dG
-import displayRawData as dR
-from conversionFunctions import *
+
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return """
+    return render_template('index.html', title="CoViz")
+    
+    """
             Welcome To CoViz <br/> 
             We currently offer 2 ways to interact with the COVID data across the US <br/> 
                 
-                1. .../<county>/<state>/<date1>/<date2> <br/> 
+                1. .../county/state/date1/date2 <br/> 
                 
                 Displays the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
                 Try:<br/> 
                 .../Rice/Minnesota/2020-2-1/2020-3-1<br/> 
                 
-                2. .../<county>/<state>/<date1>/<date2>/graph<br/> 
+                2. .../county/state/date1/date2/graph<br/> 
                 
                 Graphs the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
                 
@@ -39,17 +40,6 @@ def CommandLineDate(Date):
     outPut = pC.CheckComadLine(arguments)
     return "Sorry Get Date not implemented yet"
 
-@app.route('/<county>/<state>/<startDateString>/<endDateString>', strict_slashes=False)
-def displayRawData(county,state,startDateString,endDateString):
-    '''
-    Displays raw data, in text form, of cases and deaths during date range 
-                                                in the location specified
-    '''
-    dateRange = makedateRange(startDateString,endDateString)
-    location = makeLocation(county,state)
-
-    return dR.displayRawData(location, dateRange)
-
 @app.route('/<county>/<state>/<startDateString>/<endDateString>/graph', strict_slashes=False)
 def graphImagePage(county,state,startDateString, endDateString):
     ''' 
@@ -57,19 +47,36 @@ def graphImagePage(county,state,startDateString, endDateString):
     Prompt the user if the inputs are wrongly formatted. 
     '''
 
-    dateRange = makedateRange(startDateString,endDateString)
-    location = makeLocation(county,state)
-
-    return dG.getHTML(location, dateRange)
+    startDateList =  hCI.checkValidDate(startDateString)
+    endDateList = hCI.checkValidDate (endDateString)
+    dateRange = [startDateList, endDateList]
+    location = [county, state]
+    
+    return dG.displayGraph(location, dateRange)
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-     return "sorry, wrong format, \n Try: try url -s/Alabama/ "
-
+    return """
+            We are sorry but we could not find the page you are looking for <br/> 
+            could you please try one of the functions we have se up <br/> 
+                
+                1. .../county/state/date1/date2 <br/> 
+                
+                Displays the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
+                Try:<br/> 
+                .../Rice/Minnesota/2020-2-1/2020-3-1<br/> 
+                
+                2.  .../county/state/date1/date2/graph<br/> <br/> 
+                
+                Graphs the confirmed cases and confirmed deaths for the specific location between date1 and date2<br/> 
+                
+                Try:<br\> 
+                .../Rice/Minnesota/2020-2-1/2020-3-1/graph<br/> 
+                """
 @app.errorhandler(500)
 def python_bug(e):
-    return "Sorry a bug happened. \n Try a new Url -s/Alabama/ "
+    return "Sorry a bug happened. \n Try a new .../-s/Alabama/ "
 
 if __name__ == '__main__':
     app.run()
