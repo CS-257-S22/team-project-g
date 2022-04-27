@@ -11,14 +11,15 @@ import displayRawData as dR
 
 
 class rawDataTest(unittest.TestCase):
-
+    maxDiff = None
     def testBasicData(self):
         '''Integral test with basic input'''
+        
         self.app = app.test_client()
-        response = self.app.get('/Rice/Minnesota/2020-2-1/2020-9-1', follow_redirects=True)
+        response = self.app.get('/Rice/Minnesota/2020-2-1/2020-2-10', follow_redirects=True)
         response = str(response.data)
         location = makeLocation("Rice", "Minnesota")
-        dateRange = makedateRange("2020-2-1", "2020-9-1")
+        dateRange = makedateRange("2020-2-1", "2020-2-10")
         self.assertEqual(response, dR.displayRawData(location, dateRange))
 
     def testOutofRangeDates(self):
