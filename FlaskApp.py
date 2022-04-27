@@ -80,9 +80,13 @@ def graphImagePage(county,state,startDateString, endDateString):
     ''' 
     Makes a graph with the input strings for county, state, start date, and end date. 
     '''
-    dateRange = makedateRange(startDateString,endDateString)
-    location = makeLocation(county,state)
-    return dG.displayGraph(location, dateRange)
+    validInput = cFI.checkFlaskInput(county,state,startDateString,endDateString)
+    if (validInput == True):
+        dateRange = makedateRange(startDateString,endDateString)
+        location = makeLocation(county,state)
+
+        return dG.displayGraph(location, dateRange)
+    else: return validInput
 
 
 @app.errorhandler(404)
