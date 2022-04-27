@@ -17,6 +17,7 @@ class flaskTestGraph(unittest.TestCase):
         response = self.app.get('/Rice/Minnesota/2020-2-1/2020-9-1/graph', follow_redirects=True)
         response = str(response.data)
         isCorrect = ("Rice, Minnesota" in response) and ("2020-2-1" in response) and ("2020-9-1" in response) and ("<img src='data:image/png;base64" in response)
+        # check if dates and location are correct and if there is an image
         self.assertTrue(isCorrect)
     
     def testOutofRangeDates(self):
