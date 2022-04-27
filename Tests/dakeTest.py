@@ -53,13 +53,6 @@ class makeGraphTest(unittest.TestCase):
             self.assertEqual(result,expectedTickSize[i], message)
         pass
     
-    def testCheckDate(self):
-        '''test if valid input is true'''
-        self.assertTrue(cFI.checkDate("2020-2-1","2020-9-1"))
-    def testErrorCheckDate(self):
-        '''test if valid input is true'''
-        self.assertEqual('Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!',cFI.checkDate("2000-2-1","2020-9-1"))
-    
 #Manually test plotting
 plotTestDataRelativePath = "Data/TestData/plot_test_data.csv"
 plotTestDataSet = rD.retrieveData(plotTestDataRelativePath) 
