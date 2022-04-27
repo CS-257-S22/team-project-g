@@ -1,6 +1,6 @@
 import helperCheckInput as hCI
 import conversionFunctions as cF
-InvalidCountyStateMsg = "This count-state pair does not exist! Check spelling."
+InvalidCountyStateMsg = "This county-state pair does not exist! Check spelling."
 InvalidDateMsg = "Invalid dates! Check the order."
 
 
