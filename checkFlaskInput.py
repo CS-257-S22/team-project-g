@@ -1,5 +1,5 @@
 import helperCheckInput as hCI
-
+import conversionFunctions as cF
 InvalidCountyStateMsg = "This count-state pair does not exist! Check spelling."
 InvalidDateMsg = "Invalid dates! Check the order."
 
@@ -20,7 +20,7 @@ def checkCountyState(countyName,stateName):
 # Check if dates are within range and ordered correctly.
 # Returns True if no error, or an error msg.
 def checkDate(start, end):
-    return hCI.checkDates(start, end) # this may need to be updated depending on what type the input for checkFlaskInput are
+    return hCI.checkDates(cF.splitDate(start), cF.splitDate(end)) # this may need to be updated depending on what type the input for checkFlaskInput are
 
 if __name__ == "__main__":
     print(checkCountyState("Ric", "Minnesota")) 
