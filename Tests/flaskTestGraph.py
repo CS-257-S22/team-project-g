@@ -21,12 +21,7 @@ class flaskTestGraph(unittest.TestCase):
         response = str(response.data)
         isCorrect = ("Rice, Minnesota" in response) and ("2020-2-1" in response) and ("2020-9-1" in response) and ("<img src='data:image/png;base64" in response)
         self.assertTrue(isCorrect)
-    def testCheckDate(self):
-        '''test if valid input is true'''
-        self.assertTrue(cFI.checkDate("2020-2-1","2020-9-1"))
-    def testErrorCheckDate(self):
-        '''test if valid input is true'''
-        self.assertEqual('Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!',cFI.checkDate("2000-2-1","2020-9-1"))
+
     
         
     def testOutofRangeDates(self):
