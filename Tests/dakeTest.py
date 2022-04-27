@@ -14,7 +14,7 @@ sys.path.append(motherdir)
 import retrieveData as rD
 
 dummyDataSetRelativePath = "Data/dummy_data.csv"
-wrongFormatDataSetRelativePath = "Data/dakeTest_incorrect_format_data.csv"
+wrongFormatDataSetRelativePath = "Data/TestData/dakeTest_incorrect_format_data.csv"
 
 class retrieveDataTest(unittest.TestCase):
     
@@ -61,7 +61,7 @@ class makeGraphTest(unittest.TestCase):
         self.assertEqual('Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!',cFI.checkDate("2000-2-1","2020-9-1"))
     
 #Manually test plotting
-plotTestDataRelativePath = "Data/plot_test_data.csv"
+plotTestDataRelativePath = "Data/TestData/plot_test_data.csv"
 plotTestDataSet = rD.retrieveData(plotTestDataRelativePath) 
 
 def manualGraphing():
