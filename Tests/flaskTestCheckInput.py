@@ -16,7 +16,7 @@ class flaskTestCheckInput(unittest.TestCase):
         self.assertTrue(cFI.checkDate("2020-2-1","2020-9-1"))
         
     def testCheckErrorDate(self):
-        '''test if invalid input is true'''
+        '''test if invalid input gives an error message'''
         self.assertEqual('Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!', cFI.checkDate("2000-2-1","2020-9-1"))
         
 if __name__ == '__main__':
