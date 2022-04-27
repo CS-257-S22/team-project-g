@@ -35,7 +35,9 @@ def checkCountyState(countyName,stateName):
     for line in stateCountyData:
         dataList = line.split(",")
         if (countyName == dataList[0] and stateName == dataList[1]):
+            stateCountyData.close()
             return True
+    stateCountyData.close()
     return InvalidCountyStateMsg
 
 
