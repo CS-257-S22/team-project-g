@@ -1,3 +1,10 @@
+Contents in this folder:
+sub-Date folder: a breakdown data of us_simplified.csv, each county-state has an individual csv, in the same format as the original file
+makeSeperateDate.py: used to break down the data
+findState.py: a program to find the beginning line number of states and counties and save them in a file
+stateNameToLineNumber.txt: a txt file that stores the beginning line of each county-state pair, in the format county,state,linenumber
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Summary: Time series data listing COVID-19 confirmed cases, reported deaths, and reported recoveries, split by region. For our project, we’ll be focusing on data collected from US sources. 
 
 URL: https://github.com/datasets/covid-19/blob/main/data/us_simplified.csv
@@ -17,4 +24,3 @@ Suggested citation: TrevorWinstral, us_simplified.csv in COVID19 Dataset on Gith
 Ways that the user could interact with the data:
   1. Visualize aspects of COVID-19(deaths, cases, etc) in a specified region.
   2. Get specific numbers about COVID-19(deaths, cases, recoveries, rate of new cases/deaths, etc) of a specific time and region. 
-
