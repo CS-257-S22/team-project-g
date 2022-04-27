@@ -23,13 +23,13 @@ def makeGraph(location,dateRange):
     plt.close()
 
 def make2GraphToOutPut(location,dateRange,output):
-    """
+    '''
     Stores 2 graphs according to a location and a date Range to an output
     
     location (list): [county, state], all elements in String
     dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
     output (): a placeholder to save the graph information
-    """
+    '''
     plt.close()
     plt.rcParams["figure.figsize"] = (15,4)
     
@@ -76,9 +76,3 @@ def makeConfirmedDeathsGraph(dates, caseList, Location):
     
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
-
-if __name__ == '__main__':
-    location = ["Rice", "Minnesota"]
-    dateRange = [['2020', '2', '1'] , ['2020', '5', '1']]
-    makeGraph(location,dateRange)
-    
