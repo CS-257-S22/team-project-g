@@ -7,7 +7,7 @@ motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 from FlaskApp import *
 
-class flaskTestGraph(unittest.TestCase):
+class flaskTestHTML(unittest.TestCase):
 
     #the graphs cannot be unit-checked, so all tests are integral
     
