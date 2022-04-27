@@ -62,7 +62,19 @@ def manualGraphing():
     location = ["Autauga", "Alabama"]
     dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
     mG.makeGraph(location,dateRange)
-    
+
+
+import helperCheckInput as hCI
+
+class helperCheckInputTest(unittest.TestCase):
+    def testCorrectCheckValidDate(self):
+        date = ['2021', '2', '3']
+        self.assertTrue(hCI.checkValidDate(date))
+        
+    def testWrongCheckValidDate(self):
+        date = ['20', '-1', '3']
+        self.assertFalse(hCI.checkValidDate(date))
+            
 if __name__ == '__main__':
     manualGraphing()
     unittest.main()

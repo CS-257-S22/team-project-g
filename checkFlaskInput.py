@@ -1,8 +1,6 @@
 import helperCheckInput as hCI
 import conversionFunctions as cF
 InvalidCountyStateMsg = "This county-state pair does not exist! Check spelling."
-InvalidDateMsg = "Invalid dates! Check the order."
-
 
 def checkFlaskInput(countyName, stateName, startDate, endDate): # !!! need to know what type the inputs will be
     '''
@@ -27,9 +25,12 @@ def checkFlaskInput(countyName, stateName, startDate, endDate): # !!! need to kn
         return True
     return checkInputResult
 
-# Check if dates are within range and ordered correctly.
-# Returns True if no error, or an error msg.
+
 def checkCountyState(countyName,stateName):
+    '''
+    Check if dates are within range and ordered correctly.
+    Returns True if no error, or an error msg.
+    '''
     stateCountyData = open('Data/stateNameToLineNumber.txt','r')
     for line in stateCountyData:
         dataList = line.split(",")
@@ -37,7 +38,10 @@ def checkCountyState(countyName,stateName):
             return True
     return InvalidCountyStateMsg
 
-# Check if dates are within range and ordered correctly.
-# Returns True if no error, or an error msg.
+
 def checkDate(start, end):
-    return hCI.checkDates(cF.splitDate(start), cF.splitDate(end)) # this may need to be updated depending on what type the input for checkFlaskInput are
+    '''
+    Check if dates are within range and ordered correctly.
+    Returns True if no error, or an error msg.
+    '''
+    return hCI.checkDates(cF.splitDate(start), cF.splitDate(end)) 
