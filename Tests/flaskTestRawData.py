@@ -20,7 +20,8 @@ class rawDataTest(unittest.TestCase):
         response = str(response.data)
         location = makeLocation("Rice", "Minnesota")
         dateRange = makedateRange("2020-2-1", "2020-2-10")
-        self.assertEqual(response, dR.displayRawData(location, dateRange))
+
+        self.assertIn(dR.displayRawData(location, dateRange), response)
 
     def testOutofRangeDates(self):
         '''Integral test of the case with dates that are out of range'''
