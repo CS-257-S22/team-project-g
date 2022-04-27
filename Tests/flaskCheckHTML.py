@@ -16,8 +16,7 @@ class flaskTestGraph(unittest.TestCase):
         self.app = app.test_client()
         response = self.app.get('/.....', follow_redirects=True)
         response = str(response.data)
-        isCorrect = ("We are sorry but we could not find the page you are looking for" in response)
-        self.assertTrue(isCorrect)
+        self.assertIn("We are sorry but we could not find the page you are looking for", response)
     
         
 if __name__ == '__main__':
