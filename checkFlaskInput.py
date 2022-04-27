@@ -10,7 +10,7 @@ def checkFlaskInput(countyName, stateName, startDate, endDate): # !!! need to kn
 # Check if dates are within range and ordered correctly.
 # Returns True if no error, or an error msg.
 def checkCountyState(countyName,stateName):
-    stateCountyData = open('the-zen-of-python.txt','r')
+    stateCountyData = open('Data/stateNameToLineNumber.txt','r')
     for line in stateCountyData:
         dataList = line.split(",")
         if (countyName == dataList[0] and stateName == dataList[1]):
@@ -22,3 +22,5 @@ def checkCountyState(countyName,stateName):
 def checkDate(start, end):
     return hCI.checkDates(start, end) # this may need to be updated depending on what type the input for checkFlaskInput are
 
+if __name__ == "__main__":
+    print(checkCountyState("Ric", "Minnesota")) 
