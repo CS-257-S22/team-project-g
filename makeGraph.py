@@ -24,14 +24,14 @@ def makeGraph(location,dateRange):
     plt.close()
 
 def make2GraphToOutPut(location,dateRange,output):
-    '''
+    """
     Stores 2 graphs according to a location and a date Range to an output
     
     inputs:
     location (list): [county, state], all elements in String
     dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
     output (): a placeholder to save the graph information
-    '''
+    """
     plt.close()
     plt.rcParams["figure.figsize"] = (15,4)
     
@@ -46,14 +46,14 @@ def make2GraphToOutPut(location,dateRange,output):
     plt.close()
        
 def makeConfirmedCasesGraph(dates, caseList, location):
-    '''
+    """
     makes a confirmed case graph
     
     inputs:
     dates[] list contains lists of date in the format [Year, Month, Day]
     cases[] list contains number of cases as string
     Location is a list of 2, [county, state]
-    '''
+    """
     
     drawGraph(dates,caseList)
     labelConfirmedCasesToDate()
@@ -65,14 +65,14 @@ def makeConfirmedCasesGraph(dates, caseList, location):
     setYaxisTicks(yticksize)
 
 def makeConfirmedDeathsGraph(dates, caseList, location):
-    '''
+    """
     makes a confirmed deaths graph
     
     inputs:
     dates[] list contains lists of date in the format [Year, Month, Day]
     cases[] list contains number of cases as string
     Location is a list of 2, [county, state]
-    '''
+    """
     drawGraph(dates,caseList)
     labelConfirmedDeathsToDate()
     makeTitleConfirmedDeaths(location[0], location[1])

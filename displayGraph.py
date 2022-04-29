@@ -12,7 +12,7 @@ def displayGraph(location, dateRange):
     return getHTML(location, dateRange)
 
 def getData(location, dateRange):
-    '''
+    """
     get image data from makeGraph
     
     input:  location [county, state]
@@ -20,7 +20,7 @@ def getData(location, dateRange):
     
     output: "Data Not Found!" if no information is found
             image data if the input is correctly formatted and the information is in database
-    '''
+    """
     output = io.BytesIO()
     
     mG.make2GraphToOutPut(location,dateRange,output)
@@ -29,11 +29,11 @@ def getData(location, dateRange):
     return data
 
 def getHTML(location, dateRange):
-    ''' 
+    """ 
     returns a rendered HTML page according to a location and a dateRange  
     
     input:  location [county, state]
             dateRange [[Year, Month, Date],[Year, Month, Date]]  
-    '''
+    """
     data = getData(location, dateRange)
     return render_template('graph.html', location = location, dateRange = dateRange,data = data)
