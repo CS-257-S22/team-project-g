@@ -42,11 +42,17 @@ def setXaxisLocator(timeRangeDays):
         setMonthLocator(max(1, int(timeRangeMonth/10)))
         
 def setDayLocator(intv):
-    '''set x axis locator, each tick per intv days'''
+    '''
+    set x axis locator, each tick per intv days
+    input: intv, an integer corresponding to the size of the ticks on the x axis
+    '''
     plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval = intv))
     
 def setMonthLocator(intv):
-    '''set x axis locator, each tick per intv months'''
+    '''
+    set x axis locator, each tick per intv months
+    input: intv, an integer corresponding to the size of the ticks on the x axis
+    '''
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval = intv))
 
 def setXAxisFormat():
@@ -56,7 +62,10 @@ def setXAxisFormat():
     
 #functions related to setting Y axis ticks
 def calculateYTickSize(caseList):
-    '''takes in a list of case number and return the appropriate tick size for it'''
+    '''
+    takes in a  list of case number and return the appropriate tick size for it
+    input: a list of case number, in int
+    '''
     maxCases = int(caseList[-1])
     #Avoid futher math if there are no cases in the interval
     if (maxCases == 0):
@@ -75,16 +84,19 @@ def calculateYTickSize(caseList):
     return int(yticksize)
 
 def setYaxisTicks(yticksize):
-    '''set tick size on y axis to yticksize'''
+    '''
+    set tick size on y axis to yticksize
+    input: yticksize, an integer corresponding to the size of the ticks on the y axis
+    '''
     plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(base = yticksize))
     
 #fucntions related to labeling and titling
 def makeTitleConfirmedCases(county, state): 
-    '''make title for confirmed cases graph''' 
+    '''make title for confirmed cases graph according to the county name and state name''' 
     plt.title("Cumulative Number of Confirmed Cases in " + county + "," + state)
     
 def makeTitleConfirmedDeaths(county, state): 
-    '''make title for confirmed deaths graph''' 
+    '''make title for confirmed deaths graph according to the county name and state name''' 
     plt.title("Cumulative Number of Confirmed Deaths in " + county + "," + state)
 
 def labelConfirmedCasesToDate():
@@ -99,25 +111,32 @@ def labelConfirmedDeathsToDate():
 
 #functiosn related to graphing
 def drawGraph(dates,caseList): 
-    '''draw an unformatted graph of caseList to dates'''
+    '''
+    draw an unformatted graph of caseList to dates
+    case
+    '''
     xpoints = toDatetimeList(dates)
     ypoints = caseList
     plt.plot(xpoints, ypoints)
 
 #datetime conversion    
 def toDatetimeList(dates):
-    '''converts the dates list to datetime object list'''
+    '''
+    converts the dates list to datetime object list
+    input: dates, a list with elements of format ['YYYY','MM', 'DD']
+    '''
     datetimes = []
     for i in dates:
-        tmpdatetime = datetime(int(i[0]),int(i[1]),int(i[2]))
+        tmpdatetime = toDateTime(i)
         datetimes.append(tmpdatetime)
     return datetimes
 
 def getTimeRangeDays(dates):
-    '''return the time range covered by data'''
-    startDate = dates[0]
-    startDate = datetime(int(startDate[0]),int(startDate[1]),int(startDate[2]))
-    endDate = dates[-1]
-    endDate = datetime(int(endDate[0]),int(endDate[1]),int(endDate[2]))
+    '''
+    return the time range covered by data
+    input: dates, a list with elements of format ['YYYY','MM', 'DD']
+    '''
+    startDate = toDateTime(dates[0])
+    endDate = toDateTime(dates[-1])
     deltatime = endDate - startDate
     return deltatime.days
