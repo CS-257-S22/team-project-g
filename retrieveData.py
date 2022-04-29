@@ -4,6 +4,7 @@ from conversionFunctions import *
 from datetime import datetime
 from helperCheckInput import *
 import os
+from indexDictionary import *
 
 #data path of the dataset .csv file relative to this folder
 dataSet = [] 
@@ -35,7 +36,7 @@ def storeData(stringLines):
         lineNum+= 1 # keep track of line number for error message
         listLine = convertStringLinetoList(i)
         listLine.pop() # remove last column
-        listLine[0] = splitDate(listLine[0]) #process date String and make it a list
+        listLine[dateIndex] = splitDate(listLine[dateIndex]) #process date String and make it a list
         if(checkDataFormat(listLine, lineNum)):
             dataSet.append(listLine)   #skip the line if not formatted correctly
             
@@ -78,23 +79,23 @@ def getDateRangeData(list, dateRange):
 def getDates(list):
     '''return the column of dates from a list '''
     
-    dates = [i[0] for i in list]
+    dates = [i[dateIndex] for i in list]
     return dates
 
 def getConfirmedCases(list):
     '''return the column of death numbers from a list '''
     
-    deaths = [int(i[3]) for i in list]
+    deaths = [int(i[confirmedCaseseIndex]) for i in list]
     return deaths
 
 def getConfirmedDeaths(list):
     '''return the column of confirmed cases from a list '''
-    deaths = [int(i[4]) for i in list]
+    deaths = [int(i[confirmedDeathsIndex]) for i in list]
     return deaths
 
 def checkDataFormat(listLine,lineNum):
     '''Check if data on listLine is formatted correctly, print an error message if not; return a boolean value'''
-    if(checkValidDate(listLine[0]) == False):
+    if(checkValidDate(listLine[dateIndex]) == False):
         print("Date format incorrect at line " + str(lineNum))
         return False
     if(not checkNumberFormat(listLine[3])):
