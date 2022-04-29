@@ -8,11 +8,11 @@ wrongOrderMsg = "Wrong order of dates!"
 dateOutofRangeErrorMsg = "Date range outside of data!"
 
 def checkValidDate(dateList):
-    '''
+    """
     input: date in List form [Year, Month, Date]
     output: True if the date is formatted correctly
             False if the date is formatted incorrectly
-    '''
+    """
     try:
         year = int(dateList[0])
         month = int(dateList[1])
