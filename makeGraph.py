@@ -11,6 +11,7 @@ def makeGraph(location,dateRange):
     """
     Displays 2 graphs according to a location and a date Range
 
+    inputs:
     location (list): [county, state], all elements in String
     dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
     """
@@ -26,6 +27,7 @@ def make2GraphToOutPut(location,dateRange,output):
     '''
     Stores 2 graphs according to a location and a date Range to an output
     
+    inputs:
     location (list): [county, state], all elements in String
     dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
     output (): a placeholder to save the graph information
@@ -46,6 +48,8 @@ def make2GraphToOutPut(location,dateRange,output):
 def makeConfirmedCasesGraph(dates, caseList, location):
     '''
     makes a confirmed case graph
+    
+    inputs:
     dates[] list contains lists of date in the format [Year, Month, Day]
     cases[] list contains number of cases as string
     Location is a list of 2, [county, state]
@@ -60,16 +64,18 @@ def makeConfirmedCasesGraph(dates, caseList, location):
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
 
-def makeConfirmedDeathsGraph(dates, caseList, Location):
+def makeConfirmedDeathsGraph(dates, caseList, location):
     '''
     makes a confirmed deaths graph
+    
+    inputs:
     dates[] list contains lists of date in the format [Year, Month, Day]
     cases[] list contains number of cases as string
     Location is a list of 2, [county, state]
     '''
     drawGraph(dates,caseList)
     labelConfirmedDeathsToDate()
-    makeTitleConfirmedDeaths(Location[0], Location[1])
+    makeTitleConfirmedDeaths(location[0], location[1])
     
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
