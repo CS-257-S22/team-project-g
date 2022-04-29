@@ -1,3 +1,4 @@
+# An integral function that checks different inputs 
 from conversionFunctions import *
 from datetime import datetime
 
@@ -9,7 +10,7 @@ wrongOrderMsg = "Wrong order of dates!"
 dateOutofRangeErrorMsg = "Date range outside of data!"
 InvalidCountyStateMsg = "This county-state pair does not exist! Check spelling."
 
-def checkInput(countyName, stateName, startDate, endDate): # !!! need to know what type the inputs will be
+def helperCheckInput(countyName, stateName, startDate, endDate): # !!! need to know what type the inputs will be
     """
     checks if all the input is correct
     input:  countyName in String
