@@ -5,9 +5,11 @@ import getDayWithMostCases as gD
 
 dataSet = []
 
-# gets raw data from chosen data set to display in flask webpage
 def displayRawData(location, dateRange):
-
+    '''
+    Gets raw data from chosen data set to display in flask webpage.
+    '''
+    
     dataSet = retrieveData.getCountyStateData(location[0], location[1])
     dataSet = retrieveData.getDateRangeData(dataSet,dateRange)
 
