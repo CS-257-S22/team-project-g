@@ -1,3 +1,5 @@
+#helper functions that supports makeGraph.py, inclusing  calculating and setting ticks
+#making labels and titles, formatting and drawing graph
 from retrieveData import *
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker

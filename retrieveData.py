@@ -1,3 +1,4 @@
+#Includes functions that retrieve data from a .csv file and process them.
 import sys
 import csv
 from conversionFunctions import *

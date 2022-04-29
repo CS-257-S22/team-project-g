@@ -1,3 +1,4 @@
+#some helper functions for converting from one type to another
 from datetime import datetime
 def toDateTime(date):
     """convert date [Year, Month, Day] to a datetime object"""

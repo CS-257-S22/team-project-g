@@ -1,3 +1,4 @@
+#makes a rendered html page based on a input location and dateRange
 import csv
 from flask import Flask
 import io
