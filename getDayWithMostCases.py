@@ -1,5 +1,6 @@
 import datetime
 import retrieveData
+from indexDictionary import *
 
 dataSet =[]
 
@@ -13,10 +14,10 @@ def getDayWithMostCases(stateName):
         highestDayCaseCount = 0
         highestDay = "2020-1-1"
         for element in dataSet:
-            if (element[2] == stateName):
-                if (int(element[3]) > int(highestDayCaseCount)):
-                    highestDay = element[0]
-                    highestDayCaseCount = element[3]
+            if (element[stateIndex] == stateName):
+                if (int(element[confirmedCaseseIndex]) > int(highestDayCaseCount)):
+                    highestDay = element[dateIndex]
+                    highestDayCaseCount = element[confirmedCaseseIndex]
         print("On " + dayListToStr(highestDay) +" in " + stateName + " there were " + highestDayCaseCount + " cases." )
         return "On " + dayListToStr(highestDay) +" in " + stateName + " there were " + highestDayCaseCount + " cases."
 
@@ -29,7 +30,7 @@ def dayListToStr(date):
 # returns true if state specified is in dataSet, false otherwise
 def stateInData(stateName): 
     for element in dataSet:
-        if (element[2] == stateName):
+        if (element[stateIndex] == stateName):
             return True
     print("stateName was not found in dataSet")
     return False
