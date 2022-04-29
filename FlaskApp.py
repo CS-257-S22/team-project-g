@@ -5,7 +5,6 @@ import ProductionCode as pC
 import displayGraph as dG
 import displayRawData as dR
 from conversionFunctions import *
-import checkFlaskInput as cFI
 
 app = Flask(__name__)
 
@@ -67,7 +66,7 @@ def displayRawData(county,state,startDateString,endDateString):
     Displays raw data, in text form, of cases and deaths during date range 
                                                 in the location specified
     """
-    validDate = cFI.checkFlaskInput(county,state,startDateString,endDateString)
+    validDate = hCI.checkInput(county,state,startDateString,endDateString)
     if (validDate == True):
         dateRange = makedateRange(startDateString,endDateString)
         location = makeLocation(county,state)
@@ -80,7 +79,7 @@ def graphImagePage(county,state,startDateString, endDateString):
     """ 
     Makes a graph with the input strings for county, state, start date, and end date. 
     """
-    validInput = cFI.checkFlaskInput(county,state,startDateString,endDateString)
+    validInput = hCI.checkInput(county,state,startDateString,endDateString)
     if (validInput == True):
         dateRange = makedateRange(startDateString,endDateString)
         location = makeLocation(county,state)
