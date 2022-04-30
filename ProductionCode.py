@@ -1,3 +1,4 @@
+from inspect import ArgSpec
 import sys
 
 from click import argument
@@ -21,7 +22,7 @@ def CheckComadLine():
         help= 'The flag to graph Data')
 
     args = parser.parse_args()
-    return callData(args)
+    return args
 
 def callData(args):
     outPut = hCI.helperCheckInput(args.County,args.State,args.StartDate, args.EndDate)
@@ -36,7 +37,7 @@ def callData(args):
 
     
 if __name__ == '__main__':
-    outPut = CheckComadLine()
+    outPut = callData(CheckComadLine())
     outPut = outPut.split('<br/>')
     if isinstance(outPut,str):
        print(outPut)
