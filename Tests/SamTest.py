@@ -81,7 +81,6 @@ class CommandLineTest(unittest.TestCase):
         args.StartDate = "2020-6-1"
         args.EndDate = "2021-6-2"
         args.graph = True
-        result = pC.callData(args)
 
 if __name__ == '__main__':
     unittest.main()
