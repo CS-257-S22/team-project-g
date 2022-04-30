@@ -10,7 +10,7 @@ wrongOrderMsg = "Wrong order of dates!"
 dateOutofRangeErrorMsg = "Date range outside of data!"
 InvalidCountyStateMsg = "This county-state pair does not exist! Check spelling."
 
-def helperCheckInput(countyName, stateName, startDate, endDate): # !!! need to know what type the inputs will be
+def helperCheckInput(countyName, stateName, startDate, endDate):
     """
     checks if all the input is correct
     input:  countyName in String
@@ -21,7 +21,7 @@ def helperCheckInput(countyName, stateName, startDate, endDate): # !!! need to k
             Error message(s) if not
     """
     checkcountyStateResult = checkCountyState(countyName, stateName)
-    checkDateResult = checkDate(startDate, endDate)
+    checkDateResult = checkDates(startDate, endDate)
     checkInputResult = ""
     if (checkcountyStateResult != True):
         checkInputResult += checkcountyStateResult
@@ -47,14 +47,6 @@ def checkCountyState(countyName,stateName):
             return True
     stateCountyData.close()
     return InvalidCountyStateMsg
-
-
-def checkDate(start, end):
-    """
-    Check if dates are within range and ordered correctly.
-    Returns True if no error, or an error msg.
-    """
-    return checkDates(splitDate(start), splitDate(end)) 
 
 def checkValidDate(dateList):
     """
@@ -91,8 +83,13 @@ def checkDates(startDate, endDate):
     output: True if the dates are in range and valid
             An error message if not
     """
+    try:
+        startDate = splitDate(startDate)
+        endDate = splitDate(endDate)
+    except:
+        return invalidDateErrorMsg
+    
     if (checkValidDate(startDate) == False or checkValidDate(endDate) == False):
-        print(invalidDateErrorMsg)
         return invalidDateErrorMsg
     
     try:
@@ -108,3 +105,6 @@ def checkDates(startDate, endDate):
         return(dateOutofRangeErrorMsg)
     
     return True
+if __name__ == "__main__":
+    startDate = "2020-3-1"
+    endDate = "2020-3-5"
