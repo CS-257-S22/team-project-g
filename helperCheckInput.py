@@ -99,15 +99,12 @@ def checkDates(startDate, endDate):
         startDate = toDateTime(startDate)
         endDate = toDateTime(endDate)
     except:
-        print(invalidDateErrorMsg)
         return invalidDateErrorMsg
     
     if (startDate > endDate):
-        print(wrongOrderMsg)
         return wrongOrderMsg
     
     if (endDate < dataStartTime or startDate > dataEndTime):
-        print(dateOutofRangeErrorMsg)
         return(dateOutofRangeErrorMsg)
     
     return True
