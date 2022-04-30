@@ -11,9 +11,9 @@ Examples of things you can do:
     1. Get the latest number of COVID cases in a state (inaccurate number right now, due to the fact that we are using dummy data):
 
         Try:
-            python3 ProductionCode.py -s Minnesota
+            python3 ProductionCode.py Rice Minnesota 2020-2-1 2020-4-1
 
     2. Get the graph of the COVID cases and deaths in a county within a date range:
 
         Try:
-            python3 ProductionCode.py -s Alabama -c Autauga -d 2020-2-1 2020-12-1
+            python3 ProductionCode.py Rice Minnesota 2020-2-1 2021-4-1 -g
