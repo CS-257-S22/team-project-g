@@ -68,21 +68,22 @@ def calculateYTickSize(caseList):
     takes in a  list of case number and return the appropriate tick size for it
     input: a list of case number, in int
     """
-    maxCases = int(caseList[-1])
+    diffCases = int(caseList[-1] - caseList[0])
     #Avoid futher math if there are no cases in the interval
-    if (maxCases == 0):
+    if (diffCases == 0):
         return 10
-    yticksize = int(math.log10(maxCases)) 
+    yticksize = int(math.log10(diffCases)) 
     
     #Find the least power of 10 that is less than max cases and make it the tick size
     yticksize = int(math.pow(10,yticksize))
     
     #If the max number of cases is 1----, then make the tick size 1/10 its original
-    if int (maxCases/yticksize) == 1: 
+    if int (diffCases/yticksize) == 1: 
         yticksize/=10
         
     #If the tick size is less than 1, make it 1
-    yticksize = max(yticksize, 1)       
+    yticksize = max(yticksize, 1) 
+    print(diffCases,yticksize)      
     return int(yticksize)
 
 def setYaxisTicks(yticksize):
