@@ -82,8 +82,7 @@ def calculateYTickSize(caseList):
         yticksize/=10
         
     #If the tick size is less than 1, make it 1
-    yticksize = max(yticksize, 1) 
-    print(diffCases,yticksize)      
+    yticksize = max(yticksize, 1)   
     return int(yticksize)
 
 def setYaxisTicks(yticksize):

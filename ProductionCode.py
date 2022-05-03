@@ -37,13 +37,16 @@ def callData(args):
     
 if __name__ == '__main__':
     outPut = callData(CheckComadLine(sys.argv[1:]))
-    outPut = outPut.split('<br/>')
+    
     if isinstance(outPut,str):
-       print(outPut)
+        #check if the result is a string
+        outPut = outPut.split('<br/>')
+    if isinstance(outPut,str):
+        #check if output is an error message
+        print(outPut)
     elif isinstance(outPut,list):
+        #check if output is a list, if so, it is the result of displayRawData, print the result
         for row in outPut:
             print(row)
-    else :
-        print(outPut)
 
   
