@@ -144,7 +144,9 @@ def getTimeRangeDays(dates):
     deltatime = endDate - startDate
     return deltatime.days
 
+'''
 if __name__ == "__main__":
     mockLocation = ["Rice", "Minnesota"]
     mockDateRange = [['2021','2','1'], ['2021','3','1']]
     print(getDataForGraph(mockLocation, mockDateRange))
+'''
