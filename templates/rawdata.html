@@ -1,0 +1,63 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='mainstyle.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='rawdatapagestyle.css') }}">
+        
+        <head>
+            <title>Covid Graphs For {{location[0]}}, {{location[1]}}</title>
+            <link rel="stylesheet" href="rawdatapagestyle.css">
+        </head>
+    </head>
+
+    <body>
+        <div>
+            <a href="/"> <h1>Welcome to CoViz!</h1> </a>
+        </div>
+
+        <div>
+            <h2>
+                Covid Raw Data For {{location[0]}}, {{location[1]}} <br/>
+                From {{dateRange[0][0] + "-" + dateRange[0][1] + "-" + dateRange[0][2]}}
+                To {{dateRange[1][0] + "-" + dateRange[1][1] + "-" + dateRange[1][2]}}
+            </h2>
+        </div>
+
+        <div class = "row">
+            <div class = "column left">
+                <h2>Date</h2>
+            </div> 
+            <div class = "column middle">
+                <h2>Confirmed Cases</h2>
+            </div>   
+
+            <div class = "column right">
+                <h2>Confirmed Deaths</h2>
+            </div>
+        </div>
+
+        {% for i in range (dates| length) %}
+            <div class = "row">
+                <div class = "column left">
+                    <p>{{ dates[i][0] + "-" + dates[i][1] + "-" + dates[i][2] }} </p>
+                </div>
+
+                <div class = "column middle">
+                    <p> {{ confirmedCases[i] }} </p>
+                </div>   
+
+                <div class = "column right">
+                    <p> {{ confirmedDeaths[i] }} </p>
+                </div>
+            </div>
+        {% endfor %}
+    </body>
+
+    <footer>
+        <p>
+            <br><br><br><br><br>
+            Made by Dake Peng <br>
+            E-mail: pengd@carleton.edu <br>
+        </p> 
+    </footer>
+</html>
