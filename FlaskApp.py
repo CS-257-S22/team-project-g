@@ -66,14 +66,14 @@ def displayRawData(county,state,startDateString,endDateString):
     Displays raw data, in text form, of cases and deaths during date range 
                                                 in the location specified
     """
-    validDate = hCI.helperCheckInput(county,state,startDateString,endDateString)
-    if (validDate == True):
+    validInput = hCI.helperCheckInput(county,state,startDateString,endDateString)
+    if (validInput == True):
         dateRange = makedateRange(startDateString,endDateString)
         location = makeLocation(county,state)
 
         return dR.displayRawData(location, dateRange)
     else: 
-        return validDate
+        return makeErrorInputmsg(validInput)
 
 @app.route('/<county>/<state>/<startDateString>/<endDateString>/graph', strict_slashes=False)
 def graphImagePage(county,state,startDateString, endDateString):
@@ -87,8 +87,19 @@ def graphImagePage(county,state,startDateString, endDateString):
 
         return dG.displayGraph(location, dateRange)
     else: 
-        return validInput
+        print(validInput)
+        return makeErrorInputmsg(validInput)
 
+def makeErrorInputmsg(checkInputResult):
+    '''
+    makes an error message based on the result from helperCheckInput
+    input: checkInputResult, a list [] of error message(s)
+    '''
+    msg = ""
+    for i in checkInputResult: 
+        msg = msg + i + "<br>"
+        
+    return msg
 
 @app.errorhandler(404)
 def page_not_found(e):

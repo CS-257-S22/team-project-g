@@ -22,15 +22,16 @@ def helperCheckInput(countyName, stateName, startDate, endDate):
     """
     checkcountyStateResult = checkCountyState(countyName, stateName)
     checkDateResult = checkDates(startDate, endDate)
-    checkInputResult = ""
+    checkInputResult = []
     if (checkcountyStateResult != True):
-        checkInputResult += checkcountyStateResult
-        checkInputResult += "<br/>"
+        checkInputResult.append(checkcountyStateResult)
+
     if (checkDateResult != True):
-        checkInputResult += checkDateResult
-        checkInputResult += "<br/>"
-    if (checkInputResult == ""):
+        checkInputResult.append(checkDateResult)
+        
+    if (checkInputResult == []):
         return True
+    
     return checkInputResult
 
 
