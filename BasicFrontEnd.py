@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template, request
 import displayGraph as dG
+import helperCheckInput as hCI
 #some helper functions to convert data to the inputs that our main code take
 from conversionFunctions import *
 
@@ -39,10 +40,16 @@ def displayGraph():
     county = str(request.args['county'])
     startDate = str(request.args['startDate'])
     endDate = str(request.args['endDate'])
-    location = makeLocation(county, state)
-    dateRange = makedateRange(startDate,endDate)
-    # return dG.displayGraph(location, dateRange)
-    return getGraph(location, dateRange)
+    checkInputResult = hCI.helperCheckInput(county,state,startDate,endDate)
+    if (checkInputResult == True):
+        dateRange = makedateRange(startDate,endDate)
+        location = makeLocation(county,state)
+        return dG.displayGraph(location, dateRange)
+    else: 
+        return errorInputPrompt(checkInputResult)
+    
+def errorInputPrompt(errormsg):
+    return render_template('errorinput.html', errormsg = errormsg)
 
 def getGraph(location, dateRange):
     '''
@@ -51,7 +58,6 @@ def getGraph(location, dateRange):
     return dG.displayGraph(location, dateRange)
 
 def getRawData(location, dateRange):
-    
     return render_template('rawdata.html', location = location, dateRange = dateRange)
 
 @app.errorhandler(404)
