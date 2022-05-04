@@ -1,0 +1,37 @@
+h1 {
+    font-size: 3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: black;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center; 
+}
+
+h1, h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    
+}
+
+p {
+    font-family: Verdana, Geneva, sans-serif;
+}
+ 
+nav li {
+    float: left;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/*styling footer*/
+footer{
+    height: 200px;
+    display:block;
+}

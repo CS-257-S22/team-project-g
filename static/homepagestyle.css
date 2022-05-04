@@ -1,0 +1,113 @@
+/*Styling Tab Bar*/
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+  
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1em;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+  
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+  
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+  
+/* Style the tab content */
+.tabcontent {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1em;
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Style the close button */
+.topright {
+    float: right;
+    cursor: pointer;
+    font-size: 28px;
+}
+  
+.topright:hover {color: red;}
+
+
+
+/*Styling form Contents*/
+form {
+    display: inline-block;
+}
+/*Styling input text*/
+input[type = text], input[type = date] {
+    width: 85%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    cursor:auto;
+    float: right;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+/*Sytling submit button*/
+input[type=button], input[type=submit]{
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1.2em;
+    background-color:black;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.container {
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+  
+.leftcol {
+    float: left;
+    width: 40%;
+    margin-top: 12px
+}
+  
+.rightcol {
+    float: left;
+    width: 60%;
+    margin-top: 6px;
+}
+  
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

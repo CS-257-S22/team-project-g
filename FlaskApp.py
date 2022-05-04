@@ -72,7 +72,8 @@ def displayRawData(county,state,startDateString,endDateString):
         location = makeLocation(county,state)
 
         return dR.displayRawData(location, dateRange)
-    else: return validDate
+    else: 
+        return validDate
 
 @app.route('/<county>/<state>/<startDateString>/<endDateString>/graph', strict_slashes=False)
 def graphImagePage(county,state,startDateString, endDateString):
@@ -85,7 +86,8 @@ def graphImagePage(county,state,startDateString, endDateString):
         location = makeLocation(county,state)
 
         return dG.displayGraph(location, dateRange)
-    else: return validInput
+    else: 
+        return validInput
 
 
 @app.errorhandler(404)
