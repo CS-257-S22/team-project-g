@@ -103,10 +103,16 @@ def makeErrorInputmsg(checkInputResult):
 
 @app.errorhandler(404)
 def page_not_found(e):
+    '''
+    returns a 404 error page
+    ''' 
     return render_template('PageNotFound.html', title="Page Not Found")
 
 @app.errorhandler(500)
 def python_bug(e):
+    '''
+    returns a 500 error page
+    ''' 
     return "Sorry a bug happened. \n Try a new .../-s/Alabama/ "
 
 if __name__ == '__main__':
