@@ -64,13 +64,18 @@ def errorInputPrompt(errormsg):
 
 def getGraph(location, dateRange):
     '''
-    renders a page for graphs based on mock data
+    renders a page for graphs based on location and dateRange
     '''
     return dG.displayGraph(location, dateRange)
 
 def getRawData(location, dateRange):
+    '''
+    renders a page for raw data based on location and dateRange
+    '''
     data = rD.getDataWithLocationAndDateRange(location,dateRange)
-    return render_template('rawdata.html', location = location, dateRange = dateRange, dates = rD.getDates(data), confirmedCases = rD.getConfirmedCases(data), confirmedDeaths = rD.getConfirmedDeaths(data))
+    return render_template('rawdata.html', location = location, dateRange = dateRange, 
+                           dates = rD.getDates(data), confirmedCases = rD.getConfirmedCases(data), 
+                           confirmedDeaths = rD.getConfirmedDeaths(data))
 
 @app.errorhandler(404)
 def page_not_found(e):
