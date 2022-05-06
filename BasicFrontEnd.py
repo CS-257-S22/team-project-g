@@ -30,8 +30,13 @@ def displayRawData():
     endDate = str(request.args['endDate'])
     location = makeLocation(county, state)
     dateRange = makedateRange(startDate,endDate)
-    
-    return getRawData(location, dateRange)
+    checkInputResult = hCI.helperCheckInput(county,state,startDate,endDate)
+    if (checkInputResult == True):
+        dateRange = makedateRange(startDate,endDate)
+        location = makeLocation(county,state)
+        return getRawData(location, dateRange)
+    else: 
+        return errorInputPrompt(checkInputResult)
 
 @app.route('/displayGraph')
 def displayGraph():
@@ -52,6 +57,9 @@ def displayGraph():
         return errorInputPrompt(checkInputResult)
     
 def errorInputPrompt(errormsg):
+    '''
+    renders a error page with an error message 
+    ''' 
     return render_template('errorinput.html', errormsg = errormsg)
 
 def getGraph(location, dateRange):
