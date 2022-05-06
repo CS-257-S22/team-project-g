@@ -68,7 +68,7 @@ def calculateYTickSize(caseList):
     takes in a  list of case number and return the appropriate tick size for it
     input: a list of case number, in int
     """
-    diffCases = int(caseList[-1] - caseList[0])
+    diffCases = int(caseList[-1]) - int(caseList[0])
     #Avoid futher math if there are no cases in the interval
     if (diffCases == 0):
         return 10
