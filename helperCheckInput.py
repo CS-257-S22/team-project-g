@@ -44,7 +44,6 @@ def checkCountyState(countyName,stateName):
     stateCountyData = open('Data/countyStateNameToLineNumber.txt','r')
     for line in stateCountyData:
         dataList = line.split(",")
-        print(dataList)
         if (countyName == dataList[0] and stateName == dataList[1]):
             stateCountyData.close()
             return True

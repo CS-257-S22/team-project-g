@@ -12,11 +12,11 @@ class helperCheckInputTest(unittest.TestCase):
     
     def testCheckTypicalDates(self):
         '''test if valid input is true'''
-        self.assertTrue(hCI.checkDate("2020-2-1","2020-9-1"))
+        self.assertTrue(hCI.checkDates("2020-2-1","2020-9-1"))
         
     def testCheckErrorDates(self):
         '''test if invalid input gives an error message'''
-        self.assertEqual('Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!', hCI.checkDate("2000-2-1","2020-9-1"))
+        self.assertEqual('Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!', hCI.checkDates("2000-2-1","2020-9-1"))
     
     def testCheckTypicalCountyState(self):
         '''test a typical county-state pair and see if the check function returns true'''

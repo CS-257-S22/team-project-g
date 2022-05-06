@@ -20,13 +20,7 @@ class strut():
 
 class CommandLineTest(unittest.TestCase):
     '''Test is invalid input returns error'''
-    '''
-    def testComandLineArguments(self):
-        #confirms CheckComandline workd
-        args = strut("County","State","Date1","date2")
-        outPut = pC.callData(args)
-        self.assertEqual(outPut,"")
-    '''
+
     def testCheckComadLine(self):
         argv = ["Rice","Minnesota","2020-3-1","2020-3-5"]
         args = pC.CheckComadLine(argv)
@@ -42,7 +36,7 @@ class CommandLineTest(unittest.TestCase):
         args.StartDate = "2020-3-1"
         args.EndDate = "2020-3-5"
         result = pC.callData(args)
-        self.assertEqual(result, "This county-state pair does not exist! Check spelling.<br/>")
+        self.assertEqual(result, ["This county-state pair does not exist! Check spelling."])
         
     def testWrongDateOrder(self):
         args = strut("County","State","StartDate","EndDate")
@@ -51,7 +45,7 @@ class CommandLineTest(unittest.TestCase):
         args.StartDate = "2020-3-1"
         args.EndDate = "2020-2-1"
         result = pC.callData(args)
-        self.assertEqual(result, "Wrong order of dates!<br/>")
+        self.assertEqual(result, ["Wrong order of dates!"])
         
     def testWrongDatezFormat(self):
         args = strut("County","State","StartDate","EndDate")
@@ -60,7 +54,7 @@ class CommandLineTest(unittest.TestCase):
         args.StartDate = "202-1"
         args.EndDate = "202-1"
         result = pC.callData(args)
-        self.assertEqual(result, "Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!<br/>")
+        self.assertEqual(result, ["Invalid dates! Use YYYY-MM-DD format and enter dates during COVID outbreaks!"])
         
     def testTypicalDataRaw(self):
         args = strut("County","State","StartDate","EndDate")
