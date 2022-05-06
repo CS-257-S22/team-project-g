@@ -16,11 +16,11 @@
             From {{dateRange[0][0] + "-" + dateRange[0][1] + "-" + dateRange[0][2]}}
             To {{dateRange[1][0] + "-" + dateRange[1][1] + "-" + dateRange[1][2]}}
         </h2>
-        <img src='data:image/png;base64,{{data}}'/>
-        <p>
-            Due to the fact that I cannot use my team's code, this image is a .png file of the mock data made with G/makeGraph.py in our team repo. <br>
-            Our website will support plotting all data and displaying them on this page.
-        </p>
+        <div class = "row">
+
+            <img src='data:image/png;base64,{{confirmedCasesGraph}}'/ class = "image1" alt = "Confirmed Cases Graph">
+            <img src='data:image/png;base64,{{confirmedDeathsGraph}}'/ class = "image2" alt = "Confirmed Deaths Graph">
+        </div>
     </body>
     <footer>
     </footer>

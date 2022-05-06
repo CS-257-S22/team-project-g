@@ -1,4 +1,5 @@
 # An integral function that checks different inputs 
+from tabnanny import check
 from conversionFunctions import *
 from datetime import datetime
 
@@ -40,7 +41,7 @@ def checkCountyState(countyName,stateName):
     Check if dates are within range and ordered correctly.
     Returns True if no error, or an error msg.
     """
-    stateCountyData = open('Data/stateNameToLineNumber.txt','r')
+    stateCountyData = open('Data/countyStateNameToLineNumber.txt','r')
     for line in stateCountyData:
         dataList = line.split(",")
         if (countyName == dataList[0] and stateName == dataList[1]):
@@ -107,5 +108,4 @@ def checkDates(startDate, endDate):
     
     return True
 if __name__ == "__main__":
-    startDate = "2020-3-1"
-    endDate = "2020-3-5"
+    print(checkCountyState("Rice", "Minnesota"))

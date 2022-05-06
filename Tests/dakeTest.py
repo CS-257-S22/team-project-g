@@ -45,10 +45,10 @@ class makeGraphTest(unittest.TestCase):
     # test whether the main helper functions, claurlateYtickSize is working
     def testcalculateYTickSize(self):
         '''test whether y tick sizes are correctly calculated'''
-        cases = ['130', '200', '350', '1000', '5000']
+        cases = ['0','130', '200', '350', '1000', '5000']
         expectedTickSize = [10, 100, 100, 100, 1000]
         for i in range(5):
-            result = mG.calculateYTickSize(cases[:i+1])
+            result = mG.calculateYTickSize(cases[:i+2])
             message = "error in " + str(i) + "th value"
             self.assertEqual(result,expectedTickSize[i], message)
         pass

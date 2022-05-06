@@ -19,22 +19,23 @@ def getData(location, dateRange):
     input:  location [county, state]
             dateRange [[Year, Month, Date],[Year, Month, Date]]
     
-    output: "Data Not Found!" if no information is found
-            image data if the input is correctly formatted and the information is in database
+    output: data [confirmedCasesGraph, confirmedDeathsGraph], a list of two graphs in streamIO()
     """
-    output = io.BytesIO()
     
-    mG.make2GraphToOutPut(location,dateRange,output)
+    output = mG.makeSeperateGraphs(location,dateRange)
     
-    data = base64.b64encode(output.getvalue()).decode('utf-8 ')
+    confirmedCasesGraph = base64.b64encode(output[0].getvalue()).decode('utf-8 ')
+    confirmedDeathsGraph = base64.b64encode(output[1].getvalue()).decode('utf-8 ')
+    data = [confirmedCasesGraph, confirmedDeathsGraph]
     return data
 
 def getHTML(location, dateRange):
     """ 
-    returns a rendered HTML page according to a location and a dateRange  
+    returns a rendered HTML page with 2 graphs according to a location and a dateRange  
     
     input:  location [county, state]
             dateRange [[Year, Month, Date],[Year, Month, Date]]  
     """
     data = getData(location, dateRange)
-    return render_template('graph.html', location = location, dateRange = dateRange,data = data)
+    return render_template('graph.html', location = location, dateRange = dateRange, 
+                           confirmedCasesGraph = data[0], confirmedDeathsGraph = data[1])

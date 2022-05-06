@@ -2,11 +2,14 @@ from flask import Flask
 from flask import render_template, request
 import displayGraph as dG
 import helperCheckInput as hCI
+import retrieveData as rD
 #some helper functions to convert data to the inputs that our main code take
 from conversionFunctions import *
 
 import csv
 import sys
+
+
 
 app = Flask(__name__)
 
@@ -58,7 +61,8 @@ def getGraph(location, dateRange):
     return dG.displayGraph(location, dateRange)
 
 def getRawData(location, dateRange):
-    return render_template('rawdata.html', location = location, dateRange = dateRange)
+    data = rD.getDataWithLocationAndDateRange(location,dateRange)
+    return render_template('rawdata.html', location = location, dateRange = dateRange, dates = rD.getDates(data), confirmedCases = rD.getConfirmedCases(data), confirmedDeaths = rD.getConfirmedDeaths(data))
 
 @app.errorhandler(404)
 def page_not_found(e):

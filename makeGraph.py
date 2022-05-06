@@ -1,6 +1,7 @@
 #Makes graph(s) based on a location and dateRange
 import helperMakeGraph as hMG
 import matplotlib.pyplot as plt
+import io
 from helperMakeGraph import *
 
 def makeGraph(location,dateRange):
@@ -40,6 +41,27 @@ def make2GraphToOutPut(location,dateRange,output):
     plt.tight_layout()
     plt.savefig(output,format="png")
     plt.close()
+    
+def makeSeperateGraphs(location,dateRange):
+    """
+    Stores 2 speperated graphs according to a location and a date Range to an output
+    
+    inputs:
+    location (list): [county, state], all elements in String
+    dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
+    output (): a list that saves the information for 2 graphs [graph1, graph2]
+    """
+    info = hMG.getDataForGraph(location,dateRange)
+    makeConfirmedCasesGraph(info[0],info[1],location)
+    outputConfirmedCases = io.BytesIO()
+    outputConfirmedDeaths = io.BytesIO()
+    plt.savefig(outputConfirmedCases,format="png")
+    plt.close()
+    makeConfirmedDeathsGraph(info[0],info[2],location)
+    plt.savefig(outputConfirmedDeaths,format="png")
+    plt.close()
+    return [outputConfirmedCases, outputConfirmedDeaths]
+    
        
 def makeConfirmedCasesGraph(dates, caseList, location):
     """
