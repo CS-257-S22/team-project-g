@@ -16,7 +16,10 @@
             From {{dateRange[0][0] + "-" + dateRange[0][1] + "-" + dateRange[0][2]}}
             To {{dateRange[1][0] + "-" + dateRange[1][1] + "-" + dateRange[1][2]}}
         </h2>
-        <img src='data:image/png;base64,{{data}}'/>
+        <div class = "row">
+            <img src='data:image/png;base64,{{confirmedCasesGraph}}'/ class = "image1">
+            <img src='data:image/png;base64,{{confirmedDeathsGraph}}'/ class = "image2">
+        </div>
     </body>
     <footer>
     </footer>
