@@ -44,13 +44,13 @@ def callData(args):
     
 if __name__ == '__main__':
     outPut = callData(CheckComadLine(sys.argv[1:]))
+    # if output is a string (the function called is getrawdata), split it with <br/> (line break in html), and print each line
     if isinstance(outPut,str):
-       print(outPut)
-    elif isinstance(outPut,list):
-        #outPut = outPut.split('<br/>')
+        outPut = outPut.split('<br/>')
         for row in outPut:
             print(row)
-    else :
-        print(outPut)
-
+    # if output is a list (the check functions reported errors), print each error
+    elif isinstance(outPut,list):
+        for row in outPut:
+            print(row)
   
