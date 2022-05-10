@@ -28,8 +28,6 @@ def displayRawData():
     county = str(request.args['county'])
     startDate = str(request.args['startDate'])
     endDate = str(request.args['endDate'])
-    location = makeLocation(county, state)
-    dateRange = makedateRange(startDate,endDate)
     checkInputResult = hCI.helperCheckInput(county,state,startDate,endDate)
     if (checkInputResult == True):
         dateRange = makedateRange(startDate,endDate)
