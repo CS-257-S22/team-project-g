@@ -123,3 +123,12 @@ def checkNumberFormat(num):
     if(case < 0):
         return False
     return True
+
+def getStateNames(dataSet):
+    '''input data set'''
+    '''trim date set to just state names'''
+    '''out put list of state names'''
+    stateNames = []
+    for line in dataSet:
+        stateNames.append(line[stateIndex])
+    return  stateNames

@@ -9,6 +9,9 @@ import displayRawData as dRD
 import argparse
 
 def CheckComadLine(argv):
+    '''in put comand lines String county String state  String start-date String End-date'''
+    '''looks for the graph flag and the input strings'''
+    '''Out put an object with the inputs as named variables'''
     parser = argparse.ArgumentParser(description='Please enter the following in the order they are shown for raw data, and add -g for graphs.')
     parser.add_argument('County',type=str,
                         help='The Name of the county to be looked up')
@@ -23,7 +26,11 @@ def CheckComadLine(argv):
     args = parser.parse_args(argv)
     return args
 
+
 def callData(args):
+    '''input args.Parser object'''
+    '''call main function deppending on graph flag '''
+    ''' return string of state data or graph out put'''
     outPut = hCI.helperCheckInput(args.County,args.State,args.StartDate, args.EndDate)
     if outPut == True:
         location = makeLocation(args.County,args.State)
@@ -37,16 +44,13 @@ def callData(args):
     
 if __name__ == '__main__':
     outPut = callData(CheckComadLine(sys.argv[1:]))
-    
     if isinstance(outPut,str):
-        #check if the result is a string
-        outPut = outPut.split('<br/>')
-    if isinstance(outPut,str):
-        #check if output is an error message
-        print(outPut)
+       print(outPut)
     elif isinstance(outPut,list):
-        #check if output is a list, if so, it is the result of displayRawData, print the result
+        #outPut = outPut.split('<br/>')
         for row in outPut:
             print(row)
+    else :
+        print(outPut)
 
   
