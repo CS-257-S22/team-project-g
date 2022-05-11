@@ -18,17 +18,18 @@ app = Flask(__name__)
 def AutoComplete():
     path = "Data/sub-Data/"
     directory = os.listdir(path)
-    StateNames = []
+    stateNames = []
+    countyNames = []
     for file in directory:
-       StateNameCvs = file.split(',')[-1]
-       stateName = StateNameCvs.split('.')[0]
-       if  stateName not in StateNames:
-           StateNames.append(stateName)
-    print(StateNames)
-    if request.method == "GET":
-        languages = StateNames
-          
-        return render_template("autoComplete.html", languages=languages)
+       stateNameCvs = file.split(',')[-1]
+       stateName = stateNameCvs.split('.')[0]
+       if  stateName not in stateNames:
+           stateNames.append(stateName)
+    for file in directory:
+       countyName = file.split(',')[0]
+       if  countyName not in countyNames:
+            countyNames.append(countyName)
+    return render_template("autoComplete.html", StateNames=stateNames, CountyNames=countyNames)
 
 
 @app.route('/auto')
