@@ -60,7 +60,7 @@
                                 <label for="county">County: </label>
                             </div>
                             <div class = "rightcol">
-                                <input type="text" id="county" name = "county" autocomplete="province">
+                                <input type="text" id="countyName" name = "county" autocomplete="province">
                             </div>
                         </div>
 
@@ -103,7 +103,7 @@
                                 <label for="state">State: </label>
                             </div>
                             <div class = "rightcol">
-                                <input type="text" id="stateName" name = "state">
+                                <input type="text" id="stateName" name = "state"  autocomplete="state">
                             </div>
                         </div>
 
@@ -112,7 +112,7 @@
                                 <label for="county">County: </label>
                             </div>
                             <div class = "rightcol">
-                                <input type="text" id="county" name = "county">
+                                <input type="text" id="countyName" name = "county"  autocomplete="province">
                             </div>
                         </div>
 
@@ -170,14 +170,22 @@
       <script>
       $( function() {
       var availableTags = [
-          {% for language in languages %}
-              "{{language}}",
+          {% for StateName in StateNames %}
+              "{{StateName}}",
+          {% endfor %}
+      ];
+      var CountyavailableTags = [
+          {% for CountyName in CountyNames %}
+              "{{CountyName}}",
           {% endfor %}
       ];
       $( "#stateName" ).autocomplete({
         source: availableTags
       });
-      } );
+      $( "#countyName" ).autocomplete({
+        source: CountyavailableTags
+      });
+      });
       </script>
 
         
