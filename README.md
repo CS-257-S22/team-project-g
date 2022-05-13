@@ -12,3 +12,6 @@ Front End Component: run BasicFrontEnd.py, instructions on the webpage
     templates/autocomplete.html
     templates/autoConplete copy.html
     are still in progress and are not a part of this submission
+
+Team Back End: Command to copy file:
+    \copy covidData FROM 'us_simplified_cleaned.csv' DELIMITER ',' CSV 
