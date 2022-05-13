@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS covidData;
 CREATE TABLE covidData (
-  Day text,
+  Day date,
   CountyName text,
   StateName text,
   ConfirmedCases int,
