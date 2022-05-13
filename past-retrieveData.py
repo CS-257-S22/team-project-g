@@ -10,18 +10,12 @@ from retrieveDataFromDatabase import *
 #data path of the dataset .csv file relative to this folder
 dataSet = [] 
 #2-d array data set in the format [Date (as a list of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]
-
 def retrieveData(relativeDataPath):
     '''get data from a relative path to this file, return a dataSet[] variable that stores the data'''
     absoluteDataPath = convertRealtivePathToAbsolutePath(relativeDataPath)
     stringLines = getStringLinesFromFile(absoluteDataPath)
     storeData(stringLines)
     return dataSet
-    
-def convertRealtivePathToAbsolutePath(relativeDataPath):
-    '''Calculate and return absolute path of the file'''
-    currentPath = os.path.dirname(__file__)
-    return os.path.join(currentPath, relativeDataPath)
 
 def getStringLinesFromFile(filePath):
     '''Get lines as a list of strings from file'''
@@ -44,6 +38,16 @@ def getDataWithLocationAndDateRange(location, dateRange):
     list = getCountyStateData(county, state)
     list = getDateRangeData(list, dateRange)
     return list
+
+def getCountyStateData(county, state):
+    '''returns a list of data that fits the county and state from dataSet'''
+    path = "Data/sub-Data/" + county + "," + state + ".csv" 
+    return retrieveData(path)
+    
+def convertRealtivePathToAbsolutePath(relativeDataPath):
+    '''Calculate and return absolute path of the file'''
+    currentPath = os.path.dirname(__file__)
+    return os.path.join(currentPath, relativeDataPath)
 
 def storeData(stringLines):
     '''Break each line into lists and store them in dataSet'''
