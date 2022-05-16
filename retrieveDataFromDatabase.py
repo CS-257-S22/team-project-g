@@ -15,9 +15,10 @@ def getCountyStateData(county, state):
 
 def formatDatabaseData(data):
     datalist = []
+    date = 0
     for row in data:
         row = list(row)
-        row[0] = splitDate(row[0])
+        row[date ] = splitDate(row[date ])
         datalist.append(row)
     return datalist
 
