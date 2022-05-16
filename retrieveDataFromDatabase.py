@@ -13,6 +13,15 @@ def getCountyStateData(county, state):
     my_source = DataSource()
     return my_source.getState(county,state)
 
+def formatDatabaseData(data):
+    '''reformat the data retrieved to a list that is compatible with the main functions'''
+    datalist = []
+    for row in data:
+        row = list(row)
+        row[dateIndex] = splitDate(row[dateIndex])
+        datalist.append(row)
+    return datalist
+
 class DataSource:
     '''this is the object that connects the database to python code'''
     def __init__(self):
@@ -27,7 +36,13 @@ class DataSource:
             print("Connection error: ", e)
             exit()
         return connection
-    def getState(self,county,StateName):
+
+    def getState(self,countyName,stateName):
+        '''
+        get data according to county and state in the database
+        input: countyName, stateName as strings
+        output: a tuple object of data
+        '''
         try:
             #set up a cursor
             cursor = self.connection.cursor()
@@ -37,7 +52,7 @@ class DataSource:
 
             #executing the query and saying that the magnitude variable 
             # should be placed where %s was, the trailing comma is important!
-            cursor.execute(query, (StateName,county))
+            cursor.execute(query, (stateName,countyName))
             return cursor.fetchall()
 
         except Exception as e:
@@ -46,4 +61,3 @@ class DataSource:
 
 if __name__ == '__main__':
     getCountyStateData('Warren', 'Iowa')
-

@@ -34,7 +34,6 @@ def getDateRangeData(list, dateRange):
     endDate = toDateTime(dateRange.endDate)
     newList = []
     for line in list:
-        line[dateIndex] = splitDate(line[dateIndex])
         thisdate = toDateTime(line[dateIndex])
         if(thisdate < startDate): continue
         if(thisdate > endDate): break
