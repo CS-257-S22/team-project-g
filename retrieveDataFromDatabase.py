@@ -11,17 +11,7 @@ import psqlConfig as config
 def getCountyStateData(county, state):
     '''returns a list of data that fits the county and state from dataSet'''
     my_source = DataSource()
-    return formatDatabaseData(my_source.getState(county,state))
-
-def formatDatabaseData(data):
-    datalist = []
-    for row in data:
-        row = list(row)
-        row[0] = splitDate(row[0])
-        datalist.append(row)
-    return datalist
-
-
+    return my_source.getState(county,state)
 
 class DataSource:
     '''this is the object that connects the database to python code'''
