@@ -1,9 +1,5 @@
-import sys
-import csv
 from conversionFunctions import *
-from datetime import datetime
 from helperCheckInput import *
-import os
 from indexDictionary import *
 import psycopg2
 import psqlConfig as config
@@ -11,7 +7,8 @@ import psqlConfig as config
 def getCountyStateData(county, state):
     '''returns a list of data that fits the county and state from dataSet'''
     my_source = DataSource()
-    return my_source.getState(county,state)
+    rawdata = my_source.getState(county,state)
+    return formatDatabaseData(rawdata)
 
 def formatDatabaseData(data):
     '''reformat the data retrieved to a list that is compatible with the main functions'''
@@ -44,14 +41,8 @@ class DataSource:
         output: a tuple object of data
         '''
         try:
-            #set up a cursor
             cursor = self.connection.cursor()
-
-            #make the query using %s as a placeholder for the variable
             query = "SELECT * FROM  CovidData WHERE StateName = %s and CountyName =%s ORDER BY day"
-
-            #executing the query and saying that the magnitude variable 
-            # should be placed where %s was, the trailing comma is important!
             cursor.execute(query, (stateName,countyName))
             return cursor.fetchall()
 
@@ -60,4 +51,4 @@ class DataSource:
             return None
 
 if __name__ == '__main__':
-    getCountyStateData('Warren', 'Iowa')
+    print(getCountyStateData('Warren', 'Iowa'))
