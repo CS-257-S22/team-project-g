@@ -11,7 +11,7 @@ motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 
 #test module retrieveData
-import retrieveData as rD
+import retrieveDataFromLocal as rD
 
 dummyDataSetRelativePath = "Data/dummy_data.csv"
 wrongFormatDataSetRelativePath = "Data/TestData/dakeTest_incorrect_format_data.csv"

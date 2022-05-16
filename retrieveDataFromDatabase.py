@@ -14,11 +14,12 @@ def getCountyStateData(county, state):
     return formatDatabaseData(my_source.getState(county,state))
 
 def formatDatabaseData(data):
+    '''reformats the tuple taken from the data base into a list with a sub list for the date'''
     datalist = []
     date = 0
     for row in data:
         row = list(row)
-        row[date ] = splitDate(row[date ])
+        row[date] = splitDate(row[date])
         datalist.append(row)
     return datalist
 
@@ -57,4 +58,3 @@ class DataSource:
 
 if __name__ == '__main__':
     getCountyStateData('Warren', 'Iowa')
-

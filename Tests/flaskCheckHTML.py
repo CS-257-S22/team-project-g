@@ -16,7 +16,7 @@ class flaskTestHTML(unittest.TestCase):
         self.app = app.test_client()
         response = self.app.get('/.....', follow_redirects=True)
         response = str(response.data)
-        self.assertIn("We are sorry but we could not find the page you are looking for", response)
+        self.assertIn("we could not find the page you are looking for.", response)
     
         
 if __name__ == '__main__':
