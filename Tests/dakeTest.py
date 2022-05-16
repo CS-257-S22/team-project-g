@@ -4,7 +4,6 @@ from unittest.mock import patch
 import sys
 import os
 import io
-
 #access mother directory
 currentPath = os.path.dirname(__file__)
 motherdir = os.path.join(currentPath,"..")
@@ -12,6 +11,7 @@ sys.path.append(motherdir)
 
 #test module retrieveData
 import retrieveDataFromLocal as rD
+from helperClasses import *
 
 dummyDataSetRelativePath = "Data/dummy_data.csv"
 wrongFormatDataSetRelativePath = "Data/TestData/dakeTest_incorrect_format_data.csv"
@@ -59,8 +59,8 @@ plotTestDataSet = rD.retrieveData(plotTestDataRelativePath)
 
 def manualGraphing():
     '''test making a confirmed cases graph out of a dummy data'''
-    location = ["Autauga", "Alabama"]
-    dateRange = [['2020', '2', '1'] , ['2021', '10', '1']]
+    location = Location("Autauga", "Alabama")
+    dateRange = DateRange('2020-2-1', '2021-10-1')
     mG.makeGraph(location,dateRange)
 
 

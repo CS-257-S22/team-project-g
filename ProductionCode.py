@@ -1,12 +1,11 @@
 from inspect import ArgSpec
 import sys
-
-from click import argument
 import makeGraph as mG
 import helperCheckInput as hCI
-from conversionFunctions import *
 import displayRawData as dRD
+from helperClasses import *
 import argparse
+
 
 def CheckComadLine(argv):
     '''in put comand lines String county String state  String start-date String End-date'''
@@ -33,8 +32,8 @@ def callData(args):
     ''' return string of state data or graph out put'''
     outPut = hCI.helperCheckInput(args.County,args.State,args.StartDate, args.EndDate)
     if outPut == True:
-        location = makeLocation(args.County,args.State)
-        dateRange = makedateRange(args.StartDate, args.EndDate)
+        location = Location(args.County,args.State)
+        dateRange = DateRange(args.StartDate, args.EndDate)
         if args.graph:
            return mG.makeGraph(location,dateRange)
         else: 

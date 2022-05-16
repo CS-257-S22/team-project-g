@@ -4,7 +4,7 @@ import helperCheckInput as hCI
 import ProductionCode as pC
 import displayGraph as dG
 import displayRawData as dR
-from conversionFunctions import *
+from helperClasses import *
 
 app = Flask(__name__)
 
@@ -68,8 +68,8 @@ def displayRawData(county,state,startDateString,endDateString):
     """
     validInput = hCI.helperCheckInput(county,state,startDateString,endDateString)
     if (validInput == True):
-        dateRange = makedateRange(startDateString,endDateString)
-        location = makeLocation(county,state)
+        dateRange = DateRange(startDateString,endDateString)
+        location = Location(county,state)
 
         return dR.displayRawData(location, dateRange)
     else: 
@@ -82,8 +82,8 @@ def graphImagePage(county,state,startDateString, endDateString):
     """
     validInput = hCI.helperCheckInput(county,state,startDateString,endDateString)
     if (validInput == True):
-        dateRange = makedateRange(startDateString,endDateString)
-        location = makeLocation(county,state)
+        dateRange = DateRange(startDateString,endDateString)
+        location = Location(county,state)
 
         return dG.displayGraph(location, dateRange)
     else: 

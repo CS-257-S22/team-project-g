@@ -3,14 +3,15 @@ import helperMakeGraph as hMG
 import matplotlib.pyplot as plt
 import io
 from helperMakeGraph import *
+from helperClasses import *
 
 def makeGraph(location,dateRange):
     """
     Displays 2 graphs according to a location and a date Range
 
     inputs:
-    location (list): [county, state], all elements in String
-    dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
+    locations is a Location object
+    dateRange is a DateRange object
     """
     info = hMG.getDataForGraph(location,dateRange)
     makeConfirmedCasesGraph(info[0],info[1],location)
@@ -18,28 +19,6 @@ def makeGraph(location,dateRange):
     plt.close()
     makeConfirmedDeathsGraph(info[0],info[2],location)
     plt.show()
-    plt.close()
-
-def make2GraphToOutPut(location,dateRange,output):
-    """
-    Stores 2 graphs according to a location and a date Range to an output
-    
-    inputs:
-    location (list): [county, state], all elements in String
-    dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
-    output (): a placeholder to save the graph information
-    """
-    plt.close()
-    plt.rcParams["figure.figsize"] = (15,4)
-    
-    info = hMG.getDataForGraph(location,dateRange)
-    
-    plt.subplot(121)
-    makeConfirmedCasesGraph(info[0],info[1],location)
-    plt.subplot(122)
-    makeConfirmedDeathsGraph(info[0],info[2],location)
-    plt.tight_layout()
-    plt.savefig(output,format="png")
     plt.close()
     
 def makeSeperateGraphs(location,dateRange):
@@ -47,8 +26,9 @@ def makeSeperateGraphs(location,dateRange):
     Stores 2 speperated graphs according to a location and a date Range to an output
     
     inputs:
-    location (list): [county, state], all elements in String
-    dateRange (list): [[Year, Month, Date],[Year, Month, Date]], all elements in String
+    locations is a Location object
+    dateRange is a DateRange object
+
     output (): a list that saves the information for 2 graphs [graph1, graph2]
     """
     info = hMG.getDataForGraph(location,dateRange)
@@ -70,12 +50,12 @@ def makeConfirmedCasesGraph(dates, caseList, location):
     inputs:
     dates[] list contains lists of date in the format [Year, Month, Day]
     cases[] list contains number of cases as string
-    Location is a list of 2, [county, state]
+    locations is a Location object
     """
     
     drawGraph(dates,caseList)
     labelConfirmedCasesToDate()
-    makeTitleConfirmedCases(location[0], location[1])
+    makeTitleConfirmedCases(location.county, location.state)
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
     
@@ -89,11 +69,11 @@ def makeConfirmedDeathsGraph(dates, caseList, location):
     inputs:
     dates[] list contains lists of date in the format [Year, Month, Day]
     cases[] list contains number of cases as string
-    Location is a list of 2, [county, state]
+    locations is a Location object
     """
     drawGraph(dates,caseList)
     labelConfirmedDeathsToDate()
-    makeTitleConfirmedDeaths(location[0], location[1])
+    makeTitleConfirmedDeaths(location.county, location.state)
     
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)

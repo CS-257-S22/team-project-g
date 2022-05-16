@@ -6,6 +6,7 @@ from datetime import datetime
 from helperCheckInput import *
 import os
 from indexDictionary import *
+from helperClasses import *
 
 #use the database if operating on server, else use the local .csv files
 
@@ -17,27 +18,24 @@ def getDataWithLocationAndDateRange(location, dateRange):
     returns a list of data that fits the given location and daterange in 
     the format [Date (as a list of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]
     
-    locations is a list of 2 [county,state]
-    dateRange is a list of 2 [[Year, Month, Day],[Year, Month, Day]] (startDate and endDate)
+    locations is a Location object
+    dateRange is a DateRange object
     '''
-    
-    county = location[0]
-    state = location [1]
-    list = getCountyStateData(county, state)
+
+    list = getCountyStateData(location.county, location.state)
     list = getDateRangeData(list, dateRange)
     return list
 
 def getDateRangeData(list, dateRange):
     '''
-    trim a list with a dateRange [[Year, Month, Day],[Year, Month, Day]] 
+    trim a list with a dateRange
     return the first subset of record within that daterange'''
-    startDate = dateRange[0]
-    startDate = toDateTime(startDate)
-    endDate = dateRange [1]
-    endDate = toDateTime(endDate)
+    startDate = toDateTime(dateRange.startDate)
+    endDate = toDateTime(dateRange.endDate)
     newList = []
     for line in list:
-        thisdate = toDateTime(line[0])
+        line[dateIndex] = splitDate(line[dateIndex])
+        thisdate = toDateTime(line[dateIndex])
         if(thisdate < startDate): continue
         if(thisdate > endDate): break
         newList.append(line)
@@ -68,4 +66,5 @@ def getStateNames(dataSet):
     for line in dataSet:
         stateNames.append(line[stateIndex])
     return  stateNames
+
 

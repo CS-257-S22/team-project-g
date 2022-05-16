@@ -4,8 +4,7 @@ import displayGraph as dG
 import helperCheckInput as hCI
 import retrieveData as rD
 #some helper functions to convert data to the inputs that our main code take
-from conversionFunctions import *
-
+from helperClasses import *
 import csv
 import sys
 
@@ -30,8 +29,8 @@ def displayRawData():
     endDate = str(request.args['endDate'])
     checkInputResult = hCI.helperCheckInput(county,state,startDate,endDate)
     if (checkInputResult == True):
-        dateRange = makedateRange(startDate,endDate)
-        location = makeLocation(county,state)
+        dateRange = DateRange(startDate,endDate)
+        location = Location(county,state)
         return getRawData(location, dateRange)
     else: 
         return errorInputPrompt(checkInputResult)
@@ -48,8 +47,8 @@ def displayGraph():
     endDate = str(request.args['endDate'])
     checkInputResult = hCI.helperCheckInput(county,state,startDate,endDate)
     if (checkInputResult == True):
-        dateRange = makedateRange(startDate,endDate)
-        location = makeLocation(county,state)
+        dateRange = DateRange(startDate,endDate)
+        location = Location(county,state)
         return dG.displayGraph(location, dateRange)
     else: 
         return errorInputPrompt(checkInputResult)

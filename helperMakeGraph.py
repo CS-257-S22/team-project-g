@@ -11,8 +11,8 @@ from datetime import datetime
 def getDataForGraph(location, dateRange):
     """
     takes a location and a dateRange and returns a combination of data, dataComb for graphing    
-    locations is a list of 2 [county,state]
-    dateRange is a list of 2 [[Year, Month, Day],[Year, Month, Day]] (startDate and endDate)
+    locations is a Location object
+    dateRange is a DateRange object
     
     dataComb[0] is a list of dates[]
     dataComb[1] is a list of confirmed cases[]
@@ -20,8 +20,6 @@ def getDataForGraph(location, dateRange):
     """
     list = getDataWithLocationAndDateRange(location, dateRange)
     dates = getDates(list)
-    if(dates == []):
-        return False
     confirmedCases = getConfirmedCases(list)
     confirmedDeaths = getConfirmedDeaths(list)
     dataComb = [dates, confirmedCases, confirmedDeaths]
@@ -43,19 +41,19 @@ def setXaxisLocator(timeRangeDays):
         timeRangeMonth = timeRangeDays/30
         setMonthLocator(max(1, int(timeRangeMonth/10)))
         
-def setDayLocator(intv):
+def setDayLocator(interval):
     """
-    set x axis locator, each tick per intv days
-    input: intv, an integer corresponding to the size of the ticks on the x axis
+    set x axis locator, each tick per interval days
+    input: interval, an integer corresponding to the size of the ticks on the x axis
     """
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval = intv))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval = interval))
     
-def setMonthLocator(intv):
+def setMonthLocator(interval):
     """
-    set x axis locator, each tick per intv months
-    input: intv, an integer corresponding to the size of the ticks on the x axis
+    set x axis locator, each tick per interval months
+    input: interval, an integer corresponding to the size of the ticks on the x axis
     """
-    plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval = intv))
+    plt.gca().xaxis.set_major_locator(mdates.MonthLocator(interval = interval))
 
 def setXAxisFormat():
     """set the format of display on x axis"""

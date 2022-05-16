@@ -9,7 +9,6 @@ sys.path.append(motherdir)
 from FlaskApp import *
 import displayRawData as dR
 
-
 class rawDataTest(unittest.TestCase):
     maxDiff = None
     def testBasicData(self):
@@ -18,8 +17,8 @@ class rawDataTest(unittest.TestCase):
         self.app = app.test_client()
         response = self.app.get('/Rice/Minnesota/2020-2-1/2020-2-10', follow_redirects=True)
         response = str(response.data)
-        location = makeLocation("Rice", "Minnesota")
-        dateRange = makedateRange("2020-2-1", "2020-2-10")
+        location = Location("Rice", "Minnesota")
+        dateRange = DateRange("2020-2-1", "2020-2-10")
 
         self.assertIn(dR.displayRawData(location, dateRange), response)
 

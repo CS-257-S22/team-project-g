@@ -12,9 +12,9 @@
     <body>
         <a href="/"> <h1>Welcome to CoViz!</h1> </a>
         <h2>
-            Covid Graphs For {{location[0]}}, {{location[1]}} <br/>
-            From {{dateRange[0][0] + "-" + dateRange[0][1] + "-" + dateRange[0][2]}}
-            To {{dateRange[1][0] + "-" + dateRange[1][1] + "-" + dateRange[1][2]}}
+            Covid Graphs For {{location.county}}, {{location.state}} <br/>
+            From {{dateRange.startDate[0] + "-" + dateRange.startDate[1] + "-" + dateRange.startDate[2]}}
+            To {{dateRange.endDate[0] + "-" + dateRange.endDate[1] + "-" + dateRange.endDate[2]}}
         </h2>
         <div class = "row">
 
