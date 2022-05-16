@@ -80,7 +80,7 @@ def page_not_found(e):
     '''
     renders a page not found page
     '''
-    return render_template('pagenotfound.html')
+    return render_template('PageNotFound.html')
 
 @app.errorhandler(500)
 def python_bug(e):

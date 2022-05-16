@@ -127,3 +127,4 @@ def getStateNames(dataSet):
     for line in dataSet:
         stateNames.append(line[stateIndex])
     return  stateNames
+
