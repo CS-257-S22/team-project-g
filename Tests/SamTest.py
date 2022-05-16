@@ -1,4 +1,3 @@
-from sre_parse import State
 import unittest
 import sys
 import io

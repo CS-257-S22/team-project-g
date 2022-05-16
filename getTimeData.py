@@ -1,4 +1,4 @@
-import retrieveData
+import retrieveDataFromLocal
 import conversionFunctions as cnvFn
 import helperCheckInput as hCI
 from datetime import date
@@ -14,7 +14,7 @@ def getTimeRange(date1, date2):
     Assumes the dates inputed are within range of the data set.
     """
 
-    dataSet = retrieveData.retrieveData("Data/dummy_data.csv")
+    dataSet = retrieveDataFromLocal.retrieveData("Data/dummy_data.csv")
     spliceStart = cnvFn.toDateTime(splitDate(date1))
     spliceEnd - cnvFn.toDateTime(splitDate(date2))
     returnList = []

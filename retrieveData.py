@@ -8,10 +8,9 @@ import os
 from indexDictionary import *
 
 #use the database if operating on server, else use the local .csv files
-try:
-    from retrieveDataFromDatabase import *
-except:
-    from retrieveDataFromLocal import *
+
+from retrieveDataFromDatabase import *
+
 
 def getDataWithLocationAndDateRange(location, dateRange):
     '''
