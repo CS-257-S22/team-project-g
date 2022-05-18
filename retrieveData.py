@@ -26,14 +26,17 @@ def getDataWithLocationAndDateRange(location, dateRange):
     list = getDateRangeData(list, dateRange)
     return list
 
-def getDateRangeData(list, dateRange):
+def getDateRangeData(dataSet, dateRange):
     '''
     trim a list with a dateRange
     return the first subset of record within that daterange'''
     startDate = toDateTime(dateRange.startDate)
     endDate = toDateTime(dateRange.endDate)
     newList = []
-    for line in list:
+    for line in dataSet:
+        line = list(line)
+        line[dateIndex] = splitDate(line[dateIndex])
+
         thisdate = toDateTime(line[dateIndex])
         if(thisdate < startDate): continue
         if(thisdate >= endDate): break
