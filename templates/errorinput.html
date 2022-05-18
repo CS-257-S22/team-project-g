@@ -1,16 +1,21 @@
 <html>
     <link rel="stylesheet" href="{{ url_for('static', filename='mainstyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepagestyle.css') }}">
     <head>
         <title>Wrong Input</title>
     </head>
     <body>
         <a href="/"> <h1>Welcome to CoViz!</h1> </a>
-        <h2> Wrong Input</h2>
-        <p> We cannt recognize your input... Here are the error messages:<br><br></p>
-            {% for msg in errormsg: %}
-            <p>{{ msg }}</p>
-            {% endfor %}
-            
-            <p> <br>Please click on the title to go back to the home page... </p>
+        <div class = "tab">
+            <a href ="/"> <button class="tablinks">Return Home</button> </a>
+        </div>
+        <div class = "tabcontent" style="display:block">
+            <h2> Wrong Input</h2>
+            <p> We cannt recognize your input... Here are the error messages:<br><br></p>
+                {% for msg in errormsg: %}
+                <p>{{ msg }}</p>
+                {% endfor %}
+        </div>
+        
     </body>
 </html>

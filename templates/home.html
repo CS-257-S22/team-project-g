@@ -4,6 +4,7 @@
     <head>
         <title>CoViz Homepage</title>
     </head>
+
     <body>
         <a href="/"> <h1>Welcome to CoViz!</h1> </a>
 
@@ -12,9 +13,9 @@
             <button class="tablinks" onclick="openTab('Raw')">View Raw Data</button>
             <button class="tablinks" onclick="openTab('Graph')">View Graphs</button>
             <button class="tablinks" onclick="openTab('Help')">Help</button>
-
-            </div>
-                <div id="About" class="tabcontent" style="display:block">
+        </div>
+        
+            <div id="About" class="tabcontent" style="display:block">
                     <h2>About CoViz</h2>
                     <p>
                         CoViz is a Covid infomation visualizing application developed by Team G in CS 257, at Carleton College during the spring term of 2022. <br>
@@ -32,7 +33,6 @@
                 <h2>View Raw Data</h2>
                 <p>Enter the following information to see raw data!</p>
                 <div class="container">
-
                     <form action="displayRawData" autocomplete="on">
                         <div class = "row">
                             <div class = "leftcol">
@@ -57,7 +57,7 @@
                                 <label for="startDate">Start Date: </label>
                             </div>
                             <div class = "rightcol">
-                                <input type="date" id="startDate"  min="2020-01-22" max="2020-4-9" name = "startDate">
+                                <input type="date" id="startDate" name = "startDate" min="2020-01-22" max="2022-04-09">
                             </div>
                         </div>
 
@@ -66,7 +66,7 @@
                                 <label for="endDate">End Date: </label>
                             </div>
                             <div class = "rightcol">
-                                <input type="date" id="endDate" min="2020-01-22" max="2020-4-9" name = "endDate"> <br>
+                                <input type="date" id="endDate" name = "endDate" min="2020-01-22" max="2022-04-09"> <br>
                             </div>
                         </div>
                         
@@ -132,7 +132,6 @@
                 <h2>Help</h2>
                 <p>To interact with the CoVid dataset, try clicking on the "View Raw Data" tab or the "View Graph" tab!</p>
             </div>
-        </div>
         
             <!-- This openTab function is adapted from https://www.w3schools.com/howto/howto_js_tabs.asp-->
         <script>

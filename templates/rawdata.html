@@ -3,10 +3,10 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='mainstyle.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='rawdatapagestyle.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='homepagestyle.css') }}">
         
         <head>
-            <title>Covid Graphs For {{location[0]}}, {{location[1]}}</title>
-            <link rel="stylesheet" href="rawdatapagestyle.css">
+            <title>Covid Graphs For {{location.county}}, {{location.state}}</title>
         </head>
     </head>
 
@@ -15,12 +15,18 @@
             <a href="/"> <h1>Welcome to CoViz!</h1> </a>
         </div>
 
-        <div>
-            <h2>
-                Covid Raw Data For {{location.county}}, {{location.state}} <br/>
-                From {{dateRange.startDate[0] + "-" + dateRange.startDate[1] + "-" + dateRange.startDate[2]}}
-                To {{dateRange.endDate[0] + "-" + dateRange.endDate[1] + "-" + dateRange.endDate[2]}}
-            </h2>
+        <div class="tab">
+            <a href ="/"> <button class="tablinks">Return Home</button> </a>
+        </div>
+
+        <div class = "tabcontent" style="display:block">
+            <div>
+                <h2>
+                    Covid Raw Data For {{location.county}}, {{location.state}} <br/>
+                    From {{dateRange.startDate[0] + "-" + dateRange.startDate[1] + "-" + dateRange.startDate[2]}}
+                    To {{dateRange.endDate[0] + "-" + dateRange.endDate[1] + "-" + dateRange.endDate[2]}}
+                </h2>
+            </div>
         </div>
 
         <div class = "row">
