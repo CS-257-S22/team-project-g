@@ -13,11 +13,11 @@ def makeGraph(location,dateRange):
     locations is a Location object
     dateRange is a DateRange object
     """
-    info = hMG.getDataForGraph(location,dateRange)
-    makeConfirmedCasesGraph(info[0],info[1],location)
+    dataCombination = hMG.getDataForGraph(location,dateRange)
+    makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmedcases,location)
     plt.show()
     plt.close()
-    makeConfirmedDeathsGraph(info[0],info[2],location)
+    makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmeddeaths,location)
     plt.show()
     plt.close()
     
@@ -31,13 +31,13 @@ def makeSeperateGraphs(location,dateRange):
 
     output (): a list that saves the information for 2 graphs [graph1, graph2]
     """
-    info = hMG.getDataForGraph(location,dateRange)
-    makeConfirmedCasesGraph(info[0],info[1],location)
+    dataCombination = hMG.getDataForGraph(location,dateRange)
+    makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmedcases,location)
     outputConfirmedCases = io.BytesIO()
     outputConfirmedDeaths = io.BytesIO()
     plt.savefig(outputConfirmedCases,format="png")
     plt.close()
-    makeConfirmedDeathsGraph(info[0],info[2],location)
+    makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmeddeaths,location)
     plt.savefig(outputConfirmedDeaths,format="png")
     plt.close()
     return [outputConfirmedCases, outputConfirmedDeaths]

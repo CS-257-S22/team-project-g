@@ -7,23 +7,19 @@ import matplotlib.dates as mdates
 import math
 from matplotlib.figure import Figure
 from datetime import datetime
+from helperClasses import DataCombination
 
 def getDataForGraph(location, dateRange):
     """
-    takes a location and a dateRange and returns a combination of data, dataComb for graphing    
+    takes a location and a dateRange and returns a combination of data in DataCombanation class for graphing    
     locations is a Location object
     dateRange is a DateRange object
-    
-    dataComb[0] is a list of dates[]
-    dataComb[1] is a list of confirmed cases[]
-    dataComb[2] is a list of confirmed Deaths[]
     """
     list = getDataWithLocationAndDateRange(location, dateRange)
     dates = getDates(list)
     confirmedCases = getConfirmedCases(list)
     confirmedDeaths = getConfirmedDeaths(list)
-    dataComb = [dates, confirmedCases, confirmedDeaths]
-    return dataComb
+    return DataCombination(dates, confirmedCases, confirmedDeaths)
 
 #functions related to setting x axis ticks
 def setXaxisTicks(timeRangeDays):

@@ -89,4 +89,4 @@ def python_bug(e):
     return render_template('internalerror.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host = "localhost", port = 5125)

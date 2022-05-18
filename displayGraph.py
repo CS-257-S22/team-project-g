@@ -7,7 +7,6 @@ import os
 import sys
 import base64
 from flask import render_template
-from helperCheckInput import *
 
 def displayGraph(location, dateRange):
     return getHTML(location, dateRange)
