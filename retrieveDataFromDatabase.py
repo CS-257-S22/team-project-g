@@ -8,7 +8,7 @@ def getCountyStateData(county, state):
     '''returns a list of data that fits the county and state from dataSet'''
     my_source = DataSource()
     rawdata = my_source.getState(county,state)
-    return formatDatabaseData(rawdata)
+    return rawdata
 
 def formatDatabaseData(data):
     '''reformat the data retrieved to a list that is compatible with the main functions'''
@@ -17,7 +17,7 @@ def formatDatabaseData(data):
         row = list(row)
         row[dateIndex] = splitDate(row[dateIndex])
         datalist.append(row)
-    return datalist
+    return data
 
 class DataSource:
     '''this is the object that connects the database to python code'''
