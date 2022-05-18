@@ -16,7 +16,7 @@ from helperClasses import *
 dummyDataSetRelativePath = "Data/dummy_data.csv"
 wrongFormatDataSetRelativePath = "Data/TestData/dakeTest_incorrect_format_data.csv"
 
-class retrieveDataTest(unittest.TestCase):
+class retrieveDataFromLocalTest(unittest.TestCase):
     
     def testGetStringLinesFromFile(self):
         '''Test if line 200 is correct in the resulting string list'''
@@ -52,17 +52,6 @@ class makeGraphTest(unittest.TestCase):
             message = "error in " + str(i) + "th value"
             self.assertEqual(result,expectedTickSize[i], message)
         pass
-    
-#Manually test plotting
-plotTestDataRelativePath = "Data/TestData/plot_test_data.csv"
-plotTestDataSet = rD.retrieveData(plotTestDataRelativePath) 
-
-def manualGraphing():
-    '''test making a confirmed cases graph out of a dummy data'''
-    location = Location("Autauga", "Alabama")
-    dateRange = DateRange('2020-2-1', '2021-10-1')
-    mG.makeGraph(location,dateRange)
-
 
 import helperCheckInput as hCI
 
@@ -76,6 +65,5 @@ class helperCheckInputTest(unittest.TestCase):
         self.assertFalse(hCI.checkValidDate(date))
             
 if __name__ == '__main__':
-    manualGraphing()
     unittest.main()
    
