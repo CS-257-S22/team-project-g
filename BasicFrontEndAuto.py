@@ -88,11 +88,12 @@ def getRawData(location, dateRange):
     '''
     renders a page for raw data based on location and dateRange
     '''
-    data = rD.getDataWithLocationAndDateRange(location,dateRange)
-    return render_template('rawdata.html', location = location, dateRange = dateRange, 
-                           dates = rD.getDates(data), confirmedCases = rD.getConfirmedCases(data), 
-                           confirmedDeaths = rD.getConfirmedDeaths(data))
+    dataCombination = rD.getDataCombination(location,dateRange)
 
+    return render_template('rawdata.html', location = location, dateRange = dateRange, 
+                           dates = dataCombination.dates, confirmedCases = dataCombination.confirmedcases, 
+                           confirmedDeaths = dataCombination.confirmeddeaths)
+                           
 @app.errorhandler(404)
 def page_not_found(e):
     '''

@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import io
 from helperMakeGraph import *
 from helperClasses import *
+from retrieveData import getDataCombination
 
 def makeGraph(location,dateRange):
     """
@@ -13,7 +14,7 @@ def makeGraph(location,dateRange):
     locations is a Location object
     dateRange is a DateRange object
     """
-    dataCombination = hMG.getDataForGraph(location,dateRange)
+    dataCombination = getDataCombination(location,dateRange)
     makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmedcases,location)
     plt.show()
     plt.close()
@@ -31,7 +32,7 @@ def makeSeperateGraphs(location,dateRange):
 
     output (): a list that saves the information for 2 graphs [graph1, graph2]
     """
-    dataCombination = hMG.getDataForGraph(location,dateRange)
+    dataCombination = getDataCombination(location,dateRange)
     makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmedcases,location)
     outputConfirmedCases = io.BytesIO()
     outputConfirmedDeaths = io.BytesIO()

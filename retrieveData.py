@@ -12,6 +12,20 @@ from helperClasses import *
 
 from retrieveDataFromDatabase import *
 
+def getDataCombination(location, dateRange):
+    """
+    Inputs: 
+    locations is a Location object
+    dateRange is a DateRange object
+
+    Output:
+    returns a DataCombanation object for graphing and displaying raw data
+    """
+    dataSet = getDataWithLocationAndDateRange(location, dateRange)
+    dates = getDates(dataSet)
+    confirmedCases = getConfirmedCases(dataSet)
+    confirmedDeaths = getConfirmedDeaths(dataSet)
+    return DataCombination(dates, confirmedCases, confirmedDeaths)
 
 def getDataWithLocationAndDateRange(location, dateRange):
     '''
@@ -43,21 +57,21 @@ def getDateRangeData(dataSet, dateRange):
         newList.append(line)
     return newList
 
-def getDates(list):
+def getDates(dataSet):
     '''return the column of dates from a list '''
     
-    dates = [i[dateIndex] for i in list]
+    dates = [i[dateIndex] for i in dataSet]
     return dates
 
-def getConfirmedCases(list):
+def getConfirmedCases(dataSet):
     '''return the column of death numbers from a list '''
     
-    deaths = [int(i[confirmedCaseseIndex]) for i in list]
+    deaths = [int(i[confirmedCaseseIndex]) for i in dataSet]
     return deaths
 
-def getConfirmedDeaths(list):
+def getConfirmedDeaths(dataSet):
     '''return the column of confirmed cases from a list '''
-    deaths = [int(i[confirmedDeathsIndex]) for i in list]
+    deaths = [int(i[confirmedDeathsIndex]) for i in dataSet]
     return deaths
 
 def getStateNames(dataSet):

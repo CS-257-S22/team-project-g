@@ -11,12 +11,11 @@ def displayRawData(location, dateRange):
     Gets raw data from chosen data set to display in flask webpage.
     '''
     
-    dataSet = retrieveData.getCountyStateData(location.county, location.state)
-    dataSet = retrieveData.getDateRangeData(dataSet,dateRange)
+    dataSet = retrieveData.getDataCombination(location,dateRange)
 
-    cases = retrieveData.getConfirmedCases(dataSet)
-    deaths = retrieveData.getConfirmedDeaths(dataSet)
-    dates = retrieveData.getDates(dataSet)
+    cases = dataSet.confirmedcases
+    deaths = dataSet.confirmeddeaths
+    dates = dataSet.dates
 
     returnString = location.county + ", " + location.state + ": confirmed cases and deaths from " + gD.dayListToStr(dateRange.startDate) + " to " + gD.dayListToStr(dateRange.endDate) + "<br/> <br/>"
     

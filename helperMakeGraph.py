@@ -9,18 +9,6 @@ from matplotlib.figure import Figure
 from datetime import datetime
 from helperClasses import DataCombination
 
-def getDataForGraph(location, dateRange):
-    """
-    takes a location and a dateRange and returns a combination of data in DataCombanation class for graphing    
-    locations is a Location object
-    dateRange is a DateRange object
-    """
-    list = getDataWithLocationAndDateRange(location, dateRange)
-    dates = getDates(list)
-    confirmedCases = getConfirmedCases(list)
-    confirmedDeaths = getConfirmedDeaths(list)
-    return DataCombination(dates, confirmedCases, confirmedDeaths)
-
 #functions related to setting x axis ticks
 def setXaxisTicks(timeRangeDays):
     """set tick size and format on x axis"""
