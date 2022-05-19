@@ -53,7 +53,7 @@ def getDateRangeData(dataSet, dateRange):
 
         thisdate = toDateTime(line[dateIndex])
         if(thisdate < startDate): continue
-        if(thisdate >= endDate): break
+        if(thisdate > endDate): break
         newList.append(line)
     return newList
 
