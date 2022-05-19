@@ -18,7 +18,7 @@ class retrieveDataFromdatabaseTest(unittest.TestCase):
         location = Location("Autauga", "Alabama")
         dataSet = rD.getCountyStateData(location.county, location.state)
         #Use a random day to check if the dataset retrieved is correct
-        instance = [['2022', '04', '08'], 'Autauga', 'Alabama', 15744, 213]
+        instance = ('2022-03-06', 'Autauga', 'Alabama', 15530, 199)
         self.assertIn(instance, dataSet)
     pass
 
