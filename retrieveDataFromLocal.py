@@ -41,13 +41,12 @@ def storeData(stringLines):
         lineNum+= 1 # keep track of line number for error message
         listLine = convertStringLinetoList(i)
         listLine.pop() # remove last column
-        listLine[dateIndex] = splitDate(listLine[dateIndex]) #process date String and make it a list
         if(checkDataFormat(listLine, lineNum)):
             dataSet.append(listLine)   #skip the line if not formatted correctly
 
 def checkDataFormat(listLine,lineNum):
     '''Check if data on listLine is formatted correctly, print an error message if not; return a boolean value'''
-    if(checkValidDate(listLine[dateIndex]) == False):
+    if(checkValidDate(splitDate(listLine[dateIndex])) == False):
         print("Date format incorrect at line " + str(lineNum))
         return False
     if(not checkNumberFormat(listLine[3])):
@@ -74,3 +73,6 @@ def checkNumberFormat(num):
     if(case < 0):
         return False
     return True
+
+if __name__ == "__main__":
+    print(getCountyStateData("Rice", "Minnesota"))

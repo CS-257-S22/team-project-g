@@ -9,9 +9,13 @@ from indexDictionary import *
 from helperClasses import *
 
 #use the database if operating on server, else use the local .csv files
+import settings
 
-from retrieveDataFromDatabase import *
-
+if (settings.isOnServer):
+    from retrieveDataFromDatabase import *
+else:
+    from retrieveDataFromLocal import *
+    
 def getDataCombination(location, dateRange):
     """
     Inputs: 
@@ -50,7 +54,6 @@ def getDateRangeData(dataSet, dateRange):
     for line in dataSet:
         line = list(line)
         line[dateIndex] = splitDate(line[dateIndex])
-
         thisdate = toDateTime(line[dateIndex])
         if(thisdate < startDate): continue
         if(thisdate > endDate): break
