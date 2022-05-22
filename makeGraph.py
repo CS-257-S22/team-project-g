@@ -32,13 +32,16 @@ def makeSeperateGraphs(location,dateRange):
 
     output (): a list that saves the information for 2 graphs [graph1, graph2]
     """
+    plt.cla()
+    plt.clf()
     dataCombination = getDataCombination(location,dateRange)
     makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmedcases,location)
     outputConfirmedCases = io.BytesIO()
-    outputConfirmedDeaths = io.BytesIO()
     plt.savefig(outputConfirmedCases,format="png")
-    plt.close()
+    plt.cla()
+    plt.clf()
     makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmeddeaths,location)
+    outputConfirmedDeaths = io.BytesIO()
     plt.savefig(outputConfirmedDeaths,format="png")
     plt.close()
     return [outputConfirmedCases, outputConfirmedDeaths]
@@ -69,7 +72,7 @@ def makeConfirmedDeathsGraph(dates, caseList, location):
     
     inputs:
     dates[] list contains lists of date in the format [Year, Month, Day]
-    cases[] list contains number of cases as string
+    cases[] list contains number of cases as integers
     locations is a Location object
     """
     drawGraph(dates,caseList)
@@ -81,3 +84,8 @@ def makeConfirmedDeathsGraph(dates, caseList, location):
     
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
+
+if __name__ == "__main__":
+    location = Location("Rice","Minnesota")
+    dateRange = DateRange("2020-4-7", "2020-4-8")
+    makeSeperateGraphs(location,dateRange)
