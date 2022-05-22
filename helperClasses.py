@@ -26,8 +26,7 @@ class DataCombination:
     # confirmedcases is a list of number of confirmed deaths during this date range
     def __init__(self, dates, confirmedcases, confirmeddeaths):
         """
-        Initialize the class with string inputs
-        startDateString and endDateString are Strings of format "YYYY-MM-DD"
+        Initialize the class
         """
         self.dates = dates
         self.confirmedcases = confirmedcases
