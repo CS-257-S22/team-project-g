@@ -21,7 +21,7 @@ class DateRange:
 
 class DataCombination:
     # a class with 3 variables: dates, confirmedcases, confirmeddeaths
-    # dates is a list of ['YYYY', 'MM', 'DD'] Dates
+    # dates is a list of ["YYYY", "MM", "DD"] (Strings) Dates
     # confirmedcases is a list of number of confirmed cases during this date range
     # confirmedcases is a list of number of confirmed deaths during this date range
     def __init__(self, dates, confirmedcases, confirmeddeaths):
