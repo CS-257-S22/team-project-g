@@ -53,7 +53,7 @@ def calculateYTickSize(caseList):
     diffCases = int(caseList[-1]) - int(caseList[0])
     #Avoid futher math if there are no cases in the interval
     if (diffCases == 0):
-        return 10
+        return caseList[0]
     yticksize = int(math.log10(diffCases)) 
     
     #Find the least power of 10 that is less than max cases and make it the tick size

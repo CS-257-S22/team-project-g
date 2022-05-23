@@ -60,7 +60,6 @@ def makeConfirmedCasesGraph(dates, caseList, location):
     makeTitleConfirmedCases(location.county, location.state)
     timeRangeDays = getTimeRangeDays(dates)
     setXaxisTicks(timeRangeDays)
-    
     yticksize = calculateYTickSize(caseList)
     setYaxisTicks(yticksize)
 
@@ -86,4 +85,4 @@ def makeConfirmedDeathsGraph(dates, caseList, location):
 if __name__ == "__main__":
     location = Location("Rice","Minnesota")
     dateRange = DateRange("2022-4-1", "2022-4-2")
-    makeSeperateGraphs(location,dateRange)
+    makeGraph(location,dateRange)
