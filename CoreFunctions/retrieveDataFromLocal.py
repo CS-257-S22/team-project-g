@@ -4,7 +4,6 @@ import os
 from CoreFunctions.helperCheckInput import *
 from CoreFunctions.conversionFunctions import *
 from CoreFunctions.indexDictionary import *
-from CoreFunctions.retrieveDataFromDatabase import *
 #data path of the dataset .csv file relative to this folder
 dataSet = [] 
 #2-d array data set in the format [Date (as a list of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]

@@ -6,7 +6,8 @@ import matplotlib.ticker as ticker
 import matplotlib.dates as mdates
 import math
 
-from CoreFunctions.retrieveData import *
+from CoreFunctions.retrieveData import getDataCombination
+from CoreFunctions.conversionFunctions import *
 
 #functions related to setting x axis ticks
 def setXaxisTicks(timeRangeDays):

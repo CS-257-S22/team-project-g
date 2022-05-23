@@ -1,5 +1,4 @@
 from CoreFunctions.conversionFunctions import *
-from CoreFunctions.helperCheckInput import *
 from CoreFunctions.indexDictionary import *
 from CoreFunctions.helperClasses import *
 
