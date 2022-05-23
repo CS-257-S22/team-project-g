@@ -1,5 +1,5 @@
 # Stores classes that are used across functions 
-from conversionFunctions import *
+from CoreFunctions.conversionFunctions import *
 
 class Location:
     # a class with 2 variables, couty and states in string

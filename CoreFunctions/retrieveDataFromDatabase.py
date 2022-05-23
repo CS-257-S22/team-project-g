@@ -1,8 +1,9 @@
-from conversionFunctions import *
-from helperCheckInput import *
-from indexDictionary import *
 import psycopg2
 import psqlConfig as config
+
+from CoreFunctions.conversionFunctions import *
+from CoreFunctions.helperCheckInput import *
+from CoreFunctions.indexDictionary import *
 
 def getCountyStateData(county, state):
     '''returns a list of data that fits the county and state from dataSet'''

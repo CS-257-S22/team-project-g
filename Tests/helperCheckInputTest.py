@@ -6,7 +6,7 @@ currentPath = os.path.dirname(__file__)
 motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 from FlaskApp import *
-import helperCheckInput as hCI
+import CoreFunctions.helperCheckInput as hCI
 
 class helperCheckInputTest(unittest.TestCase):
     

@@ -1,13 +1,9 @@
 from flask import Flask
 from flask import render_template, request
-import displayGraph as dG
-import helperCheckInput as hCI
-import retrieveData as rD
-#some helper functions to convert data to the inputs that our main code take
-from helperClasses import *
-import csv
-import sys
-
+from CoreFunctions.helperCheckInput import *
+from CoreFunctions.helperClasses import *
+from CoreFunctions.retrieveData import *
+from CoreFunctions.displayGraph import displayGraph as renderGraphPage
 app = Flask(__name__)
 
 @app.route('/')
@@ -25,7 +21,7 @@ def displayRawData():
     county = str(request.args['county'])
     startDate = str(request.args['startDate'])
     endDate = str(request.args['endDate'])
-    checkInputResult = hCI.helperCheckInput(county,state,startDate,endDate)
+    checkInputResult = helperCheckInput(county,state,startDate,endDate)
     if (checkInputResult == True):
         dateRange = DateRange(startDate,endDate)
         location = Location(county,state)
@@ -43,11 +39,11 @@ def displayGraph():
     county = str(request.args['county'])
     startDate = str(request.args['startDate'])
     endDate = str(request.args['endDate'])
-    checkInputResult = hCI.helperCheckInput(county,state,startDate,endDate)
+    checkInputResult = helperCheckInput(county,state,startDate,endDate)
     if (checkInputResult == True):
         dateRange = DateRange(startDate,endDate)
         location = Location(county,state)
-        return dG.displayGraph(location, dateRange)
+        return renderGraphPage(location, dateRange)
     else: 
         return errorInputPrompt(checkInputResult)
     
@@ -57,17 +53,11 @@ def errorInputPrompt(errormsg):
     ''' 
     return render_template('errorinput.html', errormsg = errormsg)
 
-def getGraph(location, dateRange):
-    '''
-    renders a page for graphs based on location and dateRange
-    '''
-    return dG.displayGraph(location, dateRange)
-
 def getRawData(location, dateRange):
     '''
     renders a page for raw data based on location and dateRange
     '''
-    dataCombination = rD.getDataCombination(location,dateRange)
+    dataCombination = getDataCombination(location,dateRange)
 
     return render_template('rawdata.html', location = location, dateRange = dateRange, 
                            dates = dataCombination.dates, confirmedCases = dataCombination.confirmedcases, 

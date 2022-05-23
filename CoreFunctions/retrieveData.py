@@ -1,20 +1,15 @@
-#Includes functions that retrieve data from a .csv file and process them.
-import sys
-import csv
-from conversionFunctions import *
-from datetime import datetime
-from helperCheckInput import *
-import os
-from indexDictionary import *
-from helperClasses import *
+from CoreFunctions.conversionFunctions import *
+from CoreFunctions.helperCheckInput import *
+from CoreFunctions.indexDictionary import *
+from CoreFunctions.helperClasses import *
 
 #use the database if operating on server, else use the local .csv files
 import settings
 
 if (settings.isOnServer):
-    from retrieveDataFromDatabase import *
+    from CoreFunctions.retrieveDataFromDatabase import *
 else:
-    from retrieveDataFromLocal import *
+    from CoreFunctions.retrieveDataFromLocal import *
     
 def getDataCombination(location, dateRange):
     """

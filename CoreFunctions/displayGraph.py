@@ -1,13 +1,7 @@
-#makes a rendered html page based on a input location and dateRange
-import csv
-from flask import Flask
-import io
-import makeGraph as mG
-import os
-import sys
 import base64
 from flask import render_template
 
+from CoreFunctions.makeGraph import *
 def displayGraph(location, dateRange):
     return getHTML(location, dateRange)
 
@@ -21,7 +15,7 @@ def getData(location, dateRange):
     output: data [confirmedCasesGraph, confirmedDeathsGraph], a list of two graphs in streamIO()
     """
     
-    output = mG.makeSeperateGraphs(location,dateRange)
+    output = makeSeperateGraphs(location,dateRange)
     
     confirmedCasesGraph = base64.b64encode(output[0].getvalue()).decode('utf-8 ')
     confirmedDeathsGraph = base64.b64encode(output[1].getvalue()).decode('utf-8 ')

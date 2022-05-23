@@ -7,7 +7,7 @@ currentPath = os.path.dirname(__file__)
 motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 from FlaskApp import *
-import displayRawData as dR
+import CoreFunctions.displayRawData as dR
 
 class rawDataTest(unittest.TestCase):
     maxDiff = None

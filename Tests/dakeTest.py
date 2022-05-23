@@ -10,35 +10,35 @@ motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 
 #test module retrieveData
-import retrieveDataFromLocal as rD
-from helperClasses import *
+from CoreFunctions.retrieveDataFromLocal import retrieveData, getStringLinesFromFile
+from CoreFunctions.helperClasses import *
 
 dummyDataSetRelativePath = "Data/dummy_data.csv"
-wrongFormatDataSetRelativePath = "Data/TestData/dakeTest_incorrect_format_data.csv"
+wrongFormatDataSetRelativePath = "../Data/TestData/dakeTest_incorrect_format_data.csv"
 
 class retrieveDataFromLocalTest(unittest.TestCase):
     
     def testGetStringLinesFromFile(self):
         '''Test if line 200 is correct in the resulting string list'''
-        lines = rD.getStringLinesFromFile(dummyDataSetRelativePath)
+        lines = getStringLinesFromFile(dummyDataSetRelativePath)
         self.assertEqual(lines[199],"2021-06-21,Delaware,Pennsylvania,52541,1401,US\n")
         pass
     
     def testSplitDate(self):
         '''Test if the dates are split properly'''
         dateString = "2020-1-1"
-        dateList = rD.splitDate(dateString)
+        dateList = splitDate(dateString)
         self.assertEqual(dateList,['2020','1','1'],"splitDate() is not fucntioning properly")
     pass
  
     def testWrongFormatData(self):
         '''Test if retrieveData identifies incorrectly formatted Data with a wrongly formatted dataset'''
         with unittest.mock.patch('sys.stdout', new=io.StringIO()) as fake_stdout:
-            rD.retrieveData(wrongFormatDataSetRelativePath) 
+            retrieveData(wrongFormatDataSetRelativePath) 
         self.assertEqual(fake_stdout.getvalue(), "Case format incorrect at line 1\nDate format incorrect at line 2\n")
         
 #test module makeGraph.py        
-import makeGraph as mG     
+import CoreFunctions.makeGraph as mG     
 class makeGraphTest(unittest.TestCase):
     
     # Given that graphing it self cannot be automatically tested, 
@@ -53,7 +53,7 @@ class makeGraphTest(unittest.TestCase):
             self.assertEqual(result,expectedTickSize[i], message)
         pass
 
-import helperCheckInput as hCI
+import CoreFunctions.helperCheckInput as hCI
 
 class helperCheckInputTest(unittest.TestCase):
     def testCorrectCheckValidDate(self):

@@ -1,11 +1,9 @@
-from inspect import ArgSpec
-import sys
-import makeGraph as mG
-import helperCheckInput as hCI
-import displayRawData as dRD
-from helperClasses import *
 import argparse
-
+import sys
+from CoreFunctions.makeGraph import *
+from CoreFunctions.helperCheckInput import *
+from CoreFunctions.displayRawData import *
+from CoreFunctions.helperClasses import *
 
 def CheckComadLine(argv):
     '''in put comand lines String county String state  String start-date String End-date'''
@@ -30,14 +28,14 @@ def callData(args):
     '''input args.Parser object'''
     '''call main function deppending on graph flag '''
     ''' return string of state data or graph out put'''
-    outPut = hCI.helperCheckInput(args.County,args.State,args.StartDate, args.EndDate)
+    outPut = helperCheckInput(args.County,args.State,args.StartDate, args.EndDate)
     if outPut == True:
         location = Location(args.County,args.State)
         dateRange = DateRange(args.StartDate, args.EndDate)
         if args.graph:
-           return mG.makeGraph(location,dateRange)
+           return makeGraph(location,dateRange)
         else: 
-            return dRD.displayRawData(location,dateRange)
+            return displayRawData(location,dateRange)
     else: return outPut
 
     

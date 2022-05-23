@@ -1,10 +1,10 @@
 from flask import Flask, render_template
-import displayGraph as fH
-import helperCheckInput as hCI
-import ProductionCode as pC
-import displayGraph as dG
-import displayRawData as dR
-from helperClasses import *
+from CoreFunctions.helperCheckInput import *
+from CoreFunctions.helperClasses import *
+from CoreFunctions.retrieveData import *
+from CoreFunctions.displayGraph import displayGraph as renderGraphPage
+from CoreFunctions.displayRawData import displayRawData as renderRawDataPage
+from ProductionCode import CheckComadLine
 
 app = Flask(__name__)
 
@@ -42,7 +42,7 @@ def CommandLineState(StateName):
     return string of the row of the most recent cases of that state  
     """
     arguments = ["-s",StateName]
-    outPut = pC.CheckComadLine(arguments)
+    outPut = CheckComadLine(arguments)
     return str(outPut)
 
 @app.route('/-d/<Date>', strict_slashes=False)
@@ -57,7 +57,7 @@ def CommandLineDate(Date):
     return currently unimplmented 
     """
     arguments = ["-d",Date]
-    outPut = pC.CheckComadLine(arguments)
+    outPut = CheckComadLine(arguments)
     return "Sorry Get Date not implemented yet"
 
 @app.route('/<county>/<state>/<startDateString>/<endDateString>', strict_slashes=False)
@@ -66,12 +66,11 @@ def displayRawData(county,state,startDateString,endDateString):
     Displays raw data, in text form, of cases and deaths during date range 
                                                 in the location specified
     """
-    validInput = hCI.helperCheckInput(county,state,startDateString,endDateString)
+    validInput = helperCheckInput(county,state,startDateString,endDateString)
     if (validInput == True):
         dateRange = DateRange(startDateString,endDateString)
         location = Location(county,state)
-
-        return dR.displayRawData(location, dateRange)
+        return renderRawDataPage(location, dateRange)
     else: 
         return makeErrorInputmsg(validInput)
 
@@ -80,12 +79,12 @@ def graphImagePage(county,state,startDateString, endDateString):
     """ 
     Makes a graph with the input strings for county, state, start date, and end date. 
     """
-    validInput = hCI.helperCheckInput(county,state,startDateString,endDateString)
+    validInput = helperCheckInput(county,state,startDateString,endDateString)
     if (validInput == True):
         dateRange = DateRange(startDateString,endDateString)
         location = Location(county,state)
 
-        return dG.displayGraph(location, dateRange)
+        return renderGraphPage(location, dateRange)
     else: 
         print(validInput)
         return makeErrorInputmsg(validInput)

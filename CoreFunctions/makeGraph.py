@@ -1,10 +1,9 @@
 #Makes graph(s) based on a location and dateRange
-import helperMakeGraph as hMG
 import matplotlib.pyplot as plt
 import io
-from helperMakeGraph import *
-from helperClasses import *
-from retrieveData import getDataCombination
+from CoreFunctions.helperMakeGraph import *
+from CoreFunctions.helperClasses import *
+from CoreFunctions.retrieveData import getDataCombination
 
 def makeGraph(location,dateRange):
     """

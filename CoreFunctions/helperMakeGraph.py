@@ -1,13 +1,12 @@
 #helper functions that supports makeGraph.py, inclusing  calculating and setting ticks
 #making labels and titles, formatting and drawing graph
-from retrieveData import *
+
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import matplotlib.dates as mdates
 import math
-from matplotlib.figure import Figure
-from datetime import datetime
-from helperClasses import DataCombination
+
+from CoreFunctions.retrieveData import *
 
 #functions related to setting x axis ticks
 def setXaxisTicks(timeRangeDays):

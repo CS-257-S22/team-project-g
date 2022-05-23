@@ -1,12 +1,10 @@
 #Includes functions that retrieve data from a .csv file and process them.
-import sys
-import csv
-from conversionFunctions import *
 from datetime import datetime
-from helperCheckInput import *
 import os
-from indexDictionary import *
-from retrieveDataFromDatabase import *
+from CoreFunctions.helperCheckInput import *
+from CoreFunctions.conversionFunctions import *
+from CoreFunctions.indexDictionary import *
+from CoreFunctions.retrieveDataFromDatabase import *
 #data path of the dataset .csv file relative to this folder
 dataSet = [] 
 #2-d array data set in the format [Date (as a list of form [Year, Month, Day]), County, State, Confirmed Cases, Confirmed Deaths]
@@ -26,7 +24,7 @@ def getStringLinesFromFile(filePath):
 
 def getCountyStateData(county, state):
     '''returns a list of data that fits the county and state from dataSet'''
-    path = "Data/sub-Data/" + county + "," + state + ".csv" 
+    path = "../Data/sub-Data/" + county + "," + state + ".csv" 
     return retrieveData(path)
     
 def convertRealtivePathToAbsolutePath(relativeDataPath):

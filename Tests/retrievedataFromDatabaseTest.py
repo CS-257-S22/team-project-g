@@ -8,8 +8,8 @@ motherdir = os.path.join(currentPath,"..")
 sys.path.append(motherdir)
 
 #test module retrieveData
-import retrieveDataFromDatabase as rD
-from helperClasses import *
+import CoreFunctions.retrieveDataFromDatabase as rD
+from CoreFunctions.helperClasses import *
 
 class retrieveDataFromdatabaseTest(unittest.TestCase):
 

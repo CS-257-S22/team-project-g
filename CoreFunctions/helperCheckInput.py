@@ -1,7 +1,7 @@
 # An integral function that checks different inputs 
-from tabnanny import check
-from conversionFunctions import *
 from datetime import datetime
+from CoreFunctions.conversionFunctions import *
+
 
 dataStartTime = datetime(2020, 1, 22)
 dataEndTime = datetime(2022, 4, 9)
