@@ -1,6 +1,14 @@
 # Team G - CoViz: Visualizations of United States COVID-19 Data
 Team members: Bryan, Dake, Sam, Will
 
+Description of Subdirectories:
+
+G/ includes all the major projects that we worked on
+CoreFunctions/ includes all our functional code
+Data/ includes our main dataset and its subsets
+Tests/ is our test suite
+static/ and template/ are subdirectories for the webpages
+
 !!! To check projects before Team Back End, change the isOnServer variable in settings.py to False!!!
 
 1. Command Line Project: run ProductionCode.py; Run python3 ProductionCode.py --help for help, or see instructions below
@@ -21,7 +29,7 @@ Examples of things you can do:
 
 2. FlaskApp: run FlaskApp.py; Instructions on the homepage
 
-3. Front End Component: run BasicFrontEnd.py, instructions on the webpage
+3. Front End Component: run BasicFrontEnd.py, instructions on the homepage
 
     Note: 
     BasicFrontEndAuto.py 
