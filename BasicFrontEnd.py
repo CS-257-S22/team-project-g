@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import render_template, request
-from CoreFunctions.helperCheckInput import *
+from CoreFunctions.helperCheckInput import helperCheckInput
 from CoreFunctions.helperClasses import *
-from CoreFunctions.retrieveData import *
+from CoreFunctions.retrieveData import getDataCombination
 from CoreFunctions.displayGraph import displayGraph as renderGraphPage
 app = Flask(__name__)
 

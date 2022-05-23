@@ -1,8 +1,8 @@
 import argparse
 import sys
-from CoreFunctions.makeGraph import *
-from CoreFunctions.helperCheckInput import *
-from CoreFunctions.displayRawData import *
+from CoreFunctions.makeGraph import makeGraph
+from CoreFunctions.helperCheckInput import helperCheckInput
+from CoreFunctions.displayRawData import displayRawData
 from CoreFunctions.helperClasses import *
 
 def CheckComadLine(argv):

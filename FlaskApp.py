@@ -1,7 +1,6 @@
 from flask import Flask, render_template
-from CoreFunctions.helperCheckInput import *
+from CoreFunctions.helperCheckInput import helperCheckInput
 from CoreFunctions.helperClasses import *
-from CoreFunctions.retrieveData import *
 from CoreFunctions.displayGraph import displayGraph as renderGraphPage
 from CoreFunctions.displayRawData import displayRawData as renderRawDataPage
 from ProductionCode import CheckComadLine
