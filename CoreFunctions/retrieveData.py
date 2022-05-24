@@ -1,3 +1,5 @@
+#A function that processes data
+#Switches between online and local databases based on setting 
 from CoreFunctions.conversionFunctions import *
 from CoreFunctions.indexDictionary import *
 from CoreFunctions.helperClasses import *

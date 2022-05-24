@@ -1,3 +1,4 @@
+#gets data from our online database for our functions
 import psycopg2
 import psqlConfig as config
 

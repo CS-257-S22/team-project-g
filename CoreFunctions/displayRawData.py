@@ -1,3 +1,4 @@
+# A function to show raw data for our flask app
 from CoreFunctions.retrieveData import getDataCombination
 from CoreFunctions.helperClasses import *
 from CoreFunctions.getDayWithMostCases import dayListToStr
