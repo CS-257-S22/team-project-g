@@ -16,11 +16,12 @@ class retrieveDataFromdatabaseTest(unittest.TestCase):
     def testTypicalData(self):
         '''Test if the function can retrieve data for a random typical input'''
         location = Location("Autauga", "Alabama")
-        dataSet = rD.getCountyStateData(location.county, location.state)
-        #Use a random day to check if the dataset retrieved is correct
-        instance = ('2022-03-06', 'Autauga', 'Alabama', 15530, 199)
-        self.assertIn(instance, dataSet)
-    pass
+        dateRange = DateRange("2022-3-1", "2022-3-2")
+        dataSet = rD.getDataCombination(location, dateRange)
+        print(dataSet.confirmedcases)
+        print(dataSet.confirmeddeaths)
+        self.assertEqual(dataSet.confirmedcases, [15520, 15528])
+        self.assertEqual(dataSet.confirmeddeaths, [195, 198])
 
 if __name__ == '__main__':
     unittest.main()

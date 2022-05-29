@@ -24,6 +24,7 @@ def helperCheckInput(countyName, stateName, startDate, endDate):
     checkcountyStateResult = checkCountyState(countyName, stateName)
     checkDateResult = checkDates(startDate, endDate)
     checkInputResult = []
+    
     if (checkcountyStateResult != True):
         checkInputResult.append(checkcountyStateResult)
 

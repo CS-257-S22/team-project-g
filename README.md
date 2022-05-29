@@ -41,9 +41,10 @@ Examples of things you can do:
 
 4. Team Back End: 
 
-    a. View CoreFunctions/retrieveDataFromDatabase.py --- this is originally a (and the only) function in retrievedata.py that reads from .csv files. It is now modified to retrieve data from the back end database and called in retrieveData.py 
-    b. Run BasicFrontEnd.py to check if this function works --- it is indirectly called in our front end function. 
-    c. CoreFunctions/RetireveDataFromLocal.py is our original function that uses .csv files, it is now used for previous versions and tests only.
+    a. View CoreFunctions/retrieveDataFromDatabase.py --- this features a main function "getDataCombination()" which is also in the local version of our website
+    b. CoreFunctions/retrievedata.py is an intermediate function that switches between the local and online database based on settings.py
+    c. Run BasicFrontEnd.py to check if this function works --- it is indirectly called in our front end function. 
+    d. CoreFunctions/RetireveDataFromLocal.py is our original function that uses .csv files, it is now used for previous versions and tests only.
     
     d. Command to copy file:
     \copy covidData FROM 'us_simplified_cleaned.csv' DELIMITER ',' CSV 
