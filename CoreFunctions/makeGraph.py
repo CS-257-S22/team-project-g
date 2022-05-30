@@ -17,7 +17,7 @@ def makeGraph(location,dateRange):
     makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmedcases,location)
     plt.show()
     plt.close()
-    makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmeddeaths,location)
+    makeConfirmedDeathsGraph(dataCombination.dates,dataCombination.confirmeddeaths,location)
     plt.show()
     plt.close()
     
@@ -37,7 +37,7 @@ def makeSeperateGraphs(location,dateRange):
     outputConfirmedCases = io.BytesIO()
     plt.savefig(outputConfirmedCases,format="png")
     plt.close()
-    makeConfirmedCasesGraph(dataCombination.dates,dataCombination.confirmeddeaths,location)
+    makeConfirmedDeathsGraph(dataCombination.dates,dataCombination.confirmeddeaths,location)
     outputConfirmedDeaths = io.BytesIO()
     plt.savefig(outputConfirmedDeaths,format="png")
     plt.close()

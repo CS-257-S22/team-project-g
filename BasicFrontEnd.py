@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template, request
+from sqlalchemy import false
 from CoreFunctions.helperCheckInput import helperCheckInput
 from CoreFunctions.helperClasses import *
 from CoreFunctions.retrieveData import getDataCombination
@@ -78,4 +79,4 @@ def python_bug(e):
     return render_template('internalerror.html')
 
 if __name__ == '__main__':
-    app.run(port = 5225)
+    app.run(port = 5225, host = "0.0.0.0")
