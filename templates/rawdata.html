@@ -1,0 +1,62 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='mainstyle.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='rawdatapagestyle.css') }}">    
+        <head>
+            <title>Covid Graphs For {{location.county}}, {{location.state}}</title>
+        </head>
+    </head>
+
+    <body>
+        <div>
+            <a href="/"> <h1>Welcome to CoViz!</h1> </a>
+        </div>
+
+        <div class="tab">
+            <a href ="/"> <button class="tablinks">Return Home</button> </a>
+        </div>
+
+        <div class = "tabcontent" style="display:block">
+            <div>
+                <h2>
+                    Covid Raw Data For {{location.county}}, {{location.state}} <br/>
+                    From {{dateRange.startDate[0] + "-" + dateRange.startDate[1] + "-" + dateRange.startDate[2]}}
+                    To {{dateRange.endDate[0] + "-" + dateRange.endDate[1] + "-" + dateRange.endDate[2]}}
+                </h2>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "column left">
+                <h2>Date</h2>
+            </div> 
+            <div class = "column middle">
+                <h2>Confirmed Cases</h2>
+            </div>   
+
+            <div class = "column right">
+                <h2>Confirmed Deaths</h2>
+            </div>
+        </div>
+
+        {% for i in range (dates| length) %}
+            <div class = "row">
+                <div class = "column left">
+                    <p>{{ dates[i][0] + "-" + dates[i][1] + "-" + dates[i][2] }} </p>
+                </div>
+
+                <div class = "column middle">
+                    <p> {{ confirmedCases[i] }} </p>
+                </div>   
+
+                <div class = "column right">
+                    <p> {{ confirmedDeaths[i] }} </p>
+                </div>
+            </div>
+        {% endfor %}
+    </body>
+
+    <footer>
+    </footer>
+</html>

@@ -1,0 +1,158 @@
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mainstyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepagestyle.css') }}">
+    <head>
+        <title>CoViz Homepage</title>
+    </head>
+
+    <body>
+        <a href="/"> <h1>Welcome to CoViz!</h1> </a>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openTab('About')">About CoViz</button>
+            <button class="tablinks" onclick="openTab('Raw')">View Raw Data</button>
+            <button class="tablinks" onclick="openTab('Graph')">View Graphs</button>
+            <button class="tablinks" onclick="openTab('Help')">Help</button>
+        </div>
+        
+            <div id="About" class="tabcontent" style="display:block">
+                    <h2>About CoViz</h2>
+                    <p>
+                        CoViz is a Covid infomation visualizing application developed by Team G in CS 257, at Carleton College during the spring term of 2022. <br>
+                        <br>
+                        Coviz uses the Covid Dataset by TrevorWinstral on Github, available
+                        <a href="https://github.com/datasets/covid-19/blob/main/data/us_simplified.csv">here.</a><br>
+                        <br>
+                        The team members include: Bryan Yang, Dake Peng, Will Gershman, and Sam McCarthy Potter <br>
+                        <br>
+                        Try out our functions in the tab bar to view COVID raw data and graphs!
+                    </p>
+            </div>
+          
+            <div id="Raw" class="tabcontent">
+                <h2>View Raw Data</h2>
+                <p>Enter the following information to see raw data!</p>
+                <div class="container">
+                    <form action="displayRawData" autocomplete="on">
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="state">State: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="text" id="state" name = "state" autocomplete="state">
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="county">County: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="text" id="county" name = "county" autocomplete="province">
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="startDate">Start Date: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="date" id="startDate" name = "startDate" min="2020-01-22" max="2022-04-07">
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="endDate">End Date: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="date" id="endDate" name = "endDate" min="2020-01-22" max="2022-04-07"> <br>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <div class = "row">
+                            <input type="submit" value="Viz!"><br>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+
+            <div id="Graph" class="tabcontent">
+                <h2>View Graphs</h2>
+                <p>Enter the following information to see graphs!</p>
+                <div class="container">
+
+                    <form action="displayGraph">
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="state">State: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="text" id="state" name = "state">
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="county">County: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="text" id="county" name = "county">
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="startDate">Start Date: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="date" id="startDate" name = "startDate" min="2020-01-22" max="2022-04-07">
+                            </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class = "leftcol">
+                                <label for="endDate">End Date: </label>
+                            </div>
+                            <div class = "rightcol">
+                                <input type="date" id="endDate" name = "endDate" min="2020-01-22" max="2022-04-07"> <br>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <div class = "row">
+                            <input type="submit" value="Viz!"><br>
+                        </div>
+                    </form>
+                </div>    
+            </div>
+
+            <div id="Help" class="tabcontent">
+                <h2>Help</h2>
+                <p>To interact with the CoVid dataset, try clicking on the "View Raw Data" tab or the "View Graph" tab!</p>
+            </div>
+        
+            <!-- This openTab function is adapted from https://www.w3schools.com/howto/howto_js_tabs.asp-->
+        <script>
+            function openTab(index) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(index).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+        </script>
+    </body>
+
+    <footer>
+    </footer>
+    
+</html>
+

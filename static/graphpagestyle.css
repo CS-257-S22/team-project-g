@@ -1,0 +1,30 @@
+/*styling image*/
+
+
+.image1{
+    width: 50%;
+    float: left;
+}
+
+.image2{
+    width: 50%;
+    float: rigth;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*mobile-friendly: display graphs in 2 rows when the width of the window is too small*/
+@media screen and (max-width: 800px) {
+    .image1 {
+      width: 100%;
+    }
+    .image2 {
+        width: 100%;
+      }
+  }
+

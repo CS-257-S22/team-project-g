@@ -1,0 +1,29 @@
+p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+ 
+.left, .right,.middle {
+  width: 30%;
+}
+
+.row{
+  border: 1px solid #ccc;
+  margin: 0px;
+}
+  /* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer{
+  height: 200px;
+  display:block;
+}

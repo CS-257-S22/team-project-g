@@ -1,0 +1,36 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='graphpagestyle.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='mainstyle.css') }}">
+
+        <head>
+            <title>Covid Graphs For {{location.county}}, {{location.state}}</title>
+        </head>
+    </head>
+
+    <body>
+        <a href="/"> <h1>Welcome to CoViz!</h1> </a>
+        
+        <div class = "tab">
+            <a href ="/"> <button class="tablinks">Return Home</button> </a>
+        </div>
+        
+        <div class = "tabcontent" style="display:block">
+            <h2>
+                Covid Graphs For {{location.county}}, {{location.state}} <br/>
+                From {{dateRange.startDate[0] + "-" + dateRange.startDate[1] + "-" + dateRange.startDate[2]}}
+                To {{dateRange.endDate[0] + "-" + dateRange.endDate[1] + "-" + dateRange.endDate[2]}}
+            </h2>
+            <div class = "row">
+                <img src='data:image/png;base64,{{confirmedCasesGraph}}'/ class = "image1" alt = "Confirmed Cases Graph">
+                <img src='data:image/png;base64,{{confirmedDeathsGraph}}'/ class = "image2" alt = "Confirmed Deaths Graph">
+            </div>
+        </div>
+
+    </body>
+    
+    <footer>
+    </footer>
+</html>
+
